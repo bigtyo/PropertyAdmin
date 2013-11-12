@@ -102,16 +102,16 @@
 									<tbody id="datalisting">
                                                                             <?php foreach ($listings as $listing) {?>
                                                                                 <tr style="cursor:pointer">
-                                                                                    <td><a href="listingdetail.php"><img src="img/rumah70.jpg"></a></td>
-                                                                                    <td><?php echo "211"; ?></td>
-                                                                                    <td class="hidden-350"><?php echo "Rumah"; ?></td>
-                                                                                    <td><?php echo "Jl Darma Husada 3 / 14"; ?></td>
-                                                                                    <td><?php echo "Rp 650.000.000"; ?></td>
-                                                                                    <td><?php echo "Me"; ?></td>
-                                                                                    <td><?php echo "085621766622"; ?></td>
+                                                                                    <td><a href="listing/<?php echo $listing->listingid; ?>" ><img src="img/rumah70.jpg"></a></td>
+                                                                                    <td><?php echo $listing->listingid; ?></td>
+                                                                                    <td class="hidden-350"><?php echo $listing->nama_tipe; ?></td>
+                                                                                    <td><?php echo $listing->alamat_lengkap; ?></td>
+                                                                                    <td><?php echo "Rp ".$listing->harga; ?></td>
+                                                                                    <td><?php echo $listing->nama_marketing."(".$listing->nama_kantor.")"; ?></td>
+                                                                                    <td><?php echo $listing->telepon_marketing."/".$listing->telepon_kantor; ?></td>
 
-                                                                                    <td><span class="label label-satgreen"><?php echo "Exclusive" ?></span></td>
-                                                                                    <td><a href='buyer_match.php'><?php echo "4 Match"; ?></a></td>
+                                                                                    <td><span class="label label-satgreen"><?php echo $listing->nama; ?></span></td>
+                                                                                    <td><a href='listing/match?issearch=0&listingid=<?php echo $listing->listingid; ?>'><?php echo "Match"; ?></a></td>
                                                                                 </tr>           
                                                                             <?php } ?>
                                                                             

@@ -19,7 +19,7 @@ $(document).ready(function(){
         json.KAMAR_TIDUR = Number($("#kamarTidur").val());
         json.LANTAI = Number($("#lantai").val());
         json.DAYA_LISTRIK = Number($("#listrik").val());
-        json.SERIFIKAT = Number($("#sertifikat").val());
+        json.SERTIFIKAT = Number($("#sertifikat").val());
         json.KONDISI = Number($("#kondisi").val());
         json.KAMAR_MANDI = Number($("#kamarMandi").val());
         json.GARASI = Number($("#garasi").val());

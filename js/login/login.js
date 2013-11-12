@@ -8,11 +8,11 @@ $(document).ready(function(){
            password : pass
        },
        function(res){
-           var json = $.parseJSON(res);
-           
-           if(Number(json.status) == 1)
+           var json = res;
+           debugger;
+           if(Number(json.status) === 1)
            {
-               alert(json);
+               window.location= json.referrer.toString();
            }
        });
    }); 

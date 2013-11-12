@@ -172,13 +172,13 @@
 									<div class="control-group">
 										<label for="textfield" class="control-label">Reference ID:</label>
 										<div class="controls">
-											<label for="textfield" class="control-label">211</label>
+											<label for="textfield" class="control-label"><?php echo $listing->LISTINGID; ?></label>
 										</div>
 									</div>
 									<div class="control-group">
 										<label for="textfield" class="control-label">Harga :</label>
 										<div class="controls">
-											<label for="textfield" class="control-label">Rp 350.000.000</label>
+											<label for="textfield" class="control-label">Rp <?php echo $listing->HARGA; ?></label>
 										</div>
 									</div>
                                                                         <div class="control-group">
@@ -190,31 +190,28 @@
                                                                         <div class="control-group">
 										<label for="textfield" class="control-label">Jumlah Kamar</label>
 										<div class="controls">
-											<label for="textfield" class="control-label">3</label>
+											<label for="textfield" class="control-label"><?php echo $listing->KAMAR_TIDUR; ?></label>
 										</div>
 									</div>
                                                                         <div class="control-group">
 										<label for="textfield" class="control-label">Jumlah Kamar Mandi</label>
 										<div class="controls">
-											<label for="textfield" class="control-label">2</label>
+											<label for="textfield" class="control-label"><?php echo $listing->KAMAR_MANDI; ?></label>
 										</div>
 									</div>
                                                                         <div class="control-group">
 										<label for="textfield" class="control-label">Luas Tanah</label>
 										<div class="controls">
-											<label for="textfield" class="control-label">120 Meter Persegi</label>
+											<label for="textfield" class="control-label"><?php echo $listing->LUAS_TANAH; ?> Meter Persegi</label>
 										</div>
 									</div>
                                                                         <div class="control-group">
 										<label for="textfield" class="control-label">Luas Bangunan</label>
 										<div class="controls">
-											<label for="textfield" class="control-label">100 Meter Persegi</label>
+											<label for="textfield" class="control-label"><?php echo $listing->LUAS_BANGUNAN; ?> Meter Persegi</label>
 										</div>
 									</div>
-									<div class="form-actions">
-										<button style="padding-left: 10px" type="submit" class="btn btn-primary">Edit</button>
-										
-									</div>
+									
 								</form>
 							</div>
 						</div>
@@ -226,7 +223,7 @@
 							<div class="box-title">
 								<h3>
 									<i class="icon-table"></i>
-									Listing Property
+									List Customer yang sedang mencari Property ini
 								</h3>
 							</div>
 							<div class="box-content nopadding">
@@ -238,39 +235,27 @@
 											<th>Email</th>
 											<th>Telepon</th>
 											<th>Alamat</th>
-                                                                                        
+                                                                                        <th>Range Harga Pencarian</th>
                                                                                         
                                                                                         
 										</tr>
 									</thead>
 									<tbody id="datalisting">
+                                                                            <?php if(isset($customers)){
+                                                                            foreach($customers as $customer){ ?>
+                                                                            
                                                                             <tr style="cursor:pointer">
-                                                                                <td>Rudi H</td>
-                                                                                <td>(Agen Diponegoro) Yudhi</td>
-                                                                                <td >08563213111</td>
-                                                                                <td>Hubungi Agen terkait</td>
-                                                                                
+                                                                                <td><?php echo $customer->NAMA; ?></td>
+                                                                                <td><?php echo $customer->EMAIL; ?></td>
+                                                                                <td><?php echo $customer->TELEPON; ?></td>
+                                                                                <td><?php echo $customer->ALAMAT; ?></td>
+                                                                                <td><?php echo $customer->RANGE_HARGA; ?></td>
                                                                                 
                                                                                 
                                                                                 
                                                                             </tr>
-                                                                            <tr style="cursor:pointer">
-                                                                                <td>Bobby H</td>
-                                                                                <td>(Agen Pakuwon City) Ari</td>
-                                                                                <td >(Agen) 08563248888</td>
-                                                                                <td>Hubungi Agen terkait</td>
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                            </tr>
-                                                                            <tr  style="cursor:pointer">
-                                                                                <td>Silas S</td>
-                                                                                <td >silas.sebastian@gmail.com</td>
-                                                                                <td>08562311144 / 031- 4566333</td>
-                                                                                
-                                                                                <td>Jl Anggrek 2 No 12 Mulyosari,Surabaya</td>
-                                                                                
+                                                                            <?php }
+                                                                            }?>
                                                                          </tbody>
 								</table>
 							</div>

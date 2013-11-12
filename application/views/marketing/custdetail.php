@@ -203,7 +203,7 @@
                                                                                         <td><?php echo $history->LUAST; ?></td>
                                                                                         <td><?php echo $history->LUASB; ?></td>
                                                                                         <td><?php echo $history->JMLKT; ?></td>
-                                                                                        <td <?php echo 'id="refresh"'.$history->HISTORYID; ?> ><a href="../match/listing"><?php echo $history->matches; ?></a></td>
+                                                                                        <td <?php echo 'id="refresh"'.$history->HISTORYID; ?> ><a href="match?customerid=<?php echo $customer->CUSTOMERID;?>&historyid=<?php echo $history->HISTORYID; ?>"><?php echo $history->matches; ?></a></td>
                                                                                     </tr>
                                                                                 <?php }
                                                                             } ?>

@@ -4,6 +4,7 @@ class customer extends RS_Controller{
         parent::__construct();
         
         $this->load->model('customer_model');
+        $this->load->model('listing_model');
     }
     
     public function index(){
@@ -79,6 +80,19 @@ class customer extends RS_Controller{
         
         $this->load->view('templates/header',$header);
         $this->load->view('marketing/custdetail',$data);
+        $this->load->view('templates/footer');
+    }
+    
+    public function match()
+    {
+        $data['customerid'] = $this->input->get('customerid');
+        $historyid = $this->input->get('historyid');
+        $marketingid = $this->session->userdata('marketingid');
+        $data['customer'] = $this->customer_model->getCustomer($data['customerid'],$marketingid);
+        $data['listings'] = $this->listing_model->getListingByHistory($historyid,$marketingid);
+        
+        $this->load->view('templates/header');
+        $this->load->view('match/customer',$data);
         $this->load->view('templates/footer');
     }
     

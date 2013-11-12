@@ -37,6 +37,11 @@ class login extends CI_Controller {
                    "officeid" => $officeid
                 );
                 $this->session->set_userdata($userdata);
+                //$this->load->library('user_agent');
+                if ($this->agent->is_referral())
+                {
+                    $json['referrer'] = $this->agent->referrer();
+                }
                 
            }  else {
                $json['status'] = 0;

@@ -179,6 +179,115 @@ class Customer_model extends CI_Model
                 return $this->db->insert_id();
             }
         }
+        
+        public function getCustomerMatchByListing($listingid,$marketingid)
+        {
+            $query = $this->db->get_where('listing',array(
+                'LISTINGID' => $listingid
+            ));
+            $row = $query->row();
+            
+            $query_s = "SELECT DISTINCT c.* ,concat('Rp ',hp.HARGA_AWAL,' - ','Rp ',hp.HARGA_AKHIR) as RANGE_HARGA 
+                        FROM rumahsuper.history_pencarian hp
+                        join rumahsuper.customer c on c.customerid = hp.customerid ";
+            
+            $q_string = "";
+            if($row->LUAS_TANAH != null)
+            {
+                $q_string .= " AND hp.LUAS_TANAH = $row->LUAS_TANAH";
+            }
+
+            if($row->LUAS_BANGUNAN != null)
+            {
+                $q_string .= " AND hp.LUAS_BANGUNAN = $row->LUAS_BANGUNAN";
+            }
+
+            if($row->FURNISHED != null)
+            {
+                $q_string .= " AND hp.FURNISHED = $row->FURNISHED";
+            }
+
+            if($row->KAMAR_TIDUR != null)
+            {
+                $q_string .= " AND hp.KAMAR_TIDUR = $row->KAMAR_TIDUR";
+            }
+
+            if($row->LANTAI != null)
+            {
+                $q_string .= " AND hp.LANTAI = $row->LANTAI";
+            }
+
+            if($row->DAYA_LISTRIK != null)
+            {
+                $q_string .= " AND hp.DAYA_LISTRIK = $row->DAYA_LISTRIK";
+            }
+
+            if($row->SERTIFIKAT != null)
+            {
+                $q_string .= " AND hp.SERTIFIKAT = '$row->SERTIFIKAT'";
+            }
+
+            if($row->KONDISI != null)
+            {
+                $q_string .= " AND hp.KONDISI = $row->KONDISI";
+            }
+
+            if($row->KAMAR_MANDI != null)
+            {
+                $q_string .= " AND hp.KAMAR_MANDI = $row->KAMAR_MANDI";
+            }
+
+            if($row->GARASI != null)
+            {
+                $q_string .= " AND hp.GARASI = $row->GARASI";
+            }
+
+            if($row->JALUR_TELEPON != null)
+            {
+                $q_string .= " AND hp.JALUR_TELEPON = $row->JALUR_TELEPON";
+            }
+
+            if($row->HARGA > 0)
+            {
+                $q_string .= " AND hp.HARGA_AWAL <= $row->HARGA";
+            }
+
+            if($row->HARGA > 0)
+            {
+                 $q_string .= " AND hp.HARGA_AKHIR >= $row->HARGA";
+            }
+
+            if($row->AREAID != NULL && $row->AREAID != 0)
+            {
+                 $q_string .= " AND hp.AREAID = $row->AREAID";
+            }
+
+            if($row->PROPINSIID != NULL && $row->PROPINSIID != 0)
+            {
+                 $q_string .= " AND hp.PROPINSIID = $row->PROPINSIID";
+            }
+
+            if($row->LOKASIID != NULL && $row->LOKASIID != 0)
+            {
+                 $q_string .= " AND hp.LOKASIID = $row->LOKASIID";
+            }
+
+            if($row->KOTAID != NULL && $row->KOTAID != 0)
+            {
+                 $q_string .= " AND hp.KOTAID = $row->KOTAID";
+            }
+
+            if($row->TIPEPROPID != NULL && $row->TIPEPROPID != 0)
+            {
+                 $q_string .= " AND hp.TIPEPROPID = $row->TIPEPROPID";
+            }
+            
+            $query_s .= "WHERE hp.MARKETINGID = $marketingid"." ".$q_string;
+            
+            $query = $this->db->query($query_s);
+            
+            return $query->result();
+        }
 }
 
 ?>

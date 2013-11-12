@@ -61,34 +61,29 @@
                                                                             <img src="img/demo/user-1.jpg">
                                                                         </div>
                                                                         <div class="span10">
+                                                                            
                                                                             <div class="control-group">
-										<label for="textfield" class="control-label">User Id:</label>
-										<div class="controls">
-											<label for="textfield" class="control-label">AmyLee</label>
-										</div>
-                                                                            </div>
-                                                                            <div class="control-group">
-                                                                                    <label for="textfield" class="control-label">Real Name :</label>
+                                                                                    <label for="textfield" class="control-label">Nama Lengkap :</label>
                                                                                     <div class="controls">
-                                                                                            <label for="textfield" class="control-label">Amy Jasmine Lee</label>
+                                                                                            <label for="textfield" class="control-label"><?php echo $customer->NAMA;?></label>
                                                                                     </div>
                                                                             </div>
                                                                             <div class="control-group">
-                                                                                    <label for="textfield" class="control-label">Age:</label>
+                                                                                    <label for="textfield" class="control-label">Tanggal Lahir:</label>
                                                                                     <div class="controls">
-                                                                                            <label for="textfield" class="control-label">30 Years Old</label>
+                                                                                            <label for="textfield" class="control-label"><?php echo $customer->tgl_lahir;?></label>
                                                                                     </div>
                                                                             </div>
                                                                             <div class="control-group">
-                                                                                    <label for="textfield" class="control-label">Phone:</label>
+                                                                                    <label for="textfield" class="control-label">Telepon:</label>
                                                                                     <div class="controls">
-                                                                                            <label for="textfield" class="control-label">085646162619</label>
+                                                                                            <label for="textfield" class="control-label"><?php echo $customer->TELEPON;?></label>
                                                                                     </div>
                                                                             </div>
                                                                             <div class="control-group">
                                                                                     <label for="textfield" class="control-label">Email:</label>
                                                                                     <div class="controls">
-                                                                                            <label for="textfield" class="control-label">Amy.lee@gmail.com</label>
+                                                                                            <label for="textfield" class="control-label"><?php echo $customer->EMAIL;?></label>
                                                                                     </div>
                                                                             </div>
                                                                             <div class="form-actions">
@@ -155,36 +150,25 @@
 										</tr>
 									</thead>
 									<tbody id="datalisting">
-                                                                            <tr style="cursor:pointer">
-                                                                                <td><a href="listingdetail.php"><img src="img/rumah70.jpg"></a></td>
-                                                                                <td>211</td>
-                                                                                <td >Ruko</td>
-                                                                                <td>Jl Darmahusada</td>
+                                                                            <?php if(isset($listings)) { 
+                                                                                foreach($listings as $listing) {?>
+                                                                                    <tr style="cursor:pointer">
+                                                                                        <td><a href="listingdetail.php"><img src="img/rumah70.jpg"></a></td>
+                                                                                        <td><?php echo $listing->LISTINGID; ?></td>
+                                                                                        <td >Rumah</td>
+                                                                                        <td><?php echo $listing->ALAMAT_LENGKAP; ?></td>
+
+                                                                                        <td><?php echo $listing->HARGA; ?></td>
+                                                                                        <td><?php echo $listing->CUSTOMERID; ?></td>
+
+
+                                                                                    </tr>
+                                                                                    
+                                                                            <?php }
                                                                                 
-                                                                                <td>Rp 650.000.000</td>
-                                                                                <td>(Agen Diponegoro)Yudhi - 08532412314</td>
-                                                                                
-                                                                                
-                                                                            </tr>
-                                                                            <tr  style="cursor:pointer">
-                                                                                <td><a href="listingdetail.php"><img src="img/rumah70.jpg"></a></td>
-                                                                                <td>211</td>
-                                                                                <td >Ruko</td>
-                                                                                <td>Jl Darmahusada 3 Blok C no 10</td>
-                                                                                
-                                                                                <td>Rp 750.000.000</td>
-                                                                                <td>John Doe - 08538797894</td>
-                                                                                
-                                                                                
-                                                                            </tr>
-                                                                            <tr  style="cursor:pointer">
-                                                                                <td><a href="listingdetail.php"><img src="img/rumah70.jpg"></a></td>
-                                                                                <td>211</td>
-                                                                                <td >Ruko</td>
-                                                                                <td>Jl Darmahusada</td>
-                                                                                
-                                                                                <td>Rp 550.000.000</td>
-                                                                                <td>(Agen Pakuwon City)Arie - 08537777794</td>
+                                                                                } ?>
+                                                                            
+                                                                            
                                                                          </tbody>
 								</table>
 							</div>
