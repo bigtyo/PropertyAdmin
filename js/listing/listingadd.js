@@ -5,6 +5,15 @@ function activateForm(obj,index){
     $(obj).addClass('active');
     $(".form-content").fadeOut();
     $("#form"+index).fadeIn();
+    
+    if(index == 3){
+        google.maps.event.addDomListener(window, 'load', initialize);
+        google.maps.event.addListener(map, 'click', function(event) {
+            debugger;
+            //placeMarker(event.latLng);
+            saveLongitude(event.latLng);
+        });
+    }
 } 
 
 function initialize() {
@@ -69,16 +78,27 @@ function saveLongitude(latLng)
     
 }
 
-$(document).ready(function(){
-
-    google.maps.event.addDomListener(window, 'load', initialize);
-    google.maps.event.addListener(map, 'click', function(event) {
+$(document).ready(function(obj){
+    debugger;
+    
+    $("#galerryAdd").click(function(obj){
         debugger;
-        //placeMarker(event.latLng);
-        saveLongitude(event.latLng);
-    });
-    $("#btnSubmit").click(function(){
-        
+        var content = $(".fileupload-preview .fileupload-exists .thumbnail").find('img').attr('src');
+        var html = "<li>" +
+                       '<a href="#">' +
+                            '<div style="max-width: 200px; max-height: 150px;">'+
+                                '<img src="'+content+'" alt="" />' +
+                            '</div>'+
+                       '</a>'+
+                       '<div class="extras">'+
+                            '<div class="extras-inner">'+
+                                '<a href="'+content+'" class="colorbox-image" rel="group-1"><i class="icon-search"></i></a>'+
+                                '<a href="#"><i class="icon-pencil"></i></a>' +
+                                '<a href="#" class="del-gallery-pic"><i class="icon-trash"></i></a>'+
+                            '</div>'+
+                        '</div>'+
+                    '</li>';
+       $("#gallery").append(html);
     });
 });
 

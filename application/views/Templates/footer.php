@@ -42,7 +42,8 @@
 	<link rel="stylesheet" href="<?php echo base_url();?>css/style.css">
 	<!-- Color CSS -->
 	<link rel="stylesheet" href="<?php echo base_url();?>css/themes.css">
-
+        <!-- colorbox -->
+	<link rel="stylesheet" href="<?php echo base_url();?>css/plugins/colorbox/colorbox.css">
 
 	<!-- jQuery -->
 	<script src="<?php echo base_url();?>js/jquery.min.js"></script>
@@ -104,7 +105,11 @@
 	<script src="<?php echo base_url();?>js/plugins/datatable/ColVis.min.js"></script>
 	<script src="<?php echo base_url();?>js/plugins/datatable/jquery.dataTables.columnFilter.js"></script>
 	<script src="<?php echo base_url();?>js/plugins/datatable/jquery.dataTables.grouping.js"></script>
-
+        
+        <!-- Wizard -->
+	<script src="<?php echo base_url();?>js/plugins/wizard/jquery.form.wizard.min.js"></script>
+	
+        
 	<!-- Theme framework -->
 	<script src="<?php echo base_url();?>js/eakroko.js"></script>
 	<!-- Theme scripts -->

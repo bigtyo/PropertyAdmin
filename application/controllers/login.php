@@ -40,7 +40,12 @@ class login extends CI_Controller {
                 //$this->load->library('user_agent');
                 if ($this->agent->is_referral())
                 {
-                    $json['referrer'] = $this->agent->referrer();
+                    redirect(base_url());
+                    return;
+                }else
+                {
+                    redirect(base_url());
+                    return;
                 }
                 
            }  else {

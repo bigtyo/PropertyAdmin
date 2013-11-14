@@ -9,6 +9,7 @@ class user_model extends CI_Model{
     {
         $query = $this->db->get_where("user",array('userid' => $username));
         $data['user'] = $query->row();
+        
         $query = $this->db->query("call get_office_id_by_userid('$username')");
         $results = $query->row();
         $data['officeid'] = $results->offid;

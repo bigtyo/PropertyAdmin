@@ -64,22 +64,23 @@
 		<h1><a href="index.html"><img src="img/logo-big.png" alt="" class='retina-ready' width="59" height="49">FLAT</a></h1>
 		<div class="login-body">
 			<h2>SIGN IN</h2>
-			<form action="index.html" method='get' class='form-validate' id="test">
+			<form action="login/signin" method='post' class='form-validate' id="test">
 				<div class="control-group">
 					<div class="email controls">
-						<input type="text" name='uemail' id="userid" placeholder="Username" class='input-block-level' data-rule-required="true" data-rule-email="true">
+						<input type="text" name='username' id="userid" placeholder="Username" class='input-block-level' data-rule-required="true" >
 					</div>
 				</div>
 				<div class="control-group">
 					<div class="pw controls">
-						<input type="password" name="upw" id="password" placeholder="Password" class='input-block-level' data-rule-required="true">
+						<input type="password" name="password" id="password" placeholder="Password" class='input-block-level' data-rule-required="true">
 					</div>
 				</div>
 				<div class="submit">
 					<div class="remember">
 						<input type="checkbox" name="remember" class='icheck-me' data-skin="square" data-color="blue" id="remember"> <label for="remember">Remember me</label>
 					</div>
-                                    <a href="#" style="float: right" id="btnLogin"><span class='btn btn-primary'>Sign Me In</span>
+                                        <input type="submit" value="Sign Me In" class='btn btn-primary'/>
+<!--                                    <a href="#" style="float: right" id="btnLogin"><span class='btn btn-primary'>Sign Me In</span>-->
 				</div>
 			</form>
 			<div class="forget">

@@ -200,7 +200,7 @@ class Listing_model extends CI_Model
             $query = $this->db->get_where('daftarlistingmarketing',$daftar_listing_marketing);
                 if($query->num_rows() == 0)
                 {
-                    $this->db->insert('daftarlistingmarketing',$customer_baru);
+                    $this->db->insert('daftarlistingmarketing',$daftar_listing_marketing);
                 }
             
         }

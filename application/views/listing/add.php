@@ -128,7 +128,7 @@
                                                                                                         <option value="2" >Ruko</option>
                                                                                                 </select>
                                                                                         </div>
-                                                                                </div>
+                                                                                    </div>
 										
                                                                                         
 
@@ -224,6 +224,44 @@
                                                                                     </div>
                                                                                     
                                                                                 </div>
+                                                                               <div class="span12">
+                                                                                   <div class="control-group">
+                                                                                            <label for="textarea" class="control-label">Gambar</label>
+                                                                                            <div class="controls">
+                                                                                                  <ul class="gallery" id="gallery">
+                                                                                                    <li>
+                                                                                                            <a href="#">
+                                                                                                                <img src="<?php echo base_url(); ?>img/demo/1.jpg" alt="">
+                                                                                                            </a>
+                                                                                                            <div class="extras">
+                                                                                                                    <div class="extras-inner">
+                                                                                                                            <a href="<?php echo base_url(); ?>img/demo/big/1.jpg" class='colorbox-image' rel="group-1"><i class="icon-search"></i></a>
+                                                                                                                            <a href="#"><i class="icon-pencil"></i></a>
+                                                                                                                            <a href="#" class='del-gallery-pic'><i class="icon-trash"></i></a>
+                                                                                                                    </div>
+                                                                                                            </div>
+                                                                                                    </li>
+
+                                                                                                </ul>  
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="control-group">
+                                                                                            <label for="textarea" class="control-label">Pilih Gambar</label>
+                                                                                            <div class="controls">
+                                                                                                 <div class="fileupload fileupload-new" data-provides="fileupload">
+													<div class="fileupload-new thumbnail" style="max-width: 200px; max-height: 150px;"><img src="img/demo/user-1.jpg" /></div>
+													<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+													<div>
+														<span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" name='imagefile' /></span>
+														
+                                                                                                                <a href="#" id="galerryAdd" class="btn fileupload-exists" data-dismiss="fileupload">Add</a>
+													</div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                   
+                                                                                   
+                                                                               </div>
                                                                                     
                                                                                 
                                                                           </div>

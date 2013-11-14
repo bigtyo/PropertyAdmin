@@ -72,11 +72,20 @@ class Listing extends RS_Controller {
                                         
                 );
             $header['scripts'] = array(
-                "listing/listingadd"
+                "listing/listingadd",
+                "plugins/chosen/chosen.jquery.min",
+                "plugins/masonry/jquery.masonry.min",
+                
+                "plugins/colorbox/jquery.colorbox-min"
             );
             $this->load->view('templates/header',$header);
             $this->load->view('listing/add');
             $this->load->view('templates/footer');
+        }
+        
+        public function uploadImage()
+        {
+            //$this->input->post('images');
         }
         
         public function match()
