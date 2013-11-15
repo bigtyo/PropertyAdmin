@@ -82,8 +82,8 @@ $(document).ready(function(obj){
     debugger;
     
     $("#galerryAdd").click(function(obj){
-        debugger;
-        var content = $(".fileupload-preview .fileupload-exists .thumbnail").find('img').attr('src');
+        //debugger;
+        var content = $(".fileupload-preview.fileupload-exists.thumbnail").find('img').attr('src');
         var html = "<li>" +
                        '<a href="#">' +
                             '<div style="max-width: 200px; max-height: 150px;">'+
@@ -98,7 +98,13 @@ $(document).ready(function(obj){
                             '</div>'+
                         '</div>'+
                     '</li>';
-       $("#gallery").append(html);
+       $("#gallery").append(html).trigger('create');
+       $(".colorbox-image").colorbox({
+            
+			maxWidth: "90%",
+			maxHeight: "90%",
+			
+        });
     });
 });
 

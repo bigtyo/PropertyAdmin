@@ -1,7 +1,8 @@
-$(document).ready(function(){
-   $("#btnLogin").click(function(){
+
+
+$("#btnLogin").click(function(){
        var user = $("#userid").val();
-       var pass = $("#password").val();
+       var pass = md5($("#password").val());
        
        $.post('login/signin',{
            username : user,
@@ -16,4 +17,4 @@ $(document).ready(function(){
            }
        });
    }); 
-});
+

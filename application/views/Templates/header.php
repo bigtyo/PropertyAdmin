@@ -382,11 +382,11 @@
 					</a>
 					<ul class="dropdown-menu">
 						<li>
-							<a href="<?php echo base_url();?>index.php/listing">Property Listings</a>
+							<a href="<?php echo base_url();?>index.php/listing">Property Listings Management</a>
 						</li>
-						<li>
+<!--						<li>
 							<a href="<?php echo base_url();?>index.php/listing/detail">Detail Listing</a>
-						</li>
+						</li>-->
 <!--						<li>
 							<a href="<?php echo base_url();?>index.php/components-sidebarwidgets.html">Sidebar widgets</a>
 						</li>
@@ -423,11 +423,11 @@
 					</a>
 					<ul class="dropdown-menu">
 						<li>
-							<a href="<?php echo base_url();?>index.php/customer">Visitor Prospects</a>
+							<a href="<?php echo base_url();?>index.php/customer">Customer Management</a>
 						</li>
-						<li>
+<!--						<li>
 							<a href="<?php echo base_url();?>index.php/customer/detail">Prospects Management</a>
-						</li>
+						</li>-->
 						
 					</ul>
 				</li>

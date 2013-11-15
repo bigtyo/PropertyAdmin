@@ -9,7 +9,9 @@ class login extends CI_Controller {
     public function index()
     {
         $data['scripts'] = array(
+            "plugins/md5",
             "login/login"
+            
         );
         $this->load->view("login/index",$data);
     }
@@ -27,7 +29,7 @@ class login extends CI_Controller {
            if($user->PASSWORD == $md5pass)
            {
                $json['status']= 1;
-               
+               $json['referrer'] = base_url();
                $userdata = array(
                    "userid" => $userid,
                    "is_logged_in" => true,
@@ -38,15 +40,18 @@ class login extends CI_Controller {
                 );
                 $this->session->set_userdata($userdata);
                 //$this->load->library('user_agent');
-                if ($this->agent->is_referral())
-                {
-                    redirect(base_url());
-                    return;
-                }else
-                {
-                    redirect(base_url());
-                    return;
-                }
+//                if ($this->agent->is_referral())
+//                {
+//                    redirect(base_url());
+//                    return;
+//                }else
+//                {
+//                    redirect(base_url());
+//                    return;
+//                }
+                $return['json'] = json_encode($json);
+                $this->load->view("json_view",$return);
+                return;
                 
            }  else {
                $json['status'] = 0;

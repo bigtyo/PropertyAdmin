@@ -121,6 +121,7 @@
 								</table>
 							</div>
 						</div>
+                                            <a href="listing/add" class="btn btn-primary">Listing Baru</a>
 					</div>
 				</div>
 			</div>

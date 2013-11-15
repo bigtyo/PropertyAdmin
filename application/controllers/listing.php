@@ -77,6 +77,7 @@ class Listing extends RS_Controller {
                 "plugins/masonry/jquery.masonry.min",
                 
                 "plugins/colorbox/jquery.colorbox-min"
+                
             );
             $this->load->view('templates/header',$header);
             $this->load->view('listing/add');
@@ -116,6 +117,9 @@ class Listing extends RS_Controller {
         
         public function save()
         {
+            echo date('%Y-%m-%d');
+            return;
+            
             $customer = $this->input->post('datacustomer');
             $listing = $this->input->post('datalisting');
             
@@ -138,6 +142,8 @@ class Listing extends RS_Controller {
                     $listing_json['CUSTOMERID'] = $customerid;
                     $listing_json['STATUSJUALID'] = 2; //hardcode jika baru dijual
                     $listing_json['STATUSDATAID'] = 1; //hardcode jika baru karena harus diverifikasi
+                    $listing_json['EXPIRED'] = date('%Y-%m-%d');
+                    //echo $listing_json['EXPIRED'];
                     $listing = json_encode($listing_json);
                 
                     $listingid = $this->listing_model->saveListing($listing,$marketing_id);
