@@ -14,6 +14,30 @@ class Listing_model extends CI_Model
         return $query->result();
     }
     
+    public function getUnverifiedListingByOfficeId($officeid)
+    {
+        $this->db->from('view_listing_marketing');
+        
+        $this->db->where(array(
+            'office_id' => $officeid,
+            'statusdataid' => 1
+            ));
+        $this->db->where('statusjualid !=',1);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
+    public function getNotVerifiedListing($officeid,$listingid){
+        $query = $this->db->get_where('view_listing_marketing', array(
+            'office_id' => $officeid,
+            'listingid' => $listingid
+            ));
+        
+        return $query->row();
+    }
+    
+    
+    
     public function getListingByHistory($historyid,$marketingid)
     {
         $query = $this->db->get_where('history_pencarian',array(
@@ -153,8 +177,155 @@ class Listing_model extends CI_Model
     
     public function getListing($listingid)
     {
-        $query = $this->db->get_where('listing', array('listingid' => $listingid));
+        $this->db->from('view_listing');
+        $this->db->where('listingid = '.$listingid);
+        $query = $this->db->get();
         return $query->row();
+    }
+    
+    
+    public function getContact($listingid,$marketingid)
+    {
+        $isOwner = $this->checkOwnershipListing($listingid, $marketingid);
+        
+        if($isOwner)
+        {
+            $this->db->from('marketing');
+            $this->db->join('user','marketing.marketingid = user.marketingid');
+            $this->db->join('office','marketing.officeid = office.officeid');
+            $this->db->where('marketing.MARKETINGID = '.$marketingid);
+            $this->db->select('user.*,office.NAMA as kantor');
+            $query = $this->db->get();
+            
+            return $query->result();
+        }
+        else{
+            $this->db->from('daftarcustomermarketing');
+            $this->db->join('listing','listing.customerid = daftarcustomermarketing.customerid');
+            $this->db->join('marketing','marketing.marketingid = daftarcustomermarketing.marketingid');
+            $this->db->join('user','user.marketingid = daftarcustomermarketing.customerid');
+            $this->db->join('office','marketing.officeid = office.officeid');
+            $this->db->select('user.*,office.NAMA as kantor,office.telepon as telepon_kantor');
+            $this->db->where('listing.listingid = '.$listingid);
+            
+            $query = $this->db->get();
+            
+            return $query->result();
+        }
+    }
+    
+    public function getVendor($listingid,$marketingid)
+    {
+        $isOwner = $this->checkOwnershipListing($listingid, $marketingid);
+        
+        if($isOwner)
+        {
+            $this->db->from('customer');
+            $this->db->join('listing','listing.customerid = customer.customerid');
+            $this->db->where('listing.listingid = '.$listingid);
+            
+            $this->db->select('customer.*');
+            $query = $this->db->get();
+            
+            return $query->row();
+        }
+        else
+        {
+            $this->db->from('daftarcustomermarketing');
+            $this->db->join('listing','listing.customerid = daftarcustomermarketing.customerid');
+            $this->db->join('marketing','marketing.marketingid = daftarcustomermarketing.marketingid');
+            $this->db->join('user','user.marketingid = daftarcustomermarketing.customerid');
+            $this->db->join('office','marketing.officeid = office.officeid');
+            $this->db->select('user.*,office.NAMA as kantor,office.telepon as telepon_kantor');
+            $this->db->where('listing.listingid = '.$listingid);
+            
+            $query = $this->db->get();
+            
+            return $query->result();
+        }
+            
+    }
+    
+    private function checkOwnershipListing($listingid,$marketingid)
+    {
+        $this->db->from('daftarlistingmarketing');
+        $this->db->where('LISTINGID = '.$listingid);
+        $this->db->where('MARKETINGID = '.$marketingid);
+        $query = $this->db->get();
+        
+        return $query->num_rows() > 0;
+    }
+    
+    public function getAktivitas($listingid,$marketingid)
+    {
+        $this->db->from('aktivitas');
+        $this->db->join('jenis_aktivitas','jenis_aktivitas.jenisid = aktivitas.jenis');
+        $this->db->select('aktivitas.*,jenis_aktivitas.AKTIVITAS');
+        $this->db->where(array(
+            "LISTINGID" => $listingid,
+            "MARKETINGID" => $marketingid
+        ));
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
+    public function getAktivitasById($aktivitasid)
+    {
+        $query = $this->db->get_where('aktivitas',array(
+            "AKTIVITASID" => $aktivitasid
+        ));
+        
+        return $query->row();
+    }
+    
+    public function getPromosiById($promosiid)
+    {
+        $query = $this->db->get_where('promosi',array(
+            "PROMOSIID" => $promosiid
+        ));
+        
+        return $query->row();
+    }
+    
+    public function getPromosi($listingid,$marketingid)
+    {
+        $this->db->from('promosi');
+        $this->db->join('jenis_promosi','jenis_promosi.jenisid = promosi.jenispromosiid');
+        $this->db->select('promosi.*,jenis_promosi.PROMOSI');
+        $this->db->where(array(
+            "LISTINGID" => $listingid,
+            "MARKETINGID" => $marketingid
+        ));
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+    
+    public function getJenisAktivitas(){
+        $this->db->from('jenis_aktivitas');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
+    public function getStatusJual(){
+        $this->db->from('status_jual');
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+    
+    public function getStatusData(){
+        $this->db->from('status_data');
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+    
+    public function getJenisPromosi()
+    {
+        $this->db->from('jenis_promosi');
+        $query = $this->db->get();
+        return $query->result();
     }
     
     public function saveListing($listing = FALSE,$marketingid)
@@ -210,5 +381,28 @@ class Listing_model extends CI_Model
         return $listing_id;
     }
     
+    
+    public function saveAktivitas($data)
+    {
+        $this->db->insert('aktivitas',$data);
+        return $this->db->insert_id();
+    }
+    
+    public function updateAktivitas($aktivitasid,$data){
+        $this->db->where('AKTIVITASID',$aktivitasid);
+        $this->db->update('aktivitas',$data);
+    }
+    
+    public function savePromosi($data)
+    {
+        $this->db->insert('promosi',$data);
+        return $this->db->insert_id();
+    }
+    
+    public function updatePromosi($promosiid,$data)
+    {
+        $this->db->where('PROMOSIID',$promosiid);
+        $this->db->update('promosi',$data);
+    }
 }
 ?>

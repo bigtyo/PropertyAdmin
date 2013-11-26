@@ -18,9 +18,9 @@ class customer extends RS_Controller{
         $data['customers'] = $this->customer_model->get_customers_list($param,-1,-1);
         
         $footer['watchs'] = $this->session->all_userdata();
-        $this->load->view('templates/header',$header);
+        
         $this->load->view('marketing/customer',$data);
-        $this->load->view('templates/footer',$footer);
+        $this->load->view('templates/footer',$header);
     }
     
     public function save()
@@ -78,9 +78,9 @@ class customer extends RS_Controller{
             "customer/detail"
         );
         
-        $this->load->view('templates/header',$header);
+        
         $this->load->view('marketing/custdetail',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$header);
     }
     
     public function match()
@@ -91,7 +91,7 @@ class customer extends RS_Controller{
         $data['customer'] = $this->customer_model->getCustomer($data['customerid'],$marketingid);
         $data['listings'] = $this->listing_model->getListingByHistory($historyid,$marketingid);
         
-        $this->load->view('templates/header');
+        
         $this->load->view('match/customer',$data);
         $this->load->view('templates/footer');
     }

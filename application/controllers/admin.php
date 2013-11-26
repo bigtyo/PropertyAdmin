@@ -19,7 +19,7 @@ class admin extends RS_Controller
         $header['scripts'] = array(
             'admin/callin'
         );
-        $this->load->view('templates/header');
+        
         $this->load->view('admin/callin',$data);
         $this->load->view('templates/footer',$header);
     }
@@ -85,5 +85,27 @@ class admin extends RS_Controller
         $data['json'] = json_encode($json);
         $this->load->view('json_view',$data);
     }
+    
+    public function adminlisting(){
+            $officeid = $this->session->userdata('officeid');
+            $data['listings'] = $this->listing_model->getUnverifiedListingByOfficeId($officeid);
+            
+            $this->load->view('listing/admin',$data);
+            $this->load->view('templates/footer');
+        }
+        
+        public function verify($listingid){
+            
+            $officeid = $this->session->userdata('officeid');
+            $data['marketingid'] = $this->session->userdata('marketingid');
+            $data['listing'] = $this->listing_model->getNotVerifiedListing($officeid,$listingid);
+            $data['status_jual'] = $this->listing_model->getStatusJual();
+            $data['status_data'] = $this->listing_model->getStatusData();
+            
+            $this->load->view('admin/verify',$data);
+            $this->load->view('templates/footer');
+        }
+        
+        
 }
 ?>

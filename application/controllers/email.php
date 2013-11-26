@@ -42,9 +42,9 @@ class Email extends RS_Controller
         $office = $this->office_model->getOfficeById($officeid);
         $data['nama_kantor'] = $office->NAMA;
         
-        $this->load->view('templates/header',$header);
+        
         $this->load->view('email/template',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$header);
     }
     
     
@@ -94,7 +94,7 @@ class Email extends RS_Controller
         $param['marketingid'] = $marketingid;
         $data['customers'] = $this->customer_model->get_customers_list($param);
         $data['marketingid'] = $marketingid;
-        $this->load->view('templates/header');
+        
         $this->load->view('email/sendlisting',$data);
         $this->load->view('templates/footer',$header);
         

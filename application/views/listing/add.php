@@ -56,11 +56,11 @@
                                                                 </h3>
                                                         </div>
                                                         <div class="box-content nopadding">
-                                                                <form class='form-horizontal form-wizard wizard-vertical' id="ssss">
+                                                                <form class='form-horizontal form-wizard wizard-vertical' id="ssss" name="form" action="" method="POST" enctype="multipart/form-data">
 
                                                                       <div class="step" >
                                                                         <ul class="wizard-steps steps-3">
-                                                                                <li onclick="activateForm(this,1);" class='active liform'>
+                                                                                <li onclick="activateForm(this,1);" class='active liform' id="li1">
                                                                                         <div class="single-step">
                                                                                                 <span class="title">1</span>
                                                                                                 <span class="circle">
@@ -70,7 +70,7 @@
                                                                                                 </span>
                                                                                         </div>
                                                                                 </li>
-                                                                                <li onclick="activateForm(this,2);">
+                                                                                <li onclick="activateForm(this,2);" id="li2">
                                                                                         <div class="single-step">
                                                                                                 <span class="title">
                                                                                                         2</span>
@@ -82,7 +82,7 @@
                                                                                                 </span>
                                                                                         </div>
                                                                                 </li>
-                                                                                <li onclick="activateForm(this,3);">
+                                                                                <li onclick="activateForm(this,3);" id="li3">
                                                                                         <div class="single-step">
                                                                                                 <span class="title">
                                                                                                         3</span>
@@ -90,6 +90,17 @@
                                                                                                 </span>
                                                                                                 <span class="description">
                                                                                                         Alamat, lokasi dan Peta
+                                                                                                </span>
+                                                                                        </div>
+                                                                                </li>
+                                                                                <li id="li4">
+                                                                                        <div class="single-step">
+                                                                                                <span class="title">
+                                                                                                        4</span>
+                                                                                                <span class="circle">
+                                                                                                </span>
+                                                                                                <span class="description">
+                                                                                                        Gambar
                                                                                                 </span>
                                                                                         </div>
                                                                                 </li>
@@ -224,44 +235,7 @@
                                                                                     </div>
                                                                                     
                                                                                 </div>
-                                                                               <div class="span12">
-                                                                                   <div class="control-group">
-                                                                                            <label for="textarea" class="control-label">Gambar</label>
-                                                                                            <div class="controls">
-                                                                                                  <ul class="gallery" id="gallery">
-                                                                                                    <li>
-                                                                                                            <a href="#">
-                                                                                                                <img src="<?php echo base_url(); ?>img/demo/1.jpg" alt="">
-                                                                                                            </a>
-                                                                                                            <div class="extras">
-                                                                                                                    <div class="extras-inner">
-                                                                                                                            <a href="<?php echo base_url(); ?>img/demo/big/1.jpg" class='colorbox-image' rel="group-1"><i class="icon-search"></i></a>
-                                                                                                                            <a href="#"><i class="icon-pencil"></i></a>
-                                                                                                                            <a href="#" class='del-gallery-pic'><i class="icon-trash"></i></a>
-                                                                                                                    </div>
-                                                                                                            </div>
-                                                                                                    </li>
-
-                                                                                                </ul>  
-                                                                                            </div>
-                                                                                    </div>
-                                                                                    <div class="control-group">
-                                                                                            <label for="textarea" class="control-label">Pilih Gambar</label>
-                                                                                            <div class="controls">
-                                                                                                 <div class="fileupload fileupload-new" data-provides="fileupload">
-													<div class="fileupload-new thumbnail" style="max-width: 200px; max-height: 150px;"><img src="img/demo/user-1.jpg" /></div>
-													<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
-													<div>
-														<span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" name='imagefile' /></span>
-														
-                                                                                                                <a href="#" id="galerryAdd" class="btn fileupload-exists" data-dismiss="fileupload">Add</a>
-													</div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                    </div>
-                                                                                   
-                                                                                   
-                                                                               </div>
+                                                                               
                                                                                     
                                                                                 
                                                                           </div>
@@ -317,12 +291,60 @@
                                                                               </div>
                                                                                 
                                                                             </div>
+                                                                          <div class="form-content" id="form4" style="display:none">
+                                                                              <div class="span12">
+                                                                                   <div class="control-group">
+                                                                                            <label for="textarea" class="control-label">Gambar</label>
+                                                                                            <div class="controls">
+                                                                                                  <ul class="gallery" id="gallery">
+                                                                                                    <li>
+                                                                                                            <a href="#">
+                                                                                                                <img src="<?php echo base_url(); ?>img/demo/1.jpg" alt="">
+                                                                                                            </a>
+                                                                                                            <div class="extras">
+                                                                                                                    <div class="extras-inner">
+                                                                                                                            <a href="<?php echo base_url(); ?>img/demo/big/1.jpg" class='colorbox-image' rel="group-1"><i class="icon-search"></i></a>
+                                                                                                                            <a href="#"><i class="icon-pencil"></i></a>
+                                                                                                                            <a href="#" class='del-gallery-pic'><i class="icon-trash"></i></a>
+                                                                                                                    </div>
+                                                                                                            </div>
+                                                                                                    </li>
+
+                                                                                                </ul>  
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <div class="control-group">
+                                                                                        <input type="hidden" id="listingid" />
+                                                                                            <label for="textarea" class="control-label">Pilih Gambar</label>
+                                                                                            <div class="controls">
+                                                                                                 <div class="fileupload fileupload-new" data-provides="fileupload">
+													<div class="fileupload-new thumbnail" style="max-width: 200px; max-height: 150px;"><img src="img/demo/user-1.jpg" /></div>
+													<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+													<div>
+                                                                                                            <span class="btn btn-file">
+                                                                                                                <span class="fileupload-new">Select image</span>
+                                                                                                                <span class="fileupload-exists">Change</span>
+                                                                                                                
+                                                                                                                <input type="file" name='imagefile'  />
+                                                                                                            </span>
+														
+                                                                                                                <a href="#" id="galerryAdd" class="btn fileupload-exists" data-dismiss="fileupload">Add</a>
+													</div>
+                                                                                                        
+                                                                                                </div>
+                                                                                                <img id="loading" src='<?php echo base_url(); ?>img/loading.gif' style='display:none;'/>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                   
+                                                                                   
+                                                                               </div>
+                                                                          </div>
                                                                         </div>
 
                                                                         <div class="form-actions">
                                                                                 <input type="reset" class="btn" value="Back" id="back">
                                                                                 <input type="button" class="btn btn-primary" value="Next" id="next">
-                                                                                <input type="button" class="btn btn-primary" value="Submit" onclick="addListingBaru();"  id="btnSubmit">
+<!--                                                                                <input type="button" class="btn btn-primary" value="Submit" onclick="addListingBaru();"  id="btnSubmit">-->
                                                                         </div>
                                                                 </form>
                                                         </div>

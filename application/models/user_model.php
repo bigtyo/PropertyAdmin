@@ -17,6 +17,16 @@ class user_model extends CI_Model{
     }
     
     
+    public function getUserByOfficeId($officeid)
+    {
+        $this->db->from('user');
+        $this->db->where('get_officeid(user.userid) = '.$officeid);
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+    
+    
 }
 
 ?>

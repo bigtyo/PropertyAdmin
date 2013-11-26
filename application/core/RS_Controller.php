@@ -1,5 +1,6 @@
 <?php
 class RS_Controller extends CI_Controller {
+    private $dataheader;
     public function __construct()
 	{
 		parent::__construct();
@@ -26,6 +27,21 @@ class RS_Controller extends CI_Controller {
                             "principalid" => $row->PRINCIPALID,
                             "marketingid" => $row->MARKETINGID
                         );
+                        
+                        if($row->ADMINID != null){
+                            $dataheader['isadmin'] = true;
+                            
+                        }
+                        
+                        if($row->MARKETINGID != null){
+                            $dataheader['ismarketing'] = true;
+                        }
+                        
+                        if($row->PRINCIPALID != null){
+                            $dataheader['isprincipal'] = true;
+                        }
+                        //echo json_encode($row);
+                        $this->load->view('templates/header',$dataheader);
                         $CI->session->set_userdata($userdata);
                         
                     }

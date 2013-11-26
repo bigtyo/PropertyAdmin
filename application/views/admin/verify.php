@@ -1,16 +1,3 @@
-<div id="modalAktivitas" class="modal hide fade" tabindex="-1" role="dialog"   aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h3 id="myModalLabel" >Modal header</h3>
-			</div>
-			<div class="modal-body" id='modalContent'>
-				
-			</div>
-			<div class="modal-footer">
-				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-				<button class="btn btn-primary" id="btnSimpan" data-dismiss="modal">Save changes</button>
-			</div>
-</div>
 <div class="container-fluid nav-hidden" id="content">
     <input type="hidden" id="marketing" value="<?php echo $marketingid; ?>" />
 		<div id="main">
@@ -185,46 +172,46 @@
 									<div class="control-group">
 										<label for="textfield" class="control-label">Reference ID:</label>
 										<div class="controls">
-											<label for="textfield" id="listingid" class="control-label"><?php echo $listing->LISTINGID; ?></label>
+											<label for="textfield" id="listingid" class="control-label"><?php echo $listing->listingid; ?></label>
 										</div>
 									</div>
 									<div class="control-group">
 										<label for="textfield" class="control-label">Harga :</label>
 										<div class="controls">
-											<label for="textfield" class="control-label"><?php echo "Rp ".number_format($listing->HARGA, 2, ',', '.'); ?></label>
+											<label for="textfield" class="control-label"><?php echo "Rp ".number_format($listing->harga, 2, ',', '.'); ?></label>
 										</div>
 									</div>
                                                                         <div class="control-group">
 										<label for="textfield" class="control-label">Tipe</label>
 										<div class="controls">
-											<label for="textfield" class="control-label"><?php echo $listing->tipe_property; ?></label>
+											<label for="textfield" class="control-label"><?php echo $listing->nama_tipe; ?></label>
 										</div>
 									</div>
                                                                         <div class="control-group">
 										<label for="textfield" class="control-label">Jumlah Kamar Tidur</label>
 										<div class="controls">
-											<label for="textfield" class="control-label"><?php echo $listing->KAMAR_TIDUR; ?></label>
+											<label for="textfield" class="control-label"><?php echo $listing->kamar_tidur; ?></label>
 										</div>
 									</div>
                                                                         <div class="control-group">
 										<label for="textfield" class="control-label">Jumlah Kamar Mandi</label>
 										<div class="controls">
-											<label for="textfield" class="control-label"><?php echo $listing->KAMAR_MANDI; ?></label>
+											<label for="textfield" class="control-label"><?php echo $listing->kamar_mandi; ?></label>
 										</div>
 									</div>
                                                                         <div class="control-group notedittest">
 										<label for="textfield" class="control-label">Luas Tanah</label>
 										<div class="controls">
-											<label for="textfield" class="control-label"><?php echo $listing->LUAS_TANAH; ?> Meter Persegi</label>
+											<label for="textfield" class="control-label"><?php echo $listing->luas_tanah; ?> Meter Persegi</label>
 										</div>
 									</div>
                                                                         <div class="control-group notedittest">
 										<label for="textfield" class="control-label">Luas Bangunan</label>
 										<div class="controls">
-											<label for="textfield" class="control-label"><?php echo $listing->LUAS_BANGUNAN; ?> Meter Persegi</label>
+											<label for="textfield" class="control-label"><?php echo $listing->luas_bangunan; ?> Meter Persegi</label>
 										</div>
 									</div>
-                                                                        <div class="control-group edittest" <?php if(!isset($isadmin)) echo 'style="display:none"'; ?> >
+                                                                        <div class="control-group edittest"  >
 										<label for="textfield" class="control-label">Status</label>
 										<div class="controls">
 											<select name="select" id="select" class="input-large">
@@ -235,7 +222,7 @@
 											</select>
 										</div>
 									</div>
-                                                                    <div class="control-group edittest" style='display:none'>
+                                                                    <div class="control-group edittest">
 										<label for="textfield" class="control-label">Tipe Listing</label>
 										<div class="controls">
 											<select name="select" id="select" class="input-large">
@@ -246,23 +233,8 @@
 											</select>
 										</div>
 									</div>
-                                                                        <div class="control-group notedittest" <?php if(isset($isadmin) && $isadmin) echo 'style="display:none"'; ?> >
-										<label for="textfield" class="control-label">Status</label>
-                                                                                <div class="controls">
-                                                                                    
-                                                                                        <label for="textfield" class="control-label"><?php echo $listing->status_data; ?></label>
-                                                                                    
-?>
-										
-                                                                                </div>
-									
-									</div>
-                                                                    <div class="control-group notedittest">
-										<label for="textfield" class="control-label">Tipe Listing</label>
-										<div class="controls">
-											<label for="textfield" class="control-label"><?php echo $listing->tipe_listing; ?></label>
-										</div>
-									</div>
+                                                                        
+                                                                    
                                                                         <div class="control-group">
 										<label for="textfield" class="control-label">Kontak Agen</label>
                                                                                 <?php if(isset($contacts)) {
@@ -307,11 +279,7 @@
 										<li class="">
 											<a href="#t3" data-toggle="tab">Informasi Pemilik</a>
 										</li>
-                                                                               <?php if(!isset($isadmin) || (isset($isadmin) && $isadmin)){ ?>
-                                                                                <li class="">
-											<a href="#t4" data-toggle="tab">Aktivitas marketing</a>
-										</li>
-                                                                                <?php } ?>
+                                                                                
 									</ul>
 								</div>
 								<div class="box-content">
@@ -323,55 +291,55 @@
                                                                                             <div class="control-group">
                                                                                                     <label for="textfield" class="control-label">Sertifikat :</label>
                                                                                                     <div class="controls">
-                                                                                                            <label for="textfield" class="control-label"><?php echo $listing->SERTIFIKAT; ?></label>
+                                                                                                            <label for="textfield" class="control-label"><?php echo $listing->sertifikat; ?></label>
                                                                                                     </div>
                                                                                             </div>
                                                                                             <div class="control-group">
                                                                                                     <label for="textfield" class="control-label">Jumlah Kamar Tidur</label>
                                                                                                     <div class="controls">
-                                                                                                            <label for="textfield" class="control-label"><?php echo $listing->KAMAR_TIDUR; ?></label>
+                                                                                                            <label for="textfield" class="control-label"><?php echo $listing->kamar_tidur; ?></label>
                                                                                                     </div>
                                                                                             </div>
                                                                                             <div class="control-group">
                                                                                                     <label for="textfield" class="control-label">Jumlah Kamar Mandi</label>
                                                                                                     <div class="controls">
-                                                                                                            <label for="textfield" class="control-label"><?php echo $listing->KAMAR_MANDI; ?></label>
+                                                                                                            <label for="textfield" class="control-label"><?php echo $listing->kamar_mandi; ?></label>
                                                                                                     </div>
                                                                                             </div>
                                                                                             <div class="control-group notedittest">
                                                                                                     <label for="textfield" class="control-label">Luas Tanah</label>
                                                                                                     <div class="controls">
-                                                                                                            <label for="textfield" class="control-label"><?php echo $listing->LUAS_TANAH; ?> Meter Persegi</label>
+                                                                                                            <label for="textfield" class="control-label"><?php echo $listing->luas_tanah; ?> Meter Persegi</label>
                                                                                                     </div>
                                                                                             </div>
                                                                                             <div class="control-group notedittest">
                                                                                                     <label for="textfield" class="control-label">Luas Bangunan</label>
                                                                                                     <div class="controls">
-                                                                                                            <label for="textfield" class="control-label"><?php echo $listing->LUAS_BANGUNAN; ?> Meter Persegi</label>
+                                                                                                            <label for="textfield" class="control-label"><?php echo $listing->luas_bangunan; ?> Meter Persegi</label>
                                                                                                     </div>
                                                                                             </div>
                                                                                             <div class="control-group">
                                                                                                     <label for="textfield" class="control-label">Lantai</label>
                                                                                                     <div class="controls">
-                                                                                                            <label for="textfield" class="control-label"><?php echo $listing->LANTAI; ?></label>
+                                                                                                            <label for="textfield" class="control-label"><?php echo $listing->lantai; ?></label>
                                                                                                     </div>
                                                                                             </div>
                                                                                             <div class="control-group">
                                                                                                     <label for="textfield" class="control-label">Daya Listrik</label>
                                                                                                     <div class="controls">
-                                                                                                            <label for="textfield" class="control-label"><?php echo $listing->DAYA_LISTRIK. " Watt"; ?></label>
+                                                                                                            <label for="textfield" class="control-label"><?php echo $listing->daya_listrik. " Watt"; ?></label>
                                                                                                     </div>
                                                                                             </div>
                                                                                             <div class="control-group">
                                                                                                     <label for="textfield" class="control-label">Garasi</label>
                                                                                                     <div class="controls">
-                                                                                                            <label for="textfield" class="control-label"><?php echo $listing->GARASI; ?></label>
+                                                                                                            <label for="textfield" class="control-label"><?php echo $listing->garasi; ?></label>
                                                                                                     </div>
                                                                                             </div>
                                                                                             <div class="control-group">
                                                                                                     <label for="textfield" class="control-label">Jalur Telepon</label>
                                                                                                     <div class="controls">
-                                                                                                            <label for="textfield" class="control-label"><?php echo $listing->JALUR_TELEPON; ?></label>
+                                                                                                            <label for="textfield" class="control-label"><?php echo $listing->jalur_telepon; ?></label>
                                                                                                     </div>
                                                                                             </div>
                                                                                         </form>
@@ -406,7 +374,7 @@
                                                                                             <div class="control-group">
                                                                                                     <label for="textfield" class="control-label">Alamat:</label>
                                                                                                     <div class="controls">
-                                                                                                            <label for="textfield" class="control-label"><?php echo $listing->ALAMAT_LENGKAP; ?></label>
+                                                                                                            <label for="textfield" class="control-label"><?php echo $listing->alamat_lengkap; ?></label>
                                                                                                     </div>
                                                                                             </div>
                                                                                             
@@ -459,85 +427,6 @@
                                                                                         </form>
 										</div>
                                                                                 
-                                                                                <?php if(!isset($isadmin) || (isset($isadmin) && $isadmin)){ ?>
-                                                                                <div class="tab-pane" id="t4">
-                                                                                    <h4>Media Promosi</h4>
-                                                                                    
-                                                                                    
-                                                                                        <table class="table table-hover table-nomargin dataTable table-bordered">
-                                                                                            <thead>
-                                                                                                    <tr>
-
-                                                                                                            <th>Tanggal</th>
-                                                                                                            <th>Jenis Media</th>
-                                                                                                            <th>Jumlah</th>
-                                                                                                            <th>Actions</th>
-                                                                                                            <!--<th>Lokasi</th>-->
-                                                                                                            
-                                                                                                    </tr>
-                                                                                            </thead>
-                                                                                            <tbody id="datapromosi">
-                                                                                                <?php if(isset($promotions)){
-                                                                                                    foreach($promotions as $promotion){?>
-                                                                                                        <tr <?php echo "id='tr_pro_".$promotion->PROMOSIID."'"; ?>>
-                                                                                                            <td><?php $datetime = strtotime($promotion->TANGGAL);
-                                                                                                                      $mysqldate = date("j F Y", $datetime);
-                                                                                                                      echo $mysqldate;?></td>
-                                                                                                            <td><?php echo $promotion->PROMOSI; ?></td>
-                                                                                                            <td><?php echo $promotion->JUMLAH; ?></td>
-                                                                                                            <td><a role="button" class="btn" href="#modalAktivitas" onclick='showmodal("Promosi","<?php echo $promotion->PROMOSIID; ?>");' data-toggle="modal">edit</a>
-                                                                                                                <a href="#" class="btn">delete</a></td>
-                                                                                                            <!--<td></td>-->
-                                                                                                        </tr>
-                                                                                                    <?php }
-                                                                                                } ?>
-                                                                                                
-                                                                                            </tbody>
-                                                                                        </table>
-<!--                                                                                        <button type="button" id="btnpromo" onclick="" class="btn btn-primary">Tambah</button>-->
-                                                                                        <a href="#modalAktivitas" role="button" class="btn btn-primary" id='btnPromosi' onclick='showmodal("Promosi","");'  data-toggle="modal">Tambah</a>
-                                                                                    <br/>
-                                                                                    <h4>Customer Relation</h4>
-                                                                                    
-                                                                                    
-                                                                                        <table class="table table-hover table-nomargin dataTable table-bordered">
-                                                                                            <thead>
-                                                                                                    <tr>
-
-                                                                                                            <th>Tanggal</th>
-                                                                                                                                                                                                                        
-                                                                                                            <th>Jenis Aktivitas</th>
-                                                                                                            
-                                                                                                            <th>Nama Customer</th>
-                                                                                                            <th>Keterangan</th>
-                                                                                                            <th>Actions</th>
-                                                                                                    </tr>
-                                                                                            </thead>
-                                                                                            <tbody id="dataaktivitas">
-                                                                                                <?php if(isset($activities)){
-                                                                                                    foreach($activities as $activity){?>
-                                                                                                        <tr <?php echo "id='tr_akt_".$activity->AKTIVITASID."'"; ?>>
-                                                                                                            <td>
-                                                                                                                <?php $datetime = strtotime($activity->TANGGAL);
-                                                                                                                      $mysqldate = date("j F Y", $datetime);
-                                                                                                                      echo $mysqldate;?>
-                                                                                                            </td>
-                                                                                                            <td><?php echo $activity->AKTIVITAS; ?></td>
-                                                                                                            <td><?php echo $activity->NAMA_CUSTOMER; ?></td>
-                                                                                                            <td><?php echo $activity->KETERANGAN; ?></td>
-                                                                                                            <td><a href="#modalAktivitas" role="button" class="btn" onclick='showmodal("Aktivitas","<?php echo $activity->AKTIVITASID; ?>");' data-toggle="modal" >edit</a>
-                                                                                                                <a href="#" class="btn">delete</a></td>
-                                                                                                            <!--<td></td>-->
-                                                                                                        </tr>
-                                                                                                    <?php }
-                                                                                                } ?>
-                                                                                                
-                                                                                            </tbody>
-                                                                                        </table>
-<!--                                                                                    <button type="button" id="btnmarketing" onclick="" class="btn btn-primary">Tambah</button>-->
-                                                                                    <a href="#modalAktivitas" role="button" class="btn btn-primary" id='btnPromosi' onclick='showmodal("Aktivitas","");'  data-toggle="modal">Tambah</a>
-                                                                                </div>
-                                                                                <?php } ?>
 									</div>
 								</div>
 							</div>
@@ -545,7 +434,7 @@
 						
 					</div>
                             <br/>
-                            <button type="button" id="btnupload" onclick="window.location='buyer_match.php'" class="btn btn-primary">Buyer Match</button>
+                            
 			</div>
 		</div>
 	</div>

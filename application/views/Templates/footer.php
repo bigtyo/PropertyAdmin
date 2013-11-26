@@ -44,6 +44,8 @@
 	<link rel="stylesheet" href="<?php echo base_url();?>css/themes.css">
         <!-- colorbox -->
 	<link rel="stylesheet" href="<?php echo base_url();?>css/plugins/colorbox/colorbox.css">
+        <!-- Notify -->
+	<link rel="stylesheet" href="<?php echo base_url();?>css/plugins/gritter/jquery.gritter.css">
 
 	<!-- jQuery -->
 	<script src="<?php echo base_url();?>js/jquery.min.js"></script>
@@ -105,6 +107,8 @@
 	<script src="<?php echo base_url();?>js/plugins/datatable/ColVis.min.js"></script>
 	<script src="<?php echo base_url();?>js/plugins/datatable/jquery.dataTables.columnFilter.js"></script>
 	<script src="<?php echo base_url();?>js/plugins/datatable/jquery.dataTables.grouping.js"></script>
+        <!-- Notify -->
+	<script src="<?php echo base_url();?>js/plugins/gritter/jquery.gritter.min.js"></script>
         
         <!-- Wizard -->
 	<script src="<?php echo base_url();?>js/plugins/wizard/jquery.form.wizard.min.js"></script>
@@ -127,7 +131,7 @@
         
         <?php if(isset($scripts)) {
             foreach ($scripts as $script) { ?>
-                <script src="<?php echo base_url()."js/".$script; ?>.js"></script>
+                <script src="<?php echo base_url()."js/".$script; ?>.js?"></script>
         
             <?php }
         

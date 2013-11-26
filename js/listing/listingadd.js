@@ -1,5 +1,6 @@
 var map = {};
 var marker = {};
+var statusSubmit = 0;
 function activateForm(obj,index){
     $(obj).siblings().removeClass('active');
     $(obj).addClass('active');
@@ -68,7 +69,13 @@ function addListingBaru()
         datalisting : JSON.stringify(json)
     },function(res){
         var json = res;
-        console.log(res);
+        if(Number(json.status == 1)){
+            $("#listingid").val(json.listingid);
+            statusSubmit = 1;
+        }else{
+            alert(json.error);
+        }
+        
     });
     //
 }
@@ -80,31 +87,101 @@ function saveLongitude(latLng)
 
 $(document).ready(function(obj){
     debugger;
-    
-    $("#galerryAdd").click(function(obj){
-        //debugger;
-        var content = $(".fileupload-preview.fileupload-exists.thumbnail").find('img').attr('src');
-        var html = "<li>" +
-                       '<a href="#">' +
-                            '<div style="max-width: 200px; max-height: 150px;">'+
-                                '<img src="'+content+'" alt="" />' +
-                            '</div>'+
-                       '</a>'+
-                       '<div class="extras">'+
-                            '<div class="extras-inner">'+
-                                '<a href="'+content+'" class="colorbox-image" rel="group-1"><i class="icon-search"></i></a>'+
-                                '<a href="#"><i class="icon-pencil"></i></a>' +
-                                '<a href="#" class="del-gallery-pic"><i class="icon-trash"></i></a>'+
-                            '</div>'+
-                        '</div>'+
-                    '</li>';
-       $("#gallery").append(html).trigger('create');
-       $(".colorbox-image").colorbox({
+    $("#next").click(function(){
+        var id = Number($("li.active").attr('id').replace("li",""));
+        var selectedid = id++;
+        
+        if(selectedid == 4 ){
+            // save listing disini
+            if(statusSubmit == 0){
+                addListingBaru();
+            }else{
+                activateForm(this,4);
+            }
+                
             
-			maxWidth: "90%",
-			maxHeight: "90%",
-			
-        });
+            
+        }
+        $("#li" + selectedid).click();
     });
+    $("#galerryAdd").click(function(object){
+        //debugger;
+//        var content = $(".fileupload-preview.fileupload-exists.thumbnail").find('img').attr('src');
+//        var html = "<li>" +
+//                       '<a href="#">' +
+//                            '<div style="max-width: 200px; max-height: 150px;">'+
+//                                '<img src="'+content+'" alt="" />' +
+//                            '</div>'+
+//                       '</a>'+
+//                       '<div class="extras">'+
+//                            '<div class="extras-inner">'+
+//                                '<a href="'+content+'" class="colorbox-image" rel="group-1"><i class="icon-search"></i></a>'+
+//                                '<a href="#"><i class="icon-pencil"></i></a>' +
+//                                '<a href="#" class="del-gallery-pic"><i class="icon-trash"></i></a>'+
+//                            '</div>'+
+//                        '</div>'+
+//                    '</li>';
+//       $("#gallery").append(html).trigger('create');
+//       $(".colorbox-image").colorbox({
+//            
+//			maxWidth: "90%",
+//			maxHeight: "90%"
+//			
+//        });
+        $("#loading").ajaxStart(function(){
+			$(this).show();
+		})
+		.ajaxComplete(function(){
+			$(this).hide();
+		});
+        /*
+			prepareing ajax file upload
+			url: the url of script file handling the uploaded files
+                        fileElementId: the file type of input element id and it will be the index of  $_FILES Array()
+			dataType: it support json, xml
+			secureuri:use secure protocol
+			success: call back function when the ajax complete
+			error: callback function when the ajax failed
+			
+                */
+               //$(":file").attr('id','fileUploadID');
+               
+		$.ajaxFileUpload
+		(
+			{
+				url:'uploadImage', 
+				secureuri:false,
+				fileElementId:'imagefile',
+				dataType: 'json',
+				success: function (data, status)
+				{
+                                  $(":hidden[name=imagefile]").remove();
+					if(typeof(data.error) != 'undefined')
+					{
+						if(data.error != '')
+						{
+							alert(data.error);
+						}else
+						{
+							alert(data.msg);
+						}
+					}
+				},
+				error: function (data, status, e)
+				{
+                                    //$("#fileUploadID").removeAttr('id');
+                                     $(":hidden[name=imagefile]").remove();
+					alert(e);
+                                        
+				}
+			}
+		);
+		
+		
+
+	  
+    });
+    
+    
 });
 
