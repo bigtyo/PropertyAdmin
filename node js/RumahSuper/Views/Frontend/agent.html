@@ -1,0 +1,53 @@
+<div id="agencies_widget-2" class="widget agencies">
+
+    
+	
+    <div class="content">
+		<% for(var i=0;i<office.length;i++){ %>
+        <div class="agency clearfix">
+            <div class="header">
+                <div class="image">
+                    <a href="/agencies/agency-detail">
+                        <img src="/assets/img/agency-small-tmp.png" alt="Beverly Hills Real Estate">
+                    </a>
+                </div>
+                <!-- /.image -->
+
+                <div class="info">
+                    <h2><%= office[i].NAMA %></h2>
+
+                    <div class="properties-count">
+                        <span class="number">20</span> properties
+                    </div>
+                    <!-- /.properties-count -->
+
+                    <a href="" class="btn">View profile</a>
+                </div>
+                <!-- /.info -->
+            </div>
+            <!-- /.header -->
+
+            <div class="address">
+                <%= office[i].ALAMAT %><br/>
+                Surabaya, Jawa Timur 60132
+            </div>
+            <!-- /.address -->
+
+            <div class="email">
+				<a href='<%= office[i].EMAIL %>' ><%= office[i].EMAIL %> </a>
+                
+            </div>
+            <!-- /.email -->
+
+            <div class="phone">
+                <%= office[i].TELEPON %>
+            </div>
+            <!-- /.phone -->
+
+        </div>
+        <!-- /.agency -->
+        <% } %>
+    </div>
+    <!-- /.content -->
+
+</div>

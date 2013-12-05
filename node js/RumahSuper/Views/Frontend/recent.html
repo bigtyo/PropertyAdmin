@@ -1,0 +1,70 @@
+<% for(var i=0;i<listings.length;i++){ %>
+    <% if(i%3 == 0 && i == 0){ %>
+    <div class="row-fluid">
+    <% }else if(i%3 == 0){ %>
+    </div>
+    <div class="row-fluid">
+    <% } %>
+    <div class="span3">
+        <div class="property">
+            <div class="image">
+                <div class="content">
+                    <a href="/properties/property-detail">
+                        <div class="description"><p><%= listings[i].JUDUL %></p></div>
+                        <img src='<%= "http://localhost:3000/images/"+listings[i].LISTINGID+"/1.jpg" %>' alt='<%= listings[i].ALAMAT_SINGKAT %>' >
+                    </a>
+                </div>
+                <!-- /.content -->
+
+                <div class="rent-sale">
+                    <%= listings[i].kota %>
+                </div>
+                <!-- /.rent-sale -->
+
+                <div class="price">
+                    Rp. <%= format_money(listings[i].HARGA) %>
+                </div>
+                <!-- /.price -->
+
+            </div>
+            <!-- /.image -->
+
+            <div class="info">
+                <div class="title clearfix">
+                    <h2><a href="/properties/property-detail">
+                             <%= listings[i].ALAMAT_SINGKAT %>
+                        </a></h2>
+                </div>
+                <!-- /.title -->
+
+                <div class="location"><%= listings[i].lokasi %></div>
+                <!-- /.location -->
+            </div>
+            <!-- /.info -->
+
+        </div>
+        <!-- /.property -->
+
+        <div class="property-info clearfix">
+            <div class="area">
+                <i class="icon icon-normal-cursor-scale-up"></i>
+                <%= listings[i].LUAS_BANGUNAN %>m<sup>2</sup>
+            </div>
+            <!-- /.area -->
+
+            <div class="bedrooms">
+                <i class="icon icon-normal-bed"></i>
+                <%= listings[i].KAMAR_TIDUR %>
+            </div>
+            <!-- /.bedrooms -->
+
+        </div>
+        <!-- /.property-info -->
+
+    </div>
+    
+    
+<% if(i == listings.length -1){ %>
+    </div>
+<% }
+} %>

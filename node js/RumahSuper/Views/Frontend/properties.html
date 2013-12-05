@@ -1,0 +1,67 @@
+<% for(var i=0;i<listings.length;i++){%>
+<div class="property span9">
+    <div class="row">
+        <div class="span3">
+            <div class="image">
+                <div class="content">
+                    <a href='/properties/property-detail?id=<%= listings[i].LISTINGID %>'>
+                        <img width="570" height="425" src='http://localhost:3000/images/<%= listings[i].LISTINGID %>/1.jpg' class="thumbnail-image" alt="19">
+                    </a>
+                </div>
+                <!-- /.content -->
+            </div>
+            <!-- /.image -->
+        </div>
+
+        <div class="body span6">
+            <div class="title-price row">
+                <div class="title span4">
+                    <h2><a href="/properties/property-detail?id=<%= listings[i].LISTINGID %>"><%= listings[i].ALAMAT_SINGKAT %></a>
+                    </h2>
+                </div>
+                <!-- /.title -->
+
+                <div class="price">
+                   Rp. <%= format_money(listings[i].HARGA) %>
+                </div>
+                <!-- /.price -->
+            </div>
+            <!-- /.title -->
+		
+			<div class="body">
+                <p>Deskripsi Singkat</p>
+            </div>
+            <!-- /.body -->
+		
+            <div class="location"><%= listings[i].lokasi %></div>
+            <!-- /.location -->
+
+            
+
+            <div class="property-info clearfix">
+                <div class="area">
+                    <i class="icon icon-normal-cursor-scale-up"></i>
+                    <%= listings[i].LUAS_BANGUNAN %>m<sup>2</sup>
+                </div>
+                <!-- /.area -->
+
+                <div class="bedrooms">
+                    <i class="icon icon-normal-bed"></i>
+                    <%= listings[i].KAMAR_TIDUR %>
+                </div>
+                <!-- /.bedrooms -->
+
+
+                <div class="more-info">
+                    <a href="/properties/property-detail?id=<%= listings[i].LISTINGID %>">More Info<i
+                          class="icon icon-normal-right-arrow-circle"></i></a>
+                </div>
+            </div>
+            <!-- /.info -->
+        </div>
+        <!-- /.body -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.property -->
+<%}%>

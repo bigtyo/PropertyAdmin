@@ -1,0 +1,14 @@
+<% for(var i=0;i<files.length;i++){ %>
+<li>
+	<a href="#">
+		<img style="width :200px;height:110px" src="<%= node_url %>/images/<%= listingid %>/<%= files[i] %>" alt="">
+	</a>
+	<div class="extras">
+		<div class="extras-inner">
+			<a href="<%= node_url %>/images/<%= listingid %>/<%= files[i] %>" class="colorbox-image cboxElement" rel="group-1"><i class="icon-search"></i></a>
+			<a href="#"><i class="icon-pencil"></i></a>
+			<a href="#" class="del-gallery-pic"><i class="icon-trash"></i></a>
+		</div>
+	</div>
+</li>
+<%}%>

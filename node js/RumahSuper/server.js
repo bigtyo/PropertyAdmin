@@ -1,5 +1,6 @@
 var MAILER = "rumahsuper.test@gmail.com";
-
+var port = 3000;
+var domain = "http://localhost";
 //GLOBALS
 var http = require("http");
 var url = require("url");
@@ -21,6 +22,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
 
 app.use(express.bodyParser());
+app.use(express.static(__dirname + '/Public'));
 
 var transport = mailer.createTransport("SMTP", {
 	service : "Gmail",
@@ -38,7 +40,22 @@ var mysql      = require('mysql');
 
 
 //FUNCTIONS
-
+function format_money(number){
+					var isNegative = /-/.test(number.toString());
+					if (isNegative) {
+						number = number.toString().replace("-", "");
+					}
+					var numberStr = parseFloat(number).toFixed(2).toString();
+					var numFormatDec = numberStr.slice(-2); /*decimal 00*/
+					numberStr = numberStr.substring(0, numberStr.length-3); /*cut last 3 strings*/
+					var numFormat = new Array;
+					while (numberStr.length > 3) {
+						numFormat.unshift(numberStr.slice(-3));
+						numberStr = numberStr.substring(0, numberStr.length-3);
+					}
+					numFormat.unshift(numberStr);
+					return (isNegative ? "-" : "") + numFormat.join('.')+','+numFormatDec; /*format 000.000.000,00 */
+				}
 
 function sendMailListing(template,customer,listings,_subject,res)
 {
@@ -58,7 +75,8 @@ function sendMailListing(template,customer,listings,_subject,res)
 			res.render(temp['PATH'],
 			{ 
 				customer : customer,
-				month : "(" +monthNames[new Date().getMonth()] +") " + (1900 +new Date().getYear())
+				month : "(" +monthNames[new Date().getMonth()] +") " + (1900 +new Date().getYear()),
+				listings : listings
 			},function(err,html){
 				if(err) throw err;
 				var mailOptions = {
@@ -118,6 +136,10 @@ function start()
 	
 	app.get('/checkroutes', function(req, res){
 	  console.log(app.routes);
+	});
+	
+	app.get('/home/',function(req,res){
+		
 	});
 
 	app.post('/sendlistingmail',function(req,res){
@@ -260,7 +282,7 @@ function start()
 				if(rows.length > 0)
 				{
 					
-					fs.readFile(__dirname+'/Views/'+rows[0].PATH+'.ejs', 
+					fs.readFile(__dirname+'/Views/Backend/Templates/'+rows[0].PATH+'.html', 
 					{
 						encoding : "UTF-8"
 					},
@@ -296,6 +318,8 @@ function start()
 		});
 	});
 	
+	
+	
 	app.get('/listing/detail',function(req,res){
 		var listingid = req.query.id;
 		
@@ -316,9 +340,62 @@ function start()
 	});
 	
 	app.post('/listing',function(req,res){
-		var jsonData = JSON.parse(req.body.jsondata);
+		var jsondata = JSON.parse(req.body.jsondata);
 		
-		var _query = "SELECT * FROM listing where statusjual = 2 ";
+		var query = "";
+		if(jsondata.harga_awal != "" && jsondata.harga_awal != 0)
+		{
+			query += " AND harga >= "+jsondata.harga_awal;
+		}
+		
+		if(jsondata.harga_akhir != "" && jsondata.harga_akhir != 0)
+		{
+			query += " AND harga <= "+jsondata.harga_akhir;
+		}
+		
+		if(jsondata.propinsi != null && jsondata.propinsi != "")
+		{
+			query += " AND propinsiid = "+jsondata.propinsi;
+		}
+		
+		if(jsondata.kota != null && jsondata.kota != "")
+		{
+			query += " AND kotaid = "+jsondata.kota;
+		}
+		
+		if(jsondata.area != null && jsondata.area != "")
+		{
+			query += " AND areaid = "+jsondata.area;
+		}
+		
+		if(jsondata.lokasi != null && jsondata.lokasi != "")
+		{
+			query += " AND lokasiid = "+jsondata.lokasi;
+		}
+		
+		if(jsondata.luas_tanah != null && jsondata.luas_tanah != "")
+		{
+			query += " AND luas_tanah = "+jsondata.luas_tanah;
+		}
+		
+		if(jsondata.luas_bangunan != null && jsondata.luas_bangunan != "")
+		{
+			query += " AND luas_bangunan = "+jsondata.luas_bangunan;
+		}
+		
+		if(jsondata.kamar_tidur != null && jsondata.kamar_tidur != "")
+		{
+			query += " AND kamar_tidur = "+jsondata.kamar_tidur;
+		}
+		
+		if(jsondata.kamar_mandi != null && jsondata.kamar_mandi != "")
+		{
+			query += " AND kamar_mandi = "+jsondata.kamar_mandi;
+		}
+		
+		
+		
+		var _query = "SELECT * FROM rumahsuper.view_listing where statusjualid = 2 AND statusdataid = 2 "+ query;
 		var json = {};
 		connection.query(_query,function(err, rows, fields){
 			if(err){
@@ -329,10 +406,174 @@ function start()
 				res.send(JSON.stringify(json));
 			}
 			else{
-				res.send(JSON.stringify(rows));
+				if(rows.length == 0){
+					json.status = 0;
+					json.error = "Data tidak ditemukan";
+				}else
+				{
+					json.status = 1;
+					json.rows = rows;
+				}
+				res.send(JSON.stringify(json));
 			}
 		});
 	});
+	
+	app.post('/subscribe',function(req,res){
+		var email = req.body.email;
+		var nama = req.body.nama;
+		var telepon = req.body.telepon;
+		var panggilan = req.body.panggilan;
+		var _query = "INSERT INTO rumahsuper.subscriber(email,nama,panggilan,telepon) VALUES('"+email+"','"+nama+"','"+telepon+"','"+panggilan+"')";
+		connection.query(_query,function(err,results){
+			if(err){
+				json.status = 0;
+				json.error = "gagal saat malakukan penyimpanan (error 1)";
+				json.detail = err;
+				
+			}
+			else
+			{
+				json.status = 1;
+				
+			}
+			res.send(JSON.stringify(json));
+		});
+	});
+	
+	app.post('/listing/uploadimage',function(req,res){
+		//var listingid = req.body.listingid;
+		var imagedata = req.files.imagefile;
+		var listingid = req.body.listingid;
+		var json = {};
+		
+		fs.readFile(imagedata.path, function (err, data) {
+		  // ...
+			if(err){
+				json.status = 0;
+				json.error = "gagal membaca file hasil upload";
+				json.detail = err;
+				res.send(JSON.stringify(json));
+			}else{
+				var newPath = __dirname + "/Public/Images/"+listingid+"/";
+				fs.exists(newPath, function (exists) {
+					if(exists){
+						fs.readdir('public/images/'+listingid,function(err,list){
+							if(err){
+								json.status = 0;
+								json.error = "gagal membaca directory listing";
+								json.detail = err;
+								res.send(JSON.stringify(json));
+							}else{
+								var newimagename = list.length + 1;
+								var arrayName = imagedata.originalFilename.split(".");
+								var extension = arrayName[arrayName.length-1];
+								
+								fs.writeFile(newPath+newimagename+"."+extension, data, function (err) {
+									if(err){
+										json.status = 0;
+										json.error = "gagal menulis file hasil upload ke server";
+										json.detail = err;
+										res.send(JSON.stringify(json));
+									}else{
+										json.status = 1;
+										json.imagelink = domain + ":" + port + "/images/"+listingid+"/"+newimagename+"."+extension;
+										res.send(JSON.stringify(json));
+									}
+								
+								});
+							}
+						});
+						
+					}else
+					{
+						fs.mkdir(newPath,function(err){
+							if(err){
+								json.status = 0;
+								json.error = "gagal membuat folder untuk listing";
+								json.detail = err;
+								res.send(JSON.stringify(json));
+							}else
+							{
+								fs.readdir('public/images/'+listingid,function(err,list){
+									if(err){
+										json.status = 0;
+										json.error = "gagal membaca directory listing";
+										json.detail = err;
+										res.send(JSON.stringify(json));
+									}else{
+										var newimagename = list.length + 1;
+										var extension = imagedata.type.split("/")[1];
+										fs.writeFile(newPath+newimagename+"."+extension, data, function (err) {
+											if(err){
+												json.status = 0;
+												json.error = "gagal menulis file hasil upload ke server";
+												json.detail = err;
+												res.send(JSON.stringify(json));
+											}else{
+												json.status = 1;
+												json.imagelink = domain + ":" + port + "/images/"+listingid+"/"+newimagename+"."+extension;
+												res.send(JSON.stringify(json));
+											}
+										
+										});
+									}
+								});
+							}
+							
+						});
+					}
+					
+				});
+			}
+			
+		});
+		  
+	});
+
+		//fs.
+	
+	
+	app.get('/listing/images',function(req,res){
+		var listingid = req.query.listingid;
+		var json = {};
+		fs.lstat('public/images/'+listingid,function(err, stats){
+			if(err){
+				json.status = 0;
+				json.error = "gagal mengambil file";
+				json.detail = err;
+				res.send(JSON.stringify(json));
+			}
+			else{
+				fs.readdir('public/images/'+listingid,function(err,list){
+					if(err){
+						json.status = 0;
+						json.error = "gagal mengambil file";
+						json.detail = err;
+						res.send(JSON.stringify(json));
+						
+					}else{
+						res.render('Backend/listingimage',
+						{
+							files : list,
+							listingid : listingid,
+							node_url : domain+ ":" + port
+						},function(err,html){
+							res.send(html);
+						});
+						
+					}
+					
+					
+					
+					
+				});
+			}
+			
+		});
+	});
+	
+	
 	
 	app.post('/template/save',function(req,res)
 	{
@@ -365,7 +606,7 @@ function start()
 					}else
 					{
 						
-						fs.writeFile(__dirname+"/Views/"+namafile+"_"+resid+".ejs", html, function(err) {
+						fs.writeFile(__dirname+"/Views/Backend/Templates/"+namafile+"_"+resid+".ejs", html, function(err) {
 							if(err) {
 								json.status = 0;
 								json.error = "gagal saat malakukan penyimpanan (error 3)";
@@ -392,8 +633,147 @@ function start()
 		
 	});
 	
-	app.listen(3000);
+	app.get('/frontend/recent',function(req,res){
+		var date = Date();
+		var _query = "select * from rumahsuper.view_listing";
+		var json = {};
+		connection.query(_query,function(err, rows, fields){
+			if(err){
+				json.status = 0;
+				json.error="gagal mengambil listing terbaru";
+				json.detail = err;
+				res.send(JSON.stringify(json));
+			}else{
+				var func = format_money;
+				
+				res.render('Frontend/recent',
+				{ 
+					listings : rows,
+					format_money : func
+				},function(error,html){
+					
+					if(err){
+						json.status = 0;
+						json.error = "gagal menampilkan listing terbaru";
+						json.detail = error;
+						res.send(JSON.stringify(json));
+					}else{
+						//json.status = 1;
+						//json.html = html
+						//res.send(JSON.stringify(json));
+						res.send(html);
+					}
+				});
+			}
+			
+		});
+	});
+	
+	app.get('/frontend/agencies',function(req,res){
+		var _query = "SELECT * from rumahsuper.office";
+		var json = {};
+		connection.query(_query,function(err,rows,fields){
+			if(err)
+			{
+				json.status = 0;
+				json.error = "gagal mengambil data agensi";
+				json.detail = err;
+				res.send(JSON.stringify(json));
+			}else
+			{
+				res.render('Frontend/agent',{
+					office : rows
+				}
+				,function(err,html){
+					if(err)
+					{
+						json.status = 0;
+						json.error = "gagal menampilkan agensi";
+						json.detail = error;
+						res.send(JSON.stringify(json));
+					}
+					else{
+						res.send(html);
+					}
+				});
+			}
+			
+			
+		});
+	});
+	
+	app.get('/frontend/properties',function(req,res){
+		var _query="select * from rumahsuper.view_listing";
+		var json = {};
+		connection.query(_query,{},function(err,rows,fields){
+			if(err)
+			{
+				json.status = 0;
+				json.error = "gagal mendapatkan data listing";
+				json.detail = err;
+				res.send(JSON.stringify(json));
+			}
+			else{
+				res.render('Frontend/properties',{
+					listings : rows,
+					format_money : format_money
+				},function(err,html){
+					if(err){
+						json.status = 0;
+						json.error = "gagal menampilkan data listing";
+						json.detail = err;
+						res.send(JSON.stringify(json));
+					}else{
+						res.send(html);
+					}
+					
+				});
+			}
+		});
+	});
+	
+	app.get('/Frontend/propdetail',function(req,res){
+		var id = req.query.id;
+		
+		var _query = "SELECT * from rumahsuper.view_listing where listingid = " + id;
+		var json = {};
+		connection.query(_query,function(err,rows,fields){
+			if(err){
+				json.status = 0;
+				json.error = "gagal mendapatkan data listing";
+				json.detail = err;
+				res.send(JSON.stringify(json));
+			}else{
+				
+				res.render('Frontend/propetydetail',{
+					listing : rows,
+					format_money : format_money
+				},
+				function(err,html){
+					if(err){
+						json.status = 0;
+						json.error = "gagal menampilkan data listing";
+						json.detail = err;
+						res.send(JSON.stringify(json));
+					}else{
+						if(rows.length != 0){
+							res.send(html);
+						}else
+						{
+							json.status = 0;
+							json.error = "gagal menampilkan data listing";
+							json.detail = err;
+							res.send(JSON.stringify(json));
+						}
+					}
+				});
+			}
+		});
+	});
+	
+	app.listen(port);
 	console.log('Listening on port 3000');
+	//console.log(__dirname + '/RumahSuper');
 }
 exports.start = start;
 
