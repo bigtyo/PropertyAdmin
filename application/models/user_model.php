@@ -17,6 +17,7 @@ class user_model extends CI_Model{
     }
     
     
+    
     public function getUserByOfficeId($officeid)
     {
         $this->db->from('user');
@@ -26,6 +27,44 @@ class user_model extends CI_Model{
         return $query->result();
     }
     
+    public function addUser($userdata,$roledata,$officeid,$istop = false)
+    {
+        
+        $marketing_id = null;
+        $admin_id = null;
+        $principal_id = null;
+        
+        $datarole['officeid'] = $officeid;
+        $datarole['disabled'] = 0;
+        
+        if($roledata['ismarketing']){
+            $this->db->insert('marketing',$datarole);
+            $marketing_id = $this->db->insert_id();
+        }
+        
+        if($roledata['isadmin']){
+            $this->db->insert('admin',$datarole);
+            $admin_id = $this->db->insert_id();
+        }
+        
+        if($roledata['isprincipal']){
+            if($istop){
+                $datarole['top'] = 1;
+            }
+            $this->db->insert('principal',$datarole);
+            $principal_id = $this->db->insert_id();
+        }
+        
+        $userdata['marketingid'] = $marketing_id;
+        $userdata['adminid'] = $admin_id;
+        $userdata['principalid'] = $principal_id;
+        $this->db->insert('user',$userdata);
+        $user_id = $this->db->insert_id();
+        
+        
+        
+        return $user_id;
+    }
     
 }
 

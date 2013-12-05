@@ -102,7 +102,7 @@
 									<tbody id="datalisting">
                                                                             <?php foreach ($listings as $listing) {?>
                                                                                 <tr style="cursor:pointer">
-                                                                                    <td><a href="listing/<?php echo $listing->listingid; ?>" ><img src="img/rumah70.jpg"></a></td>
+                                                                                    <td><a href="listing/<?php echo $listing->listingid; ?>" ><img style="width: 100px;height: 100px" src="<?php echo NODE_URL."images/".$listing->listingid."/1.jpg"; ?>"></a></td>
                                                                                     <td><?php echo $listing->listingid; ?></td>
                                                                                     <td class="hidden-350"><?php echo $listing->nama_tipe; ?></td>
                                                                                     <td><?php echo $listing->alamat_lengkap; ?></td>

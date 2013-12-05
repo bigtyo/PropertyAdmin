@@ -1,10 +1,4 @@
-$(document).ready(function(){
-    $("#selectall").click(function(){
-        $("#datalisting").find(":checkbox").click();
-        
-    });
-    
-    $("#istemplate").click(function(){
+$("#istemplate").click(function(){
        if($("#istemplate").is(":checked")){
             $("#controlmsg").slideUp(400,function(){
                  $("#controltemplate").slideDown();
@@ -19,7 +13,7 @@ $(document).ready(function(){
    });
    
    $("#btnSend").click(function(){
-      
+       
        var templateid = $("#select").val();
        var listings = [];
        var listingid = 0;
@@ -33,15 +27,15 @@ $(document).ready(function(){
        var recipientId = $("#s2").val();
        var subject = $("#textfieldSubject").val();
        
-       $.post(NODE_URL + 'sendmail',{
+       $.post(NODE_URL + 'blastmail',{
            templateid : templateid,
            subject : subject,
            marketingid : $("#marketingid").val(),
            customerid : recipientId[0],
-           listings : listings
+           message : $("#textarea").val()
+           
        },function(res){
            debugger;
            alert(res);
        });
    });
-});

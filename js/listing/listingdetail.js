@@ -96,3 +96,17 @@ function simpanPromosi()
         }
     });
 }
+
+$.get(NODE_URL+"listing/images",
+{
+    listingid : $("#listingid").html()
+},
+function(res){
+    $("#gallerylisting").html(res);
+        $(".colorbox-image").colorbox({
+            
+			maxWidth: "90%",
+			maxHeight: "90%"
+			
+        });
+});

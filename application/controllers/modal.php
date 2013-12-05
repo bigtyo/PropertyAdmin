@@ -3,9 +3,22 @@ class modal extends CI_Controller{
     public function __construct() {
         parent::__construct();
         $this->load->model('listing_model');
+        $this->load->model('office_model');
+        $this->load->model('user_model');
     }
     public function adduser(){
-        $this->load->view('user/addUser');
+        $userid = $this->input->get('id');
+        $data['office'] = $this->office_model->getOfficeList();
+        
+        if($userid != null && $userid != ""){
+            $datauser = $this->user_model->getUser($userid);
+            
+            $data['user'] = $datauser['user'];
+            $data['useroffice'] = $datauser['officeid'];
+            
+        }
+        
+        $this->load->view('user/addUser',$data);
     }
     
     public function addAktivitas()

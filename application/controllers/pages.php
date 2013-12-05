@@ -16,5 +16,11 @@ class Pages extends RS_Controller {
 		$this->load->view('pages/'.$page, $data);
 		$this->load->view('templates/footer', $data);
 	}
+        
+        public function dashboard()
+        {
+            $this->load->view('pages/dashboard');
+            $this->load->view('templates/footer');
+        }
 }
 ?>

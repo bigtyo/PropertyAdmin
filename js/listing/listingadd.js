@@ -29,7 +29,7 @@ function initialize() {
 
 
 
-function addListingBaru()
+function addListingBaru(obj)
 {
     var json = {};
     var jsonCustomer = {};
@@ -66,12 +66,14 @@ function addListingBaru()
     
     $.post('save',{
         datacustomer : JSON.stringify(jsonCustomer),
-        datalisting : JSON.stringify(json)
+        datalisting : JSON.stringify(json),
+        tempid : $("#tempid").val()
     },function(res){
         var json = res;
         if(Number(json.status == 1)){
             $("#listingid").val(json.listingid);
             statusSubmit = 1;
+            //activateForm(obj,4);
         }else{
             alert(json.error);
         }
@@ -89,12 +91,13 @@ $(document).ready(function(obj){
     debugger;
     $("#next").click(function(){
         var id = Number($("li.active").attr('id').replace("li",""));
+        //$("li.active").removeClass("active.replace("li","");
         var selectedid = id++;
         
         if(selectedid == 4 ){
             // save listing disini
             if(statusSubmit == 0){
-                addListingBaru();
+                addListingBaru(this);
             }else{
                 activateForm(this,4);
             }
@@ -102,9 +105,17 @@ $(document).ready(function(obj){
             
             
         }
+        
+        if(selectedid == 3)
+        {
+            
+        
+        }
         $("#li" + selectedid).click();
     });
     $("#galerryAdd").click(function(object){
+        
+        
         //debugger;
 //        var content = $(".fileupload-preview.fileupload-exists.thumbnail").find('img').attr('src');
 //        var html = "<li>" +
@@ -128,12 +139,12 @@ $(document).ready(function(obj){
 //			maxHeight: "90%"
 //			
 //        });
-        $("#loading").ajaxStart(function(){
-			$(this).show();
-		})
-		.ajaxComplete(function(){
-			$(this).hide();
-		});
+//        $("#loading").ajaxStart(function(){
+//			$(this).show();
+//		})
+//		.ajaxComplete(function(){
+//			$(this).hide();
+//		});
         /*
 			prepareing ajax file upload
 			url: the url of script file handling the uploaded files
@@ -146,42 +157,76 @@ $(document).ready(function(obj){
                 */
                //$(":file").attr('id','fileUploadID');
                
-		$.ajaxFileUpload
-		(
-			{
-				url:'uploadImage', 
-				secureuri:false,
-				fileElementId:'imagefile',
-				dataType: 'json',
-				success: function (data, status)
-				{
-                                  $(":hidden[name=imagefile]").remove();
-					if(typeof(data.error) != 'undefined')
-					{
-						if(data.error != '')
-						{
-							alert(data.error);
-						}else
-						{
-							alert(data.msg);
-						}
-					}
-				},
-				error: function (data, status, e)
-				{
-                                    //$("#fileUploadID").removeAttr('id');
-                                     $(":hidden[name=imagefile]").remove();
-					alert(e);
-                                        
-				}
-			}
-		);
+//		$.ajaxFileUpload
+//		(
+//			{
+//				url:NODE_URL+"listing/uploadimage",
+//				secureuri:false,
+//				fileElementId:'imagefile',
+//				dataType: 'json',
+//                                data : {
+//                                    listingid : $("#listingid").val()
+//                                },
+//				success: function (data, status)
+//				{
+//                                  $(":hidden[name=imagefile]").remove();
+//					if(typeof(data.error) != 'undefined')
+//					{
+//						if(data.error != '')
+//						{
+//							alert(data.error);
+//						}else
+//						{
+//							alert(data.msg);
+//						}
+//					}
+//				},
+//				error: function (data, status, e)
+//				{
+//                                    //$("#fileUploadID").removeAttr('id');
+//                                     $(":hidden[name=imagefile]").remove();
+//					alert(e);
+//                                        
+//				}
+//			}
+//		);
 		
 		
 
 	  
     });
     
-    
+    $("#map4").gmap3({
+		map:{
+			options:{
+				center:[46.578498,2.457275],
+				zoom:5
+			}
+		},
+		marker:{
+			values:[
+			{latLng:[48.8620722, 2.352047], data:"Paris !"},
+			{address:"86000 Poitiers, France", data:"Poitiers : great city !"},
+			{address:"66000 Perpignan, France", data:"Perpignan ! GO USAP !", options:{icon: "http://maps.google.com/mapfiles/marker_green.png"}}
+			],
+			events:{
+				click: function(marker, event, context){
+					var map = $(this).gmap3("get"),
+					infowindow = $(this).gmap3({get:{name:"infowindow"}});
+					if (infowindow){
+						infowindow.open(map, marker);
+						infowindow.setContent(context.data);
+					} else {
+						$(this).gmap3({
+							infowindow:{
+								anchor:marker, 
+								options:{content: context.data}
+							}
+						});
+					}
+				}
+			}
+		}
+	});
 });
 

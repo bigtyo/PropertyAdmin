@@ -58,10 +58,13 @@ class Listing extends RS_Controller {
                 $data['activities'] = $this->listing_model->getAktivitas($listingid,$marketingid);
                 $data['marketingid'] = $marketingid;
                 
-                echo "wut";
+                
                 $header['scripts'] = array(
-                    "listing/listingdetail"
-                                        
+                    "listing/listingdetail",
+                    "plugins/chosen/chosen.jquery.min",
+                    "plugins/masonry/jquery.masonry.min",
+                    
+                    "plugins/colorbox/jquery.colorbox-min"
                 );
                 if (empty($data['listing']))
                 {
@@ -160,84 +163,33 @@ class Listing extends RS_Controller {
         
         public function add()
         {
+            $data['tempid'] = uniqid();
             $header['external_scripts'] = array(
-                    "https://maps.googleapis.com/maps/api/js?key=".MAP_API_KEY."&sensor=true"
+                    "https://maps.googleapis.com/maps/api/js?key=".MAP_API_KEY."&sensor=true",
+                    
                                         
                 );
             $header['scripts'] = array(
-                "listing/listingadd",
+                'vendor/jquery.ui.widget',
+                
                 "plugins/chosen/chosen.jquery.min",
                 "plugins/masonry/jquery.masonry.min",
-                "plugins/AjaxFileUploader/ajaxfileupload",
-                "plugins/colorbox/jquery.colorbox-min"
+                
+                "plugins/colorbox/jquery.colorbox-min",
+                "listing/listingadd",
+                "jquery.iframe-transport",
+                "jquery.fileupload",
+                "plugins/gmap/gmap3.min",
+                "plugins/gmap/gmap3-menu"
+                
                 
             );
             
-            $this->load->view('listing/add');
+            $this->load->view('listing/add',$data);
             $this->load->view('templates/footer',$header);
         }
         
-        public function uploadImage()
-        {
-//            $config['upload_path'] = './uploads/';
-//            $config['allowed_types'] = 'gif|jpg|png';
-//            $config['max_size'] = '100';
-//            $config['max_width'] = '1024';
-//            $config['max_height'] = '768';
-//
-//            $this->load->library('upload', $config);
-            
-            $error = "";
-            $msg = "";
-            $files = json_encode($_FILES);
-            $fileElementName = 'imagefile';
-            if(!empty($_FILES[$fileElementName]['error']))
-            {
-                    switch($_FILES[$fileElementName]['error'])
-                    {
-
-                            case '1':
-                                    $error = 'The uploaded file exceeds the upload_max_filesize directive in php.ini';
-                                    break;
-                            case '2':
-                                    $error = 'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form';
-                                    break;
-                            case '3':
-                                    $error = 'The uploaded file was only partially uploaded';
-                                    break;
-                            case '4':
-                                    $error = 'No file was uploaded.';
-                                    break;
-
-                            case '6':
-                                    $error = 'Missing a temporary folder';
-                                    break;
-                            case '7':
-                                    $error = 'Failed to write file to disk';
-                                    break;
-                            case '8':
-                                    $error = 'File upload stopped by extension';
-                                    break;
-                            case '999':
-                            default:
-                                    $error = 'No error code avaiable';
-                    }
-            }elseif(empty($_FILES[$fileElementName]['tmp_name']) || $_FILES[$fileElementName]['tmp_name'] == 'none')
-            {
-                    $error = 'No file was uploaded..';
-            }else 
-            {
-                            $msg .= " File Name: " . $_FILES[$fileElementName]['name'] . ", ";
-                            $msg .= " File Size: " . @filesize($_FILES[$fileElementName]['tmp_name']);
-                            //for security reason, we force to remove all uploaded file
-                            @unlink($_FILES[$fileElementName]);		
-            }		
-            echo "{";
-            echo				"error: '" . $error . "',\n";
-            echo				"msg: '" . $msg . "'\n";
-            //echo				"files: '" . $files . "'\n";
-            echo "}";
-        }
+        
         
         public function match()
         {
@@ -267,12 +219,12 @@ class Listing extends RS_Controller {
         
         public function save()
         {
-            echo date('%Y-%m-%d');
-            return;
+            //echo date('%Y-%m-%d');
+            //return;
             
             $customer = $this->input->post('datacustomer');
             $listing = $this->input->post('datalisting');
-            
+            $tempid = $this->input->post('tempid');
             
             $marketing_id = $this->session->userdata('marketingid');
             
@@ -304,8 +256,37 @@ class Listing extends RS_Controller {
                         $json['error'] = "penyimpanan listing gagal";
                     }else
                     {
-                        $json['status'] = 1;
-                        $json['listingid'] = $listingid;
+                        //chmod(LISTING_TEMP_PATH.$tempid, 0777);
+                        
+                        if(!file_exists(LISTING_UPLOAD_PATH.$listingid))
+                        {
+                            mkdir(LISTING_UPLOAD_PATH.$listingid);
+                        }
+                        
+                        //chmod(LISTING_UPLOAD_PATH.$listingid, 0777);
+                        
+                        try {
+                            if(rename(LISTING_TEMP_PATH.$tempid,LISTING_UPLOAD_PATH.$listingid)){
+                                $json['status'] = 1;
+                                $json['listingid'] = $listingid;
+                            }else
+                            {
+                                $json['state'] = 2;
+                                $json['error'] = "penyimpanan listing berhasil namun gagal menyimpan file";
+                                $json['detail'] = "failed to copying from temp directory";
+                            }
+                            
+                        } catch (Exception $exc) {
+                            $json['state'] = 2;
+                            $json['error'] = "penyimpanan listing berhasil namun gagal menyimpan file";
+                            $json['detail'] = $exc->getMessage();
+                            
+                        }
+
+                        
+                            
+                            
+                        
                     }
                 }
                 

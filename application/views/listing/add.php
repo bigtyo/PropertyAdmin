@@ -48,6 +48,7 @@
 				</div>
                                 <div class="row-fluid">
                                         <div class="span12">
+                                                <input type="hidden" id="tempid" value="<?php echo $tempid; ?>" />
                                                 <div class="box box-color box-bordered lightred">
                                                         <div class="box-title">
                                                                 <h3>
@@ -56,7 +57,7 @@
                                                                 </h3>
                                                         </div>
                                                         <div class="box-content nopadding">
-                                                                <form class='form-horizontal form-wizard wizard-vertical' id="ssss" name="form" action="" method="POST" enctype="multipart/form-data">
+                                                                <div class='form-horizontal form-wizard wizard-vertical' >
 
                                                                       <div class="step" >
                                                                         <ul class="wizard-steps steps-3">
@@ -93,7 +94,7 @@
                                                                                                 </span>
                                                                                         </div>
                                                                                 </li>
-                                                                                <li id="li4">
+<!--                                                                                <li id="li4">
                                                                                         <div class="single-step">
                                                                                                 <span class="title">
                                                                                                         4</span>
@@ -103,7 +104,7 @@
                                                                                                         Gambar
                                                                                                 </span>
                                                                                         </div>
-                                                                                </li>
+                                                                                </li>-->
                                                                         </ul>
                                                                            <div class="form-content" id="form1">
                                                                                <div class='span12'>
@@ -183,6 +184,7 @@
 
                                                                                             </div>
                                                                                     </div>
+                                                                                   <a href="../upload/listing?listingid=<?php echo $tempid; ?>" onclick="return !window.open(this.href, 'Rumah Super', 'width=500,height=500')" target="_blank" class="btn ">Upload Photo</a> 
                                                                                </div>
                                                                                 <div class='span6'>
                                                                                     <div class="control-group">
@@ -284,14 +286,24 @@
                                                                                     <div class="control-group">
                                                                                             <label for="text" class="control-label">Peta</label>
                                                                                             <div class="controls" >
-                                                                                                <div id="map-canvas"></div>
+                                                                                                <div class="box">
+                                                                                                        <div class="box-title">
+                                                                                                                <h3>
+                                                                                                                        <i class="icon-map-marker"></i>
+                                                                                                                        Peta lokasi
+                                                                                                                </h3>
+                                                                                                        </div>
+                                                                                                        <div class="box-content">
+                                                                                                                <div id="map4"></div>
+                                                                                                        </div>
+                                                                                                </div>
                                                                                             </div>
                                                                                     </div>
                                                                                     
                                                                               </div>
                                                                                 
                                                                             </div>
-                                                                          <div class="form-content" id="form4" style="display:none">
+<!--                                                                          <div class="form-content" id="form4" style="display:none">
                                                                               <div class="span12">
                                                                                    <div class="control-group">
                                                                                             <label for="textarea" class="control-label">Gambar</label>
@@ -314,39 +326,59 @@
                                                                                             </div>
                                                                                     </div>
                                                                                     <div class="control-group">
-                                                                                        <input type="hidden" id="listingid" />
+                                                                                        
                                                                                             <label for="textarea" class="control-label">Pilih Gambar</label>
                                                                                             <div class="controls">
-                                                                                                 <div class="fileupload fileupload-new" data-provides="fileupload">
-													<div class="fileupload-new thumbnail" style="max-width: 200px; max-height: 150px;"><img src="img/demo/user-1.jpg" /></div>
-													<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                                                                                <form id="fileupload" action="/upload/server/php/" method="POST" enctype="multipart/form-data">
+                                                                                                    <input type="hidden" id="listingid" />
+                                                                                                    <span class="btn btn-success fileinput-button">
+                                                                                                        <i class="glyphicon glyphicon-plus"></i>
+                                                                                                        <span>Select files...</span>
+                                                                                                         The file input field used as target for the file upload widget 
+                                                                                                        <input  type="file" name="files[]" multiple>
+                                                                                                    </span>
+                                                                                                    <br>
+                                                                                                    <br>
+                                                                                                     The global progress bar 
+                                                                                                    <div id="progress" class="progress">
+                                                                                                        <div class="progress-bar progress-bar-success"></div>
+                                                                                                    </div>
+                                                                                                     The container for the uploaded files 
+                                                                                                    <div id="files" class="files"></div>
+                                                                                                </form>
+                                                                                                
+                                                                                               <div class="fileupload fileupload-new" data-provides="fileupload">
+													<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                                                                                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" />
+                                                                                                        </div>
+													<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
+                                                                                                            
+                                                                                                        </div>
 													<div>
-                                                                                                            <span class="btn btn-file">
-                                                                                                                <span class="fileupload-new">Select image</span>
-                                                                                                                <span class="fileupload-exists">Change</span>
-                                                                                                                
-                                                                                                                <input type="file" name='imagefile'  />
-                                                                                                            </span>
-														
-                                                                                                                <a href="#" id="galerryAdd" class="btn fileupload-exists" data-dismiss="fileupload">Add</a>
+														<span class="btn btn-file">
+                                                                                                                    <span class="fileupload-new">Select image</span>
+                                                                                                                    <span class="fileupload-exists">Change</span>
+                                                                                                                    <input type="file" name='imagefile' />
+                                                                                                                </span>
+														<a href="#" id="galerryAdd" class="btn fileupload-exists" data-dismiss="fileupload">Add</a>
 													</div>
-                                                                                                        
-                                                                                                </div>
-                                                                                                <img id="loading" src='<?php echo base_url(); ?>img/loading.gif' style='display:none;'/>
+												</div>
+                                       
+                                                                                                
                                                                                             </div>
                                                                                     </div>
                                                                                    
                                                                                    
                                                                                </div>
-                                                                          </div>
+                                                                          </div>-->
                                                                         </div>
 
                                                                         <div class="form-actions">
                                                                                 <input type="reset" class="btn" value="Back" id="back">
                                                                                 <input type="button" class="btn btn-primary" value="Next" id="next">
-<!--                                                                                <input type="button" class="btn btn-primary" value="Submit" onclick="addListingBaru();"  id="btnSubmit">-->
+<!--                                                                            <input type="button" class="btn btn-primary" value="Submit" onclick="addListingBaru();"  id="btnSubmit">-->
                                                                         </div>
-                                                                </form>
+                                                                </div>
                                                         </div>
                                                 </div>
                                             </div>

@@ -41,7 +41,10 @@ class RS_Controller extends CI_Controller {
                             $dataheader['isprincipal'] = true;
                         }
                         //echo json_encode($row);
-                        $this->load->view('templates/header',$dataheader);
+                        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+                            $this->load->view('templates/header',$dataheader);
+                        }
+                        
                         $CI->session->set_userdata($userdata);
                         
                     }

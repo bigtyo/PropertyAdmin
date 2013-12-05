@@ -6,46 +6,7 @@
 }
 ?>
         
-	<!-- Bootstrap -->
-	<link rel="stylesheet" href="<?php echo base_url();?>css/bootstrap.min.css" />
-	<!-- Bootstrap responsive -->
-	<link rel="stylesheet" href="<?php echo base_url();?>css/bootstrap-responsive.min.css">
-	<!-- jQuery UI -->
-	<link rel="stylesheet" href="<?php echo base_url();?>css/plugins/jquery-ui/smoothness/jquery-ui.css">
-	<link rel="stylesheet" href="<?php echo base_url();?>css/plugins/jquery-ui/smoothness/jquery.ui.theme.css">
-	<!-- PageGuide -->
-	<link rel="stylesheet" href="<?php echo base_url();?>css/plugins/pageguide/pageguide.css">
-	<!-- Fullcalendar -->
-	<link rel="stylesheet" href="<?php echo base_url();?>css/plugins/fullcalendar/fullcalendar.css">
-	<link rel="stylesheet" href="<?php echo base_url();?>css/plugins/fullcalendar/fullcalendar.print.css" media="print">
-	<!-- Tagsinput -->
-	<link rel="stylesheet" href="<?php echo base_url();?>css/plugins/tagsinput/jquery.tagsinput.css">
-	<!-- chosen -->
-	<link rel="stylesheet" href="<?php echo base_url();?>css/plugins/chosen/chosen.css">
-	<!-- multi select -->
-	<link rel="stylesheet" href="<?php echo base_url();?>css/plugins/multiselect/multi-select.css">
-	<!-- timepicker -->
-	<link rel="stylesheet" href="<?php echo base_url();?>css/plugins/timepicker/bootstrap-timepicker.min.css">
-	<!-- colorpicker -->
-	<link rel="stylesheet" href="<?php echo base_url();?>css/plugins/colorpicker/colorpicker.css">
-	<!-- Datepicker -->
-	<link rel="stylesheet" href="<?php echo base_url();?>css/plugins/datepicker/datepicker.css">
-	<!-- Daterangepicker -->
-	<link rel="stylesheet" href="<?php echo base_url();?>css/plugins/daterangepicker/daterangepicker.css">
-	<!-- Plupload -->
-	<link rel="stylesheet" href="<?php echo base_url();?>css/plugins/plupload/jquery.plupload.queue.css">
-	<!-- select2 -->
-	<link rel="stylesheet" href="<?php echo base_url();?>css/plugins/select2/select2.css">
-	<!-- icheck -->
-	<link rel="stylesheet" href="<?php echo base_url();?>css/plugins/icheck/all.css">
-	<!-- Theme CSS -->
-	<link rel="stylesheet" href="<?php echo base_url();?>css/style.css">
-	<!-- Color CSS -->
-	<link rel="stylesheet" href="<?php echo base_url();?>css/themes.css">
-        <!-- colorbox -->
-	<link rel="stylesheet" href="<?php echo base_url();?>css/plugins/colorbox/colorbox.css">
-        <!-- Notify -->
-	<link rel="stylesheet" href="<?php echo base_url();?>css/plugins/gritter/jquery.gritter.css">
+	
 
 	<!-- jQuery -->
 	<script src="<?php echo base_url();?>js/jquery.min.js"></script>

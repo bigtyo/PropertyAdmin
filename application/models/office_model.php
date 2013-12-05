@@ -15,6 +15,13 @@ class Office_model extends CI_Model
         
         return $query->row();
     }
+    
+    public function getOfficeList()
+    {
+        $query = $this->db->get('office');
+        
+        return $query->result();
+    }
 }
 
 ?>

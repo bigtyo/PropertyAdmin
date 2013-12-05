@@ -73,104 +73,8 @@
 									<div class="highlight-toolbar">
 										
 									</div>
-									<ul class="gallery">
-										<li>
-											<a href="#">
-												<img src="img/demo/1.jpg" alt="">
-											</a>
-											<div class="extras">
-												<div class="extras-inner">
-													<a href="img/demo/big/1.jpg" class="colorbox-image cboxElement" rel="group-1"><i class="icon-search"></i></a>
-													<a href="#"><i class="icon-pencil"></i></a>
-													<a href="#" class="del-gallery-pic"><i class="icon-trash"></i></a>
-												</div>
-											</div>
-										</li>
-										<li>
-											<a href="#">
-												<img src="img/demo/2.jpg" alt="">
-											</a>
-											<div class="extras">
-												<div class="extras-inner">
-													<a href="img/demo/big/2.jpg" class="colorbox-image cboxElement" rel="group-1"><i class="icon-search"></i></a>
-													<a href="#"><i class="icon-pencil"></i></a>
-													<a href="#" class="del-gallery-pic"><i class="icon-trash"></i></a>
-												</div>
-											</div>
-										</li>
-										<li>
-											<a href="#">
-												<img src="img/demo/3.jpg" alt="">
-											</a>
-											<div class="extras">
-												<div class="extras-inner">
-													<a href="img/demo/big/3.jpg" class="colorbox-image cboxElement" rel="group-1"><i class="icon-search"></i></a>
-													<a href="#"><i class="icon-pencil"></i></a>
-													<a href="#" class="del-gallery-pic"><i class="icon-trash"></i></a>
-												</div>
-											</div>
-										</li>
-										<li>
-											<a href="#">
-												<img src="img/demo/4.jpg" alt="">
-											</a>
-											<div class="extras">
-												<div class="extras-inner">
-													<a href="img/demo/big/4.jpg" class="colorbox-image cboxElement" rel="group-1"><i class="icon-search"></i></a>
-													<a href="#"><i class="icon-pencil"></i></a>
-													<a href="#" class="del-gallery-pic"><i class="icon-trash"></i></a>
-												</div>
-											</div>
-										</li>
-										<li>
-											<a href="#">
-												<img src="img/demo/5.jpg" alt="">
-											</a>
-											<div class="extras">
-												<div class="extras-inner">
-													<a href="img/demo/big/5.jpg" class="colorbox-image cboxElement" rel="group-1"><i class="icon-search"></i></a>
-													<a href="#"><i class="icon-pencil"></i></a>
-													<a href="#" class="del-gallery-pic"><i class="icon-trash"></i></a>
-												</div>
-											</div>
-										</li>
-										<li>
-											<a href="#">
-												<img src="img/demo/6.jpg" alt="">
-											</a>
-											<div class="extras">
-												<div class="extras-inner">
-													<a href="img/demo/big/6.jpg" class="colorbox-image cboxElement" rel="group-1"><i class="icon-search"></i></a>
-													<a href="#"><i class="icon-pencil"></i></a>
-													<a href="#" class="del-gallery-pic"><i class="icon-trash"></i></a>
-												</div>
-											</div>
-										</li>
-                                                                                <li>
-											<a href="#">
-												<img src="img/demo/7.jpg" alt="">
-											</a>
-											<div class="extras">
-												<div class="extras-inner">
-													<a href="img/demo/big/7.jpg" class="colorbox-image cboxElement" rel="group-1"><i class="icon-search"></i></a>
-													<a href="#"><i class="icon-pencil"></i></a>
-													<a href="#" class="del-gallery-pic"><i class="icon-trash"></i></a>
-												</div>
-											</div>
-										</li>
-                                                                                <li>
-											<a href="#">
-												<img src="img/demo/8.jpg" alt="">
-											</a>
-											<div class="extras">
-												<div class="extras-inner">
-													<a href="img/demo/big/8.jpg" class="colorbox-image cboxElement" rel="group-1"><i class="icon-search"></i></a>
-													<a href="#"><i class="icon-pencil"></i></a>
-													<a href="#" class="del-gallery-pic"><i class="icon-trash"></i></a>
-												</div>
-											</div>
-										</li>
-										
+									<ul class="gallery" id="gallerylisting">
+                                                                            
 									</ul>
 								</div>
 							</div>
@@ -224,7 +128,7 @@
 											<label for="textfield" class="control-label"><?php echo $listing->LUAS_BANGUNAN; ?> Meter Persegi</label>
 										</div>
 									</div>
-                                                                        <div class="control-group edittest" <?php if(!isset($isadmin)) echo 'style="display:none"'; ?> >
+                                                                        <div class="control-group edittest" style="display:none" >
 										<label for="textfield" class="control-label">Status</label>
 										<div class="controls">
 											<select name="select" id="select" class="input-large">
@@ -246,13 +150,13 @@
 											</select>
 										</div>
 									</div>
-                                                                        <div class="control-group notedittest" <?php if(isset($isadmin) && $isadmin) echo 'style="display:none"'; ?> >
+                                                                        <div class="control-group notedittest"  >
 										<label for="textfield" class="control-label">Status</label>
                                                                                 <div class="controls">
                                                                                     
                                                                                         <label for="textfield" class="control-label"><?php echo $listing->status_data; ?></label>
                                                                                     
-?>
+
 										
                                                                                 </div>
 									

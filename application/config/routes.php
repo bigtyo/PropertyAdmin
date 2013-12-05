@@ -66,17 +66,19 @@ $route['lokasi/getKotaList'] = "lokasi/getKotaList";
 $route['lokasi/getPropinsiList'] = "lokasi/getPropinsiList";
 $route['lokasi/getAreaList'] = "lokasi/getAreaList";
 $route['email/sendlisting'] = "email/sendlisting";
-$route['user/adduser'] = "modal/adduser";
+$route['email/blast'] = "email/blast";
+$route['users/adduser'] = "modal/adduser";
+$route['upload/listing'] = "upload/listingimage";
 //$route['match/listing'] = "lokasi/getAreaList";
 $route['listing'] = 'listing';
 $route['login'] = "login";
-$route['user'] = "user";
+$route['users/manage'] = "user";
 $route['login/signin'] = "login/signin";
 $route['login/logout'] = "login/logout";
 $route['email/template'] = 'email/template';
 $route['email/template/save'] = "email/templatesave";
 $route['(:any)'] = 'pages/view/$1';
-$route['default_controller'] = 'pages/view';
+$route['default_controller'] = 'pages/dashboard';
 //$route['404_override'] = '';
 
 

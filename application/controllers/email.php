@@ -76,6 +76,29 @@ class Email extends RS_Controller
         
     }
     
+    public function blast()
+    {
+        $marketingid = $this->session->userdata('marketingid');
+        
+        if($marketingid == NULL)
+        {
+            show_error("Access Denied", 300);
+            //redirect();
+        }
+        
+        $header['scripts'] = array(
+            "email/blast"
+        );
+        
+        $data['templates'] = $this->email_model->getTemplateListMarketing($marketingid);
+        $param['marketingid'] = $marketingid;
+        $data['customers'] = $this->customer_model->get_customers_list($param);
+        $data['marketingid'] = $marketingid;
+        
+        $this->load->view('email/blaster',$data);
+        $this->load->view('templates/footer',$header);
+    }
+    
     public function sendListing()
     {
         $marketingid = $this->session->userdata('marketingid');

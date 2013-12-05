@@ -1,7 +1,7 @@
 <div id="modalAktivitas" class="modal hide fade" tabindex="-1" role="dialog"   aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h3 id="myModalLabel" >Modal header</h3>
+				<h3 id="myModalLabel" >Add User</h3>
 			</div>
 			<div class="modal-body" id='modalContent'>
 				
@@ -92,7 +92,7 @@
                                                                                 <td class='hidden-350'><input type="checkbox" class="checkbox" <?php if($user->MARKETINGID != null && $user->MARKETINGID > 0) echo "checked='checked'"; ?> /></td>
                                                                                 <td class='hidden-350'><input type="checkbox" class="checkbox" <?php if($user->ADMINID != null && $user->ADMINID > 0) echo "checked='checked'"; ?> /></td>
                                                                                 <td class='hidden-350'><input type="checkbox" class="checkbox" <?php if($user->PRINCIPALID != null && $user->PRINCIPALID > 0) echo "checked='checked'"; ?> /></td>
-                                                                                <td class='hidden-480'><a href="#" class="btn">Edit</a><a class="btn" href="#">Delete</a></td>
+                                                                                <td class='hidden-480'><a href="#modalAktivitas" onclick="modalUser('<?php echo $user->USERID; ?>')" class="btn" data-toggle="modal">Edit</a><a class="btn" href="#">Delete</a></td>
                                                                             </tr>
                                                                          <?php   }
                                                                          }?>
