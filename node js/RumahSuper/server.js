@@ -37,7 +37,7 @@ var mysql      = require('mysql');
 	  user     : 'root',
 	  password : 'radityabp',
 	});
-
+var databasename = "rumahsuper.";
 
 //FUNCTIONS
 function format_money(number){
@@ -59,7 +59,7 @@ function format_money(number){
 
 function sendMailListing(template,customer,listings,_subject,res)
 {
-	var query = "select * from rumahsuper.email_template where templateid = " +template ;
+	var query = "select * from "+databasename+"email_template where templateid = " +template ;
 	connection.query(query, function(err, rows, fields) {
 		if (err) throw err;
 		for(var i =0;i<rows.length;i++)
@@ -103,7 +103,7 @@ function sendMailListing(template,customer,listings,_subject,res)
 function getListingsMailHTML(template,customer,listings,res)
 {
 	
-	var query = "select * from rumahsuper.email_template where templateid = " +template ;
+	var query = "select * from "+databasename+"email_template where templateid = " +template ;
 	connection.query(query, function(err, rows, fields) {
 		if (err) throw err;
 		for(var i =0;i<rows.length;i++)
@@ -214,18 +214,18 @@ function start()
 			// },
 		// ];
 		
-		connection.query("SELECT * from rumahsuper.view_listing_marketing where marketingid = " + marketingid + 
+		connection.query("SELECT * from "+databasename+"view_listing_marketing where marketingid = " + marketingid + 
 		" AND customerid = " +customerId + " AND listingid in "+listingids,		
 		function(err_listing,rows_listing,listing_fields){
 			if(err_listing){
 				json.status = 0;
 				json.error = "gagal verifikasi data listing";
 				json.detail = err_listing;
-				json.query = "SELECT * from rumahsuper.view_listing_marketing where marketingid = " + marketingid + 
+				json.query = "SELECT * from "+databasename+"view_listing_marketing where marketingid = " + marketingid + 
 		" AND customerid = " +customerId + " AND listingid in "+listingids;
 				res.send(JSON.stringify(json));
 			}else{
-				connection.query("SELECT * from rumahsuper.view_customer_marketing where marketingid = " + marketingid + 
+				connection.query("SELECT * from "+databasename+"view_customer_marketing where marketingid = " + marketingid + 
 				" AND customerid = " +customerId, 
 					function(err, rows, fields) {
 					  if (err){
@@ -268,7 +268,7 @@ function start()
 	{
 		var id = req.query.templateid;
 		var json = {};
-		var _query = "SELECT * from rumahsuper.email_template where templateid = "+id;
+		var _query = "SELECT * from "+databasename+"email_template where templateid = "+id;
 		
 		connection.query(_query,function(err, rows, fields){
 			if(err)
@@ -395,7 +395,7 @@ function start()
 		
 		
 		
-		var _query = "SELECT * FROM rumahsuper.view_listing where statusjualid = 2 AND statusdataid = 2 "+ query;
+		var _query = "SELECT * FROM "+databasename+"view_listing where statusjualid = 2 AND statusdataid = 2 "+ query;
 		var json = {};
 		connection.query(_query,function(err, rows, fields){
 			if(err){
@@ -424,7 +424,7 @@ function start()
 		var nama = req.body.nama;
 		var telepon = req.body.telepon;
 		var panggilan = req.body.panggilan;
-		var _query = "INSERT INTO rumahsuper.subscriber(email,nama,panggilan,telepon) VALUES('"+email+"','"+nama+"','"+telepon+"','"+panggilan+"')";
+		var _query = "INSERT INTO "+databasename+"subscriber(email,nama,panggilan,telepon) VALUES('"+email+"','"+nama+"','"+telepon+"','"+panggilan+"')";
 		connection.query(_query,function(err,results){
 			if(err){
 				json.status = 0;
@@ -583,7 +583,7 @@ function start()
 		//console.log(JSON.stringify(req.body));
 		var json = {};
 		
-		var _query = "INSERT INTO rumahsuper.email_template(ADMINID,NAMA) VALUES("+adminid+",'"+namafile+"')";
+		var _query = "INSERT INTO "+databasename+"email_template(ADMINID,NAMA) VALUES("+adminid+",'"+namafile+"')";
 		
 		connection.query(_query,function(err,results){
 			if(err){
@@ -595,7 +595,7 @@ function start()
 			else
 			{
 				var resid = results.insertId;
-				_query = "UPDATE rumahsuper.email_template SET PATH = '"+namafile+"_"+results.insertId+"' WHERE TEMPLATEID = "+results.insertId+"";
+				_query = "UPDATE "+databasename+"email_template SET PATH = '"+namafile+"_"+results.insertId+"' WHERE TEMPLATEID = "+results.insertId+"";
 				console.log(_query);
 				connection.query(_query,function(err,results){
 					if(err){
@@ -635,7 +635,7 @@ function start()
 	
 	app.get('/frontend/recent',function(req,res){
 		var date = Date();
-		var _query = "select * from rumahsuper.view_listing";
+		var _query = "select * from "+databasename+"view_listing";
 		var json = {};
 		connection.query(_query,function(err, rows, fields){
 			if(err){
@@ -670,7 +670,7 @@ function start()
 	});
 	
 	app.get('/frontend/agencies',function(req,res){
-		var _query = "SELECT * from rumahsuper.office";
+		var _query = "SELECT * from "+databasename+"office";
 		var json = {};
 		connection.query(_query,function(err,rows,fields){
 			if(err)
@@ -689,7 +689,7 @@ function start()
 					{
 						json.status = 0;
 						json.error = "gagal menampilkan agensi";
-						json.detail = error;
+						json.detail = err;
 						res.send(JSON.stringify(json));
 					}
 					else{
@@ -703,7 +703,7 @@ function start()
 	});
 	
 	app.get('/frontend/properties',function(req,res){
-		var _query="select * from rumahsuper.view_listing";
+		var _query="select * from "+databasename+"view_listing";
 		var json = {};
 		connection.query(_query,{},function(err,rows,fields){
 			if(err)
@@ -735,7 +735,7 @@ function start()
 	app.get('/Frontend/propdetail',function(req,res){
 		var id = req.query.id;
 		
-		var _query = "SELECT * from rumahsuper.view_listing where listingid = " + id;
+		var _query = "SELECT * from "+databasename+"view_listing where listingid = " + id;
 		var json = {};
 		connection.query(_query,function(err,rows,fields){
 			if(err){
