@@ -25,6 +25,15 @@
         </div>
     </div>
     <div class="control-group">
+        <label for="selJenis" class="control-label">Role</label>
+        <div class="controls">
+            
+            <input type="checkbox" id="principal"/> Principal
+            <input type="checkbox" id="marketing"/> Marketing
+            <input type="checkbox" id="admin"/> Admin
+        </div>
+    </div>
+    <div class="control-group">
         <label for="nama" class="control-label">Nama User</label>
         <div class="controls">
                 <input type="text" name="nama" id="nama" 

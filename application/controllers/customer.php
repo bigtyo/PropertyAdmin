@@ -100,6 +100,7 @@ class customer extends RS_Controller{
     {
         $history = json_decode($this->input->post('data'),true);
         $history['MARKETINGID'] = $this->session->userdata('marketingid');
+        //$history['TANGGAL'] = $this->dateFormat( $history['TANGGAL']);
         $id = $this->customer_model->addCustomerHistory($history);
         $json['id'] = $id;
         $data['json'] = json_encode($json);

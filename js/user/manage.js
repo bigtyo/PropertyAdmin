@@ -24,9 +24,20 @@ function modalUser(id)
 }
 
 function simpanUser(){
-    $.post('',{
+    $.post('simpanuser',{
+        loginid : $("#login").val(),
+        nama : $("#nama").val(),
+        email : $("#email").val(),
+        telepon : $("#telepon").val(),
+        ismarketing : $("#marketing").is(':checked'),
+        isadmin : $("#admin").is(':checked'),
+        isprincipal : $("#principal").is(':checked')
+        
         
     },function(res){
-        
+        var json = res;
+        if(json.status == 0){
+            alert(json.error);
+        }
     });
 }

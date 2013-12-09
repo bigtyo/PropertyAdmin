@@ -6,7 +6,7 @@
 					<div class="pull-left">
 						<h1>Email Listing</h1>
 					</div>
-					<div class="pull-right">
+<!--					<div class="pull-right">
 						
 						<ul class="stats">
 							<li class='satgreen'>
@@ -24,7 +24,7 @@
 								</div>
 							</li>
 						</ul>
-					</div>
+					</div>-->
 				</div>
 				<div class="breadcrumbs">
 					<ul>

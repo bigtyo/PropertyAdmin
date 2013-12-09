@@ -104,7 +104,7 @@
 			<a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle navigation"><i class="icon-reorder"></i></a>
 			<ul class='main-nav'>
 				<li class='active'>
-					<a href="index.php">
+					<a href="<?php echo base_url();?>">
 						<span>Dashboard</span>
 					</a>
 				</li>
@@ -217,7 +217,7 @@
                                                 <li class="dropdown-submenu">
                                                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Laporan Marketing</a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a href="<?php echo base_url();?>index.php/reportlistingsold">Listing Terjual</a></li>
+                                                        <li><a href="<?php echo base_url();?>index.php/report/listingsold">Listing Terjual</a></li>
                                                         
                                                         
                                                     </ul>
@@ -227,8 +227,8 @@
 						<li class="dropdown-submenu">
                                                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Laporan Performa Marketing</a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a href="<?php echo base_url();?>index.php/report/absensi">Absensi</a></li>
-                                                        <li><a href="<?php echo base_url();?>index.php/reportlisting">Laporan Listing / Buyer baru per marketing</a></li>
+<!--                                                        <li><a href="<?php echo base_url();?>index.php/report/absensi">Absensi</a></li>-->
+                                                        <li><a href="<?php echo base_url();?>index.php/report/entrybaru">Laporan Listing / Buyer baru per marketing</a></li>
                                                         <li><a href="<?php echo base_url();?>index.php/report/activity">Aktivitas Marketing</a></li>
                                                     </ul>
 							
@@ -274,9 +274,9 @@
 							<a href="<?php echo base_url();?>index.php/users/manage">User Management</a>
 						</li>
 						
-						<li>
+<!--						<li>
 							<a href="<?php echo base_url();?>index.php/users/role">Role Management</a>
-						</li>
+						</li>-->
 						
 					</ul>
 				</li>
@@ -337,9 +337,7 @@
 						<li>
 							<a href="<?php echo base_url();?>index.php/more-userprofile.html">Edit profile</a>
 						</li>
-						<li>
-							<a href="#">Account settings</a>
-						</li>
+						
 						<li>
 							<a href="<?php echo base_url();?>index.php/login/logout">Sign out</a>
 						</li>

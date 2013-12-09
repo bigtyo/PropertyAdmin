@@ -314,6 +314,29 @@ class Listing_model extends CI_Model
         return $query->result();
     }
     
+    public function getTipeProperty(){
+        $this->db->from('tipe_property');
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+    
+    public function getHadap()
+    {
+        $this->db->from('hadap');
+        $query = $this->db->get();
+        
+        return $query->result();
+        
+    }
+    
+    public function getTipeListing(){
+        $this->db->from('tipe_listing');
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+    
     public function getStatusData(){
         $this->db->from('status_data');
         $query = $this->db->get();
@@ -403,6 +426,114 @@ class Listing_model extends CI_Model
     {
         $this->db->where('PROMOSIID',$promosiid);
         $this->db->update('promosi',$data);
+    }
+    
+    public function getTipePropertyList()
+    {
+        $query = $this->db->get('tipe_property');
+        
+        return $query->result();
+    }
+    
+    public function getPropinsiList()
+    {
+        $query = $this->db->get('propinsi');
+        
+        return $query->result();
+    }
+    
+    public function getKotaList($propinsiid)
+    {
+        $query = $this->db->get_where('kota',array(
+            'propinsiid' => $propinsiid
+        ));
+        
+        return $query->result();
+    }
+    
+    public function getAreaList($kotaid)
+    {
+        $query = $this->db->get_where('area',array(
+            'kotaid' => $kotaid
+        ));
+        
+        return $query->result();
+    }
+    
+    public function getLokasiList($areaid)
+    {
+        $query = $this->db->get_where('lokasi',array(
+            'areaid' => $areaid
+        ));
+        
+        return $query->result();
+    }
+    
+    public function getHadapList()
+    {
+        $query = $this->db->get('hadap');
+        
+        return $query->result();
+    }
+    
+    public function getTempat($id,$tipe)
+    {
+        $data = null;
+        if($tipe == 'Kota')
+        {
+            $query = $this->db->get_where($tipe,array(
+                'PROPINSIID' => $id
+            ));
+            
+            $tempdata = $query->result();
+            $i = 0;
+            foreach ($tempdata as $obj)
+            {
+                $data[$i] = array(
+                  'id' => $obj->KOTAID,
+                  'nama' => $obj->NAMA_KOTA
+                );
+                $i++;
+            }
+        }
+
+        if($tipe == 'Area')
+        {
+            $query = $this->db->get_where($tipe,array(
+                'KOTAID' => $id
+            ));
+            
+            $tempdata = $query->result();
+            $i = 0;
+            foreach ($tempdata as $obj)
+            {
+                $data[$i] = array(
+                  'id' => $obj->AREAID,
+                  'nama' => $obj->NAMA_AREA
+                );
+                $i++;
+            }
+        }
+
+        if($tipe == 'Lokasi')
+        {
+            $query = $this->db->get_where($tipe,array(
+                'AREAID' => $id
+            ));
+            
+            $tempdata = $query->result();
+            $i = 0;
+            foreach ($tempdata as $obj)
+            {
+                $data[$i] = array(
+                  'id' => $obj->LOKASIID,
+                  'nama' => $obj->NAMA_LOKASI
+                );
+                $i++;
+            }
+        }
+        
+        return $data;
     }
 }
 ?>

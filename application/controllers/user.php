@@ -23,7 +23,7 @@ class User extends RS_Controller{
     public function simpanuser(){
         
         $datauser = array(
-            'loginid' => $this->input->post('loginid'),
+            'userid' => $this->input->post('loginid'),
             'nama' => $this->input->post('nama'),
             'email' => $this->input->post('email'),
             'telepon' => $this->input->post('telepon')
@@ -31,21 +31,21 @@ class User extends RS_Controller{
         
         
         $datarole = array(
-            'principal' => $this->input->post('isprincipal'),
-            'marketing' => $this->input->post('ismarketing'),
-            'admin' => $this->input->post('isadmin')
+            'isprincipal' => $this->input->post('isprincipal'),
+            'ismarketing' => $this->input->post('ismarketing'),
+            'isadmin' => $this->input->post('isadmin')
         );
         
         $officeid = $this->input->post('officeid');
-        $istop = $this->input->post('istop');
+        
         
         $userid = 0;
-        if($istop)
-        {
-            $userid = $this->user_model->addUser($datauser,$datarole,$officeid,true);
-        }else{
-            $userid = $this->user_model->addUser($datauser,$datarole,$officeid);
-        }
+//        if($istop)
+//        {
+//            $userid = $this->user_model->addUser($datauser,$datarole,$officeid,true);
+//        }else{
+         $userid = $this->user_model->addUser($datauser,$datarole,$officeid);
+//        }
         
         if($userid > 0){
             $json['status'] = 1;

@@ -16,18 +16,18 @@ class Customer_model extends CI_Model
 		}
                 
                 // is marketing
-                $this->db->from("Customer");
-                $this->db->join("DaftarCustomerMarketing","DaftarCustomerMarketing.CustomerId = Customer.CustomerId");
-                $this->db->join("Marketing","Marketing.MarketingId = DaftarCustomerMarketing.MarketingId");
-                $this->db->join("User","Marketing.MarketingId = User.MarketingId");
-                $this->db->select("Customer.*,DATE_FORMAT(Customer.TANGGAL_LAHIR,'%d-%m-%Y') as TGL_LAHIR",false);
+                $this->db->from("customer");
+                $this->db->join("daftarcustomermarketing","daftarcustomermarketing.CustomerId = customer.CustomerId");
+                $this->db->join("Marketing","marketing.MarketingId = daftarcustomermarketing.MarketingId");
+                $this->db->join("user","marketing.MarketingId = user.MarketingId");
+                $this->db->select("customer.*,DATE_FORMAT(customer.TANGGAL_LAHIR,'%d-%m-%Y') as TGL_LAHIR",false);
                 
                 if(empty($param['marketingid']))
                 {
-                    $this->db->where("User.UserId",$param['userid']);
+                    $this->db->where("user.UserId",$param['userid']);
                 }else
                 {
-                    $this->db->where("Marketing.MarketingId",$param['marketingid']);
+                    $this->db->where("marketing.MarketingId",$param['marketingid']);
                 }
                 
                 if($begin != -1)
@@ -54,21 +54,21 @@ class Customer_model extends CI_Model
             
             $data = json_decode($customerData,true);
             $this->db->start_cache();
-            $this->db->from('Customer');
-            $this->db->where('Email',$data['EMAIL']);
-            $this->db->or_where('Telepon',$data['TELEPON']);
+            $this->db->from('customer');
+            $this->db->where('email',$data['EMAIL']);
+            $this->db->or_where('telepon',$data['TELEPON']);
             $this->db->stop_cache();
             $isExist = $this->db->count_all_results();
             
             if($isExist == 0)
             {
-                $this->db->insert('Customer',$data);
+                $this->db->insert('customer',$data);
                 $customer_id = $this->db->insert_id();
                 
                 
             }else
             {
-                $this->db->select("CustomerId");
+                $this->db->select("customerId");
                 $existingData = $this->db->get()->row();
                 $customer_id = $existingData->CustomerId;
                 
@@ -79,10 +79,10 @@ class Customer_model extends CI_Model
             );
             if(isset($customer_baru)){
                 $this->db->flush_cache();
-                $query = $this->db->get_where('DaftarCustomerMarketing',$customer_baru);
+                $query = $this->db->get_where('daftarcustomermarketing',$customer_baru);
                 if($query->num_rows() == 0)
                 {
-                    $this->db->insert('DaftarCustomerMarketing',$customer_baru);
+                    $this->db->insert('daftarcustomermarketing',$customer_baru);
                 }
                 
             }
@@ -110,13 +110,13 @@ class Customer_model extends CI_Model
             }
             else
             {
-                $this->db->from("Customer");
-                $this->db->join("DaftarCustomerMarketing","DaftarCustomerMarketing.CustomerId = Customer.CustomerId");
+                $this->db->from("customer");
+                $this->db->join("daftarcustomermarketing","daftarcustomermarketing.CustomerId = customer.CustomerId");
                 
-                $this->db->select("Customer.*,DATE_FORMAT(Customer.TANGGAL_LAHIR,'%d-%m-%Y') as tgl_lahir",FALSE);
+                $this->db->select("customer.*,DATE_FORMAT(customer.TANGGAL_LAHIR,'%d-%m-%Y') as tgl_lahir",FALSE);
                 
                 
-                $this->db->where("Customer.CustomerId",$id);
+                $this->db->where("customer.CustomerId",$id);
                
                 
                 
@@ -159,8 +159,8 @@ class Customer_model extends CI_Model
                         history_pencarian.HISTORYID,
                         '2 match' as matches
                         FROM (`history_pencarian`) 
-                        INNER JOIN `DaftarCustomerMarketing` ON `history_pencarian`.`CustomerId` = `DaftarCustomerMarketing`.`CustomerId` 
-                        WHERE `history_pencarian`.`CustomerId` = $custid AND `DaftarCustomerMarketing`.`MarketingId` = $marketingid");
+                        INNER JOIN `daftarcustomermarketing` ON `history_pencarian`.`CustomerId` = `daftarcustomermarketing`.`CustomerId` 
+                        WHERE `history_pencarian`.`CustomerId` = $custid AND `daftarcustomermarketing`.`MarketingId` = $marketingid");
                 
                 
                 return $query->result();

@@ -19,8 +19,19 @@ class Pages extends RS_Controller {
         
         public function dashboard()
         {
+            $scripts['scripts'] = array(
+                'dashboard',
+                "plugins/flot/jquery.flot.min",
+                "plugins/flot/jquery.flot.bar.order.min",
+                "plugins/flot/jquery.flot.pie.min",
+                "plugins/flot/jquery.flot.resize.min",
+                "plugins/slimscroll/jquery.slimscroll.min"
+            
+            );
+            
+            
             $this->load->view('pages/dashboard');
-            $this->load->view('templates/footer');
+            $this->load->view('templates/footer',$scripts);
         }
 }
 ?>

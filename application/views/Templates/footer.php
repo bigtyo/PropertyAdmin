@@ -19,6 +19,7 @@
 	<script src="<?php echo base_url();?>js/plugins/jquery-ui/jquery.ui.core.min.js"></script>
 	<script src="<?php echo base_url();?>js/plugins/jquery-ui/jquery.ui.widget.min.js"></script>
 	<script src="<?php echo base_url();?>js/plugins/jquery-ui/jquery.ui.mouse.min.js"></script>
+        <script src="<?php echo base_url();?>js/plugins/jquery-ui/jquery.ui.draggable.min.js"></script>
 	<script src="<?php echo base_url();?>js/plugins/jquery-ui/jquery.ui.resizable.min.js"></script>
 	<script src="<?php echo base_url();?>js/plugins/jquery-ui/jquery.ui.sortable.min.js"></script>
 	<script src="<?php echo base_url();?>js/plugins/jquery-ui/jquery.ui.spinner.js"></script>

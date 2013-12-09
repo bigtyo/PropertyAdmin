@@ -1,6 +1,16 @@
 <?php
 class RS_Controller extends CI_Controller {
     private $dataheader;
+    public function dateFormat($date) //date
+    {
+        $tempdate = explode('/',$date);
+        
+        $year = $tempdate[2];
+        $month = $tempdate[0];
+        $day = $tempdate[1];
+        
+        return $year."-".$month."-".$day;
+    }
     public function __construct()
 	{
 		parent::__construct();

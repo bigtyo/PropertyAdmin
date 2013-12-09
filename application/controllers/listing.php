@@ -82,10 +82,11 @@ class Listing extends RS_Controller {
         
         public function saveAktivitas()
         {
+            $tanggal = $this->dateFormat($this->input->post('tanggal'));
             $aktivitasid = $this->input->post('id');
             $data['LISTINGID'] = $this->input->post('listingid');
             $data['MARKETINGID'] = $this->input->post('marketingid');
-            $data['TANGGAL'] = $this->input->post('tanggal');
+            $data['TANGGAL'] = $tanggal;
             $data['JENIS'] = $this->input->post('jenis');
             $data['NAMA_CUSTOMER'] = $this->input->post('nama_customer');
             $data['KETERANGAN'] = $this->input->post('keterangan');
@@ -127,8 +128,9 @@ class Listing extends RS_Controller {
             $data['MARKETINGID'] = $this->input->post('marketingid');
             
             
+            $tanggal = $tanggal = $this->dateFormat($this->input->post('tanggal'));
+            $data['TANGGAL'] = $tanggal;
             
-            $data['TANGGAL'] = $this->input->post('tanggal');
             $data['JENISPROMOSIID'] = $this->input->post('jenispromosiid');
             $data['JUMLAH'] = $this->input->post('jumlah');
             if($promosiid == null || $promosiid == "")
@@ -184,7 +186,13 @@ class Listing extends RS_Controller {
                 
                 
             );
-            
+            $data['tipeproperty'] = $this->listing_model->getTipeProperty();
+            $data['tipelisting'] = $this->listing_model->getTipeListing();
+            $data['hadap'] = $this->listing_model->getHadap();
+            $data['propinsi'] = $this->listing_model->getPropinsiList();
+            $data['kota'] = $this->listing_model->getKotaList(1);
+            $data['area'] = $this->listing_model->getAreaList(1);
+            $data['lokasi'] = $this->listing_model->getLokasiList(1);
             $this->load->view('listing/add',$data);
             $this->load->view('templates/footer',$header);
         }
@@ -215,6 +223,17 @@ class Listing extends RS_Controller {
                 $this->load->view('match/listing',$data);
             }
             $this->load->view('templates/footer');
+        }
+        
+        public function getTempat()
+        {
+            $id = $this->input->post('id');
+            $tipe = $this->input->post('tipe');
+            
+            
+            $data['json'] = json_encode($this->listing_model->getTempat($id,$tipe));
+            
+            $this->load->view('json_view',$data);
         }
         
         public function save()

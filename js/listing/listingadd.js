@@ -88,7 +88,7 @@ function saveLongitude(latLng)
 }
 
 $(document).ready(function(obj){
-    debugger;
+    
     $("#next").click(function(){
         var id = Number($("li.active").attr('id').replace("li",""));
         //$("li.active").removeClass("active.replace("li","");
@@ -113,6 +113,54 @@ $(document).ready(function(obj){
         }
         $("#li" + selectedid).click();
     });
+    
+    $("#selPropinsi").change(function() {
+        var id = $(this).children(":selected").attr("id");
+        $.post('getTempat',{
+            id : id,
+            tipe : 'Kota'
+        },function(res){
+            var html = "";
+            for(var i=0;i<res.length;i++)
+            {
+                var data = "<option id='"+res[i].id+"'>"+res[i].nama+"</option>";
+                html += data;
+            }
+            $("#selKota").html(html);
+        });
+    });
+    $("#selKota").change(function() {
+        var id = $(this).children(":selected").attr("id");
+        $.post('getTempat',{
+            id : id,
+            tipe : 'Lokasi'
+        },function(res){
+            var html = "";
+            for(var i=0;i<res.length;i++)
+            {
+                var data = "<option id='"+res[i].id+"'>"+res[i].nama+"</option>";
+                html += data;
+            }
+            $("#selLokasi").html(html);
+        });
+    });
+    
+    $("#selLokasi").change(function() {
+        var id = $(this).children(":selected").attr("id");
+        $.post('getTempat',{
+            id : id,
+            tipe : 'Area'
+        },function(res){
+            var html = "";
+            for(var i=0;i<res.length;i++)
+            {
+                var data = "<option id='"+res[i].id+"'>"+res[i].nama+"</option>";
+                html += data;
+            }
+            $("#selArea").html(html);
+        });
+    });
+    
     $("#galerryAdd").click(function(object){
         
         

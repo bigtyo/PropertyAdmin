@@ -6,7 +6,7 @@
 					<div class="pull-left">
 						<h1>Email Template Editor</h1>
 					</div>
-					<div class="pull-right">
+<!--					<div class="pull-right">
 						
 						<ul class="stats">
 							<li class='satgreen'>
@@ -24,7 +24,7 @@
 								</div>
 							</li>
 						</ul>
-					</div>
+					</div>-->
 				</div>
 				<div class="breadcrumbs">
 					<ul>
@@ -41,7 +41,7 @@
 							<i class="icon-angle-right"></i>
 						</li>
 						<li>
-							<a href="emailtemplate.php">Blast Email</a>
+							<a href="emailtemplate.php">Email Template</a>
 						</li>
 					</ul>
 					<div class="close-bread">

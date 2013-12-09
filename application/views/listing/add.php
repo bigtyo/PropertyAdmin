@@ -6,7 +6,7 @@
 					<div class="pull-left">
 						<h1>Customer Database Management</h1>
 					</div>
-					<div class="pull-right">
+<!--					<div class="pull-right">
 						
 						<ul class="stats">
 							<li class='satgreen'>
@@ -24,7 +24,7 @@
 								</div>
 							</li>
 						</ul>
-					</div>
+					</div>-->
 				</div>
 				<div class="breadcrumbs">
 					<ul>
@@ -136,8 +136,12 @@
                                                                                         <label for="selProp" class="control-label">Tipe Property</label>
                                                                                         <div class="controls">
                                                                                                 <select name="select" id="selProp" class="input-large">
-                                                                                                        <option value="1" >Rumah</option>
-                                                                                                        <option value="2" >Ruko</option>
+                                                                                                    <?php if(isset($tipeproperty)){
+                                                                                                        foreach($tipeproperty as $obj){ ?>
+                                                                                                            <option value="<?php echo $obj->TIPEPROPID; ?>" ><?php echo $obj->NAMA_TIPE; ?></option>
+                                                                                                            
+                                                                                                        <?php }
+                                                                                                    } ?>
                                                                                                 </select>
                                                                                         </div>
                                                                                     </div>
@@ -176,12 +180,25 @@
                                                                                             </div>
                                                                                     </div>
                                                                                    <div class="control-group">
-                                                                                            <label  class="control-label">Lain-lain</label>
+                                                                                            <label for="selHadap"  class="control-label">Lain-lain</label>
                                                                                             <div class="controls">
                                                                                                     <label class="checkbox">
                                                                                                             <input type="checkbox" name="checkbox" /> Furnish
                                                                                                     </label>
 
+                                                                                            </div>
+                                                                                    </div>
+                                                                                   <div class="control-group">
+                                                                                            <label  class="control-label">Hadap</label>
+                                                                                            <div class="controls">
+                                                                                                <select name="hadap" id="selHadap" class="input-large">
+                                                                                                    <?php if(isset($hadap)){
+                                                                                                        foreach($hadap as $obj){ ?>
+                                                                                                            <option value="<?php echo $obj->hadapid; ?>" ><?php echo $obj->hadap; ?></option>
+                                                                                                            
+                                                                                                        <?php }
+                                                                                                    } ?>
+                                                                                                </select>
                                                                                             </div>
                                                                                     </div>
                                                                                    <a href="../upload/listing?listingid=<?php echo $tempid; ?>" onclick="return !window.open(this.href, 'Rumah Super', 'width=500,height=500')" target="_blank" class="btn ">Upload Photo</a> 
@@ -191,9 +208,13 @@
                                                                                             <label for="selTipe" class="control-label">Tipe Listing</label>
                                                                                             <div class="controls">
                                                                                                 <select name="select" id="selTipe" class="input-large">
-                                                                                                        <option value="1" >Stock</option>
-                                                                                                        <option value="2" >Open</option>
-                                                                                                        <option value="3" >Exclusive</option>
+                                                                                                    <?php if(isset($tipelisting)){
+                                                                                                        foreach($tipelisting as $obj){ ?>
+                                                                                                            <option value="<?php echo $obj->TIPELISTINGID; ?>" ><?php echo $obj->NAMA; ?></option>
+                                                                                                            
+                                                                                                        <?php }
+                                                                                                    } ?>
+                                                                                                        
                                                                                                 </select>
                                                                                         </div>
                                                                                     </div>
@@ -255,7 +276,12 @@
                                                                                         <label for="selKota" class="control-label">Kota</label>
                                                                                         <div class="controls">
                                                                                                 <select name="select" id="selKota" class="input-large">
-                                                                                                    <option value="1" >Surabaya</option>
+                                                                                                    <?php if(isset($kota)){
+                                                                                                        foreach($kota as $obj){ ?>
+                                                                                                            <option value="<?php echo $obj->KOTAID; ?>" ><?php echo $obj->NAMA_KOTA; ?></option>
+                                                                                                            
+                                                                                                        <?php }
+                                                                                                    } ?>
                                                                                                 </select>
                                                                                         </div>
                                                                                     </div>
@@ -263,7 +289,12 @@
                                                                                             <label for="selArea" class="control-label">Area</label>
                                                                                             <div class="controls">
                                                                                                     <select name="select" id="selArea" class="input-large">
-                                                                                                        <option value="1" >Surabaya Timur</option>
+                                                                                                        <?php if(isset($area)){
+                                                                                                            foreach($area as $obj){ ?>
+                                                                                                                <option value="<?php echo $obj->AREAID; ?>" ><?php echo $obj->NAMA_AREA; ?></option>
+
+                                                                                                            <?php }
+                                                                                                        } ?>
                                                                                                     </select>
                                                                                             </div>
                                                                                     </div>
@@ -271,7 +302,12 @@
                                                                                             <label for="selLokasi" class="control-label">Lokasi</label>
                                                                                             <div class="controls">
                                                                                                     <select name="select" id="selLokasi" class="input-large">
-                                                                                                        <option value="1" >Darma Husada</option>
+                                                                                                       <?php if(isset($lokasi)){
+                                                                                                            foreach($lokasi as $obj){ ?>
+                                                                                                                <option value="<?php echo $obj->LOKASIID; ?>" ><?php echo $obj->NAMA_LOKASI; ?></option>
+
+                                                                                                            <?php }
+                                                                                                        } ?>
                                                                                                     </select>
                                                                                             </div>
                                                                                     </div>

@@ -26,7 +26,7 @@ $(document).ready(function(){
         json.JALUR_TELEPON = Number($("#jalurTelepon").val());
         json.HARGA_AWAL = Number($("#rangeAwal").val());
         json.HARGA_AKHIR = Number($("#rangeAkhir").val());
-        json.TANGGAL = Date();
+        //json.TANGGAL = Date();
         json.AREAID = Number($("#selArea").val());
         json.LOKASIID = Number($("#selLokasi").val());
         json.PROPINSIID = Number($("#selPropinsi").val());
