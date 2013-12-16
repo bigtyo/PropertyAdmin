@@ -17,7 +17,8 @@ class report extends RS_Controller
         $date_akhir = $this->input->get('date_akhir');
         $data['office'] = $this->office_model->getOfficeList();
         $data['listings'] = $this->report_model->listing_terjual($officeid,$date_awal,$date_akhir);
-        
+        $data['date_awal'] = $date_awal;
+        $data['date_akhir'] = $date_akhir;
         $this->load->view('report/listing',$data);
         $this->load->view('templates/footer',$footer);
     }
@@ -35,6 +36,20 @@ class report extends RS_Controller
         $data['marketings'] = $this->report_model->entry_baru_marketing($officeid,$date_awal,$date_akhir);
         
         $this->load->view('report/entrybaru',$data);
+        $this->load->view('templates/footer',$footer);
+    }
+    
+    public function aktivity()
+    {
+        $footer['scripts'] = array(
+            'report/activity'
+        );
+        
+        $officeid = $this->session->userdata('officeid');
+        $date_awal = $this->input->get('date_awal');
+        $date_akhir = $this->input->get('date_akhir');
+        
+        $this->load->view('report/activity',$data);
         $this->load->view('templates/footer',$footer);
     }
 }

@@ -62,6 +62,7 @@
 <body class='login'>
 	<div class="wrapper">
 		<h1><a href="index.html"><img src="img/logo-big.png" alt="" class='retina-ready' width="59" height="49">FLAT</a></h1>
+                
 		<div class="login-body">
 			<h2>SIGN IN</h2>
 			<form action="login/signin" method='post' class='form-validate' id="test">
@@ -79,9 +80,16 @@
 					<div class="remember">
 						<input type="checkbox" name="remember" class='icheck-me' data-skin="square" data-color="blue" id="remember"> <label for="remember">Remember me</label>
 					</div>
-<!--                                    <input type="submit"  value="Sign Me In" class='btn btn-primary'/>-->
-                                    <a href="#" style="float: right" id="btnLogin"><span class='btn btn-primary'>Sign Me In</span>
+                                    <input type="submit"  value="Sign Me In" class='btn btn-primary'/>
+<!--                                    <a href="#" style="float: right" id="btnLogin"><span class='btn btn-primary'>Sign Me In</span>-->
 				</div>
+                            <?php if(isset($success)){
+                                if(!$success)
+                                {?>
+                                    <span>Login gagal : user / password tidak dikenali</span>
+
+                                <?php }
+                            } ?>
 			</form>
 			<div class="forget">
 				<a href="#"><span>Forgot password?</span></a>

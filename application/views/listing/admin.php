@@ -83,7 +83,7 @@
 								</h3>
 							</div>
 							<div class="box-content nopadding">
-								<table class="table table-hover table-nomargin dataTable table-bordered">
+								<table class="table table-hover table-nomargin table-bordered">
 									<thead>
 										<tr>
                                                                                         

@@ -2,6 +2,10 @@
 
 class Pages extends RS_Controller {
 
+    public function __construct() {
+        parent::__construct();
+        $this->load->model('office_model');
+    }
 	public function view($page = 'home')
 	{
 		if ( ! file_exists('application/views/pages/'.$page.'.php'))
@@ -28,9 +32,10 @@ class Pages extends RS_Controller {
                 "plugins/slimscroll/jquery.slimscroll.min"
             
             );
+            $officeid = $this->session->userdata('officeid');
+            $data['officename'] = $this->office_model->getOfficeById($officeid)->NAMA;
             
-            
-            $this->load->view('pages/dashboard');
+            $this->load->view('pages/dashboard',$data);
             $this->load->view('templates/footer',$scripts);
         }
 }

@@ -224,12 +224,12 @@ class Customer_model extends CI_Model
 
             if($row->SERTIFIKAT != null)
             {
-                $q_string .= " AND hp.SERTIFIKAT = '$row->SERTIFIKAT'";
+                $q_string .= " AND hp.SERTIFIKAT like '%$row->SERTIFIKAT%'";
             }
 
             if($row->KONDISI != null)
             {
-                $q_string .= " AND hp.KONDISI = $row->KONDISI";
+                $q_string .= " AND hp.KONDISI like '$row->KONDISI'";
             }
 
             if($row->KAMAR_MANDI != null)

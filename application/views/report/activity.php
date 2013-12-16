@@ -19,7 +19,7 @@
 							<i class="icon-angle-right"></i>
 						</li>
 						<li>
-							<a href="tables-dynamic.html">Listing Terjual</a>
+							<a href="tables-dynamic.html">Aktivitas Marketing</a>
 						</li>
 					</ul>
 					<div class="close-bread">
@@ -64,38 +64,35 @@
                                                     <div class="box-title">
                                                             <h3>
                                                                     <i class="icon-table"></i>
-                                                                    Laporan Listing Terjual <?php if(isset($officename)) echo "Office ".$officename; ?>
+                                                                    Laporan Listing / Customer Baru per Marketing <?php if(isset($officename)) echo "Office ".$officename; ?>
                                                             </h3>
                                                     </div>
                                                     <div class="box-content nopadding">
                                                             <table class="table table-hover table-nomargin">
                                                                     <thead>
                                                                             <tr>
-                                                                                    <th>Tanggal</th>
-                                                                                    <th>Refid</th>
-                                                                                    <th>Alamat Lengkap</th>
-                                                                                    <th class='hidden-350'>Lokasi</th>
-                                                                                    <th class='hidden-350'>Area</th>
-                                                                                    <th class='hidden-350'>Harga</th>
-                                                                                    <th class='hidden-350'>Terjual Oleh</th>
-                                                                                    <th class='hidden-480'>Kantor</th>
-                                                                                    <th class='hidden-480'>Keterangan</th>
+                                                                                    <th>Nama Marketing</th>
+                                                                                    <th>Alamat</th>
+                                                                                    <th class='hidden-350'>Email</th>
+                                                                                    <th class='hidden-350'>Telepon</th>
+                                                                                    <th class='hidden-350'>Listing Baru</th>
+                                                                                    <th class='hidden-350'>Customer Baru</th>
+                                                                                    
                                                                             </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <?php if(isset($listings)){ 
-                                                                            foreach($listings as $listing){ ?>
+                                                                        <?php if(isset($marketings)){ 
+                                                                            foreach($marketings as $marketing){ ?>
                                                                             <tr>
-                                                                                <td><?php echo $listing->tanggal; ?></td>
-                                                                                <td><a href="../listing/<?php echo $listing->listingid; ?>" ><?php echo $listing->listingid; ?></a></td>
-                                                                                <td><?php echo $listing->alamat_lengkap; ?></td>
-                                                                               <td><?php echo $listing->nama_lokasi; ?></td>
-                                                                                <td><?php echo $listing->nama_area; ?></td>
-                                                                                <td><?php echo "Rp ".number_format($listing->harga, 2, ',', '.'); ?></td>
+                                                                                <td><?php echo $marketing->NAMA; ?></td>
                                                                                 
-                                                                                <td><?php echo $listing->terjual_oleh; ?></td>
-                                                                                <td><?php echo $listing->kantor; ?></td>
-                                                                                <td><?php echo $listing->keterangan; ?></td>
+                                                                                <td><?php echo $marketing->ALAMAT; ?></td>
+                                                                               <td><?php echo $marketing->EMAIL; ?></td>
+                                                                                <td><?php echo $marketing->TELEPON; ?></td>
+                                                                                
+                                                                                <td><?php echo $marketing->jml_listing; ?></td>
+                                                                                <td><?php echo $marketing->jml_customer; ?></td>
+                                                                                
                                                                             </tr>
                                                                          <?php   }
                                                                          }?>

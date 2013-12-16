@@ -42,6 +42,7 @@ define("MAP_API_KEY",'AIzaSyDcAoVqCimkKElAVwPfRsiu2Va_zJh2qwo');
 define("NODE_URL","http://localhost:3000/");
 define("LISTING_UPLOAD_PATH","C:/program files/nodejs/RumahSuper/Public/Images/");
 define("LISTING_TEMP_PATH","C:/Program Files/xampp/htdocs/upload/server/php/files/");
-
+define("DOKUMEN_PATH","C:/Program Files/xampp/htdocs/ci/dokumen/");
+define("DOKUMEN_UPLOAD_PATH","http://localhost:85/ci/dokumen/");
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

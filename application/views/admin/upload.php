@@ -1,18 +1,34 @@
 <div id="modalAktivitas" class="modal hide fade" tabindex="-1" role="dialog"   aria-labelledby="myModalLabel" aria-hidden="true">
+    <form action="../admin/submitdokumen" method="post" enctype="multipart/form-data">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h3 id="myModalLabel" >Add User</h3>
+				<h3 id="myModalLabel" >Add Dokumen</h3>
 			</div>
 			<div class="modal-body" id='modalContent'>
-				
+                            <input id="modalId" type="hidden" name="dokumenid" value="<?php if(isset($dokumen)) echo $dokumen->DOKUMENID; ?>" />
+				<div class="control-group">
+                                    <label for="nama" class="control-label">Deskripsi Dokumen</label>
+                                    <div class="controls">
+                                        <textarea id="nama" name="nama"><?php if(isset($dokumen)){
+                                                    echo "value='".$dokumen->NAMA."'";
+                                                }?></textarea>
+<!--                                            <input type="textare" name="nama" id="nama" 
+                                                <?php if(isset($dokumen)){
+                                                    echo "value='".$dokumen->NAMA."'";
+                                                }?> class="input-large">-->
+                                    </div>
+                                </div>
+                                <input type="file" name="dokumen" />
+                                
 			</div>
 			<div class="modal-footer">
 				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-				<button class="btn btn-primary" id="btnSimpan" data-dismiss="modal">Save changes</button>
+				<button type="submit" class="btn btn-primary" id="btnSimpan" >Save changes</button>
 			</div>
+    </form>
 </div>
 <div class="container-fluid nav-hidden" id="content">
-    <input type="hidden" id="marketing" value="<?php echo $adminid; ?>" />
+    
 		<div id="main">
 			<div class="container-fluid ">
 				<div class="page-header">
@@ -48,33 +64,28 @@
                                                     <div class="box-title">
                                                             <h3>
                                                                     <i class="icon-table"></i>
-                                                                    List User <?php if(isset($officename)) echo "Office ".$officename; ?>
+                                                                    List Dokumen <?php if(isset($officename)) echo "Office ".$officename; ?>
                                                             </h3>
                                                     </div>
                                                     <div class="box-content nopadding">
                                                             <table class="table table-hover table-nomargin">
                                                                     <thead>
                                                                             <tr>
-                                                                                    <th>Login</th>
-                                                                                    <th>Nama</th>
-                                                                                    <th>Telepon</th>
-                                                                                    <th class='hidden-350'>Marketing</th>
-                                                                                    <th class='hidden-350'>Admin</th>
-                                                                                    <th class='hidden-350'>Principal</th>
+                                                                                    
+                                                                                    <th>Nama Dokumen</th>
+                                                                                    <th>Deskripsi</th>
+                                                                                    
                                                                                     <th class='hidden-480'>Action</th>
                                                                             </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <?php if(isset($users)){ 
-                                                                            foreach($users as $user){ ?>
+                                                                        <?php if(isset($listdokumen)){ 
+                                                                            foreach($listdokumen as $obj){ ?>
                                                                             <tr>
-                                                                                <td><?php echo $user->USERID; ?></td>
-                                                                                <td><?php echo $user->NAMA; ?></td>
-                                                                                <td><?php echo $user->TELEPON; ?></td>
-                                                                                <td class='hidden-350'><input type="checkbox" class="checkbox" <?php if($user->MARKETINGID != null && $user->MARKETINGID > 0) echo "checked='checked'"; ?> /></td>
-                                                                                <td class='hidden-350'><input type="checkbox" class="checkbox" <?php if($user->ADMINID != null && $user->ADMINID > 0) echo "checked='checked'"; ?> /></td>
-                                                                                <td class='hidden-350'><input type="checkbox" class="checkbox" <?php if($user->PRINCIPALID != null && $user->PRINCIPALID > 0) echo "checked='checked'"; ?> /></td>
-                                                                                <td class='hidden-480'><a href="#modalAktivitas" onclick="modalUser('<?php echo $user->USERID; ?>')" class="btn" data-toggle="modal">Edit</a><a class="btn" href="#">Delete</a></td>
+                                                                                <td><a download="<?php echo $obj->PATH; ?>" href="<?php echo DOKUMEN_UPLOAD_PATH.$obj->PATH; ?>" ><?php echo $obj->PATH; ?></a></td>
+                                                                                <td><?php echo $obj->NAMA; ?></td>
+                                                                                
+                                                                                <td class='hidden-480'><a href="#modalAktivitas" onclick="modalUser('<?php echo $obj->DOKUMENID; ?>')" class="btn" data-toggle="modal">Edit</a><a class="btn" href="#">Delete</a></td>
                                                                             </tr>
                                                                          <?php   }
                                                                          }?>
@@ -94,7 +105,7 @@
                                                             </div>-->
 
                                                     </div>
-                                                    <a href="#modalAktivitas" id="btnAddUser" role="button" class="btn btn-primary"  data-toggle="modal" >Add User Baru</a>
+                                                    <a href="#modalAktivitas" id="btnAddDokumen" role="button" class="btn btn-primary"  data-toggle="modal" >Add Dokumen Baru</a>
                                             </div>
                                     </div>
                                 </div>

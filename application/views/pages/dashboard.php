@@ -19,7 +19,7 @@
 							<li class='lightred'>
 								<i class="icon-calendar"></i>
 								<div class="details">
-									<span class="big">February 22, 2013</span>
+                                                                    <span class="big"><?php date_format(new DateTime(), 'M d,Y') ?></span>
 									<span>Wednesday, 13:56</span>
 								</div>
 							</li>
@@ -41,7 +41,7 @@
 					</div>
 				</div>
 				<div class="row-fluid">
-					<div class="span6">
+<!--					<div class="span6">
 						<div class="box box-color box-bordered">
 							<div class="box-title">
 								<h3>
@@ -59,7 +59,7 @@
 									<div class="top">
 										<div class="left">
 											<div class="input-medium">
-												<select name="category" class='chosen-select' data-nosearch="true">
+												<select name="category" class='chosen-select' id="periodSelectVisit" data-nosearch="true">
 													<option value="1">Visits</option>
 													<option value="2">New Visits</option>
 													<option value="3">Unique Visits</option>
@@ -113,13 +113,13 @@
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="span6">
+					</div>-->
+					<div class="span12">
 						<div class="box box-color satgreen box-bordered">
 							<div class="box-title">
 								<h3>
 									<i class="icon-bar-chart"></i>
-									Periodic Properties Sold
+                                                                        Periodic Properties Sold <?php if(isset($officename)){echo $officename;} ?>
 								</h3>
 								<div class="actions">
 									<a href="#" class="btn btn-mini content-refresh"><i class="icon-refresh"></i></a>
@@ -132,7 +132,7 @@
 									<div class="top">
 										<div class="left">
 											<div class="input-medium">
-												<select name="category" class='chosen-select' data-nosearch="true">
+												<select name="category" class='chosen-select' id="periodSelectSold" data-nosearch="true">
 													<option value="1">Per-Week</option>
 													<option value="2">Per-Month</option>
 													<option value="3">Per-Semester</option>
@@ -140,8 +140,8 @@
 												</select>
 											</div>
 										</div>
-										<div class="right">
-											20% <span><i class="icon-circle-arrow-up"></i></span>
+										<div class="right" id="increaseSold">
+<!--											20% <span><i class="icon-circle-arrow-up"></i></span>-->
 										</div>
 									</div>
 									<div class="bottom">
@@ -149,7 +149,7 @@
 									</div>
 									<div class="bottom">
 										<ul class="stats-overview">
-											<li>
+<!--											<li>
 												<span class="name">
 													Increase from Last Period
 												</span>
@@ -172,7 +172,7 @@
 												<span class="value">
 													30%
 												</span>
-											</li>
+											</li>-->
 											
 										</ul>
 									</div>
@@ -200,16 +200,16 @@
 									<div class="top">
 										<div class="left">
 											<div class="input-medium">
-												<select name="category" class='chosen-select' data-nosearch="true">
+												<select name="category" class='chosen-select' id="periodSelectListing" data-nosearch="true">
 													<option value="1">Per-Week</option>
 													<option value="2">Per-Month</option>
-													<option value="3">Per-Quarter</option>
-													<option value="4">Per-Semester</option>
+													<option value="3">Per-Semester</option>
+													<option value="4">Per-Year</option>
 												</select>
 											</div>
 										</div>
-										<div class="right">
-											40% <span><i class="icon-circle-arrow-up"></i></span>
+										<div class="right" id="increaseListing">
+<!--											40% <span><i class="icon-circle-arrow-up"></i></span>-->
 										</div>
 									</div>
 									<div class="bottom">
@@ -217,7 +217,7 @@
 									</div>
 									<div class="bottom">
 										<ul class="stats-overview">
-											<li>
+<!--											<li>
 												<span class="name">
 													Increase From Last Period
 												</span>
@@ -240,7 +240,7 @@
 												<span class="value">
 													15%
 												</span>
-                                                                                        </li>
+                                                                                        </li>-->
 											
 										</ul>
 									</div>
@@ -253,7 +253,7 @@
 							<div class="box-title">
 								<h3>
 									<i class="icon-bar-chart"></i>
-									Periodic Properties Sold
+									Periodic Properties Sold (Global)
 								</h3>
 								<div class="actions">
 									<a href="#" class="btn btn-mini content-refresh"><i class="icon-refresh"></i></a>
@@ -266,7 +266,7 @@
 									<div class="top">
 										<div class="left">
 											<div class="input-medium">
-												<select name="category" class='chosen-select' data-nosearch="true">
+												<select name="category" class='chosen-select' id="periodSelectSoldGlobal" data-nosearch="true">
 													<option value="1">Per-Week</option>
 													<option value="2">Per-Month</option>
 													<option value="3">Per-Semester</option>
@@ -274,20 +274,20 @@
 												</select>
 											</div>
 										</div>
-										<div class="right">
-											20% <span><i class="icon-circle-arrow-up"></i></span>
+										<div class="right" id="increaseSoldGlobal">
+<!--											20% <span><i class="icon-circle-arrow-up"></i></span>-->
 										</div>
 									</div>
 									<div class="bottom">
-										<div class="flot medium" id="flot-hdd"></div>
+										<div class="flot medium" id="flot-global"></div>
 									</div>
 									<div class="bottom">
-										<ul class="stats-overview">
-											<li>
+										<ul class="stats-overview" id="sumglobal">
+<!--											<li>
 												<span class="name">
 													Increase from Last Period
 												</span>
-												<span class="value">
+												<span class="value increase">
 													20%
 												</span>
 											</li>
@@ -295,7 +295,7 @@
 												<span class="name">
 													Avg. Closing per Agent
 												</span>
-												<span class="value">
+												<span class="value closing">
 													0.3
 												</span>
 											</li>
@@ -303,10 +303,10 @@
 												<span class="name">
 													Avg. Closing %
 												</span>
-												<span class="value">
+												<span class="value closingavg">
 													30%
 												</span>
-											</li>
+											</li>-->
 											
 										</ul>
 									</div>
@@ -349,17 +349,9 @@
 								</div>
 							</div>
 							<div class="box-content nopadding scrollable" data-height="400" data-visible="true">
-								<table class="table table-nohead" id="randomDoc">
-									<tbody>
-                                                                            <tr style="display: table-row;">
-                                                                                <td><span class="label label-info"><i class="icon-plus"></i></span><a href="#listing">Presentasi Proyek WOHO</a></td>
-                                                                            </tr>
-                                                                            <tr style="display: table-row;">
-                                                                                <td><span class="label label-info"><i class="icon-plus"></i></span><a href="#listing">E- Brochure September 2013</a></td>
-                                                                            </tr>
-                                                                            <tr style="display: table-row;">
-                                                                                <td><span class="label label-info"><i class="icon-plus"></i></span><a href="#listing">E- Brochure Agustus 2013</a></td>
-                                                                            </tr>
+								<table class="table table-nohead" >
+									<tbody id="randomDoc">
+                                                                            
 									</tbody>
 								</table>
 							</div>
@@ -369,3 +361,38 @@
 			</div>
 		</div>
 </div>
+  <script src="https://www.google.com/jsapi"></script>
+  <script src="<?php echo base_url; ?>js/gadash-1.0.js"></script>
+  <script src="https://apis.google.com/js/client.js?onload=gadashInit"></script>
+  <script>
+    // Configure these parameters before you start.
+    var API_KEY = 'AIzaSyDcAoVqCimkKElAVwPfRsiu2Va_zJh2qwo';
+    var CLIENT_ID = '735347781882.apps.googleusercontent.com';
+    var TABLE_ID = 'ga:80129823';
+    // Format of table ID is ga:xxx where xxx is the profile ID.
+
+    gadash.configKeys({
+      'apiKey': API_KEY,
+      'clientId': CLIENT_ID
+    });
+
+    // Create a new Chart that queries visitors for the last 30 days and plots
+    // visualizes in a line chart.
+    var chart1 = new gadash.Chart({
+      'type': 'LineChart',
+      'divContainer': 'flot-audience',
+      'last-n-days':30,
+      'query': {
+        'ids': TABLE_ID,
+        'metrics': 'ga:visitors',
+        'dimensions': 'ga:date'
+      },
+      'chartOptions': {
+        height:600,
+        title: 'Visits in January 2011',
+        hAxis: {title:'Date'},
+        vAxis: {title:'Visits'},
+        curveType: 'function'
+      }
+    }).render();
+  </script>

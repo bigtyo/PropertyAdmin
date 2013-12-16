@@ -85,7 +85,7 @@ class Listing_model extends CI_Model
         
         if($row->KONDISI != null)
         {
-            $q_string .= " AND KONDISI = $row->KONDISI";
+            $q_string .= " AND KONDISI = '$row->KONDISI'";
         }
         
         if($row->KAMAR_MANDI != null)

@@ -6,25 +6,7 @@
 					<div class="pull-left">
 						<h1>Property Listing</h1>
 					</div>
-					<div class="pull-right">
-						
-						<ul class="stats">
-							<li class='satgreen'>
-								<i class="icon-money"></i>
-								<div class="details">
-									<span class="big">324</span>
-									<span>Properties Sold</span>
-								</div>
-							</li>
-							<li class='lightred'>
-								<i class="icon-calendar"></i>
-								<div class="details">
-									<span class="big">February 22, 2013</span>
-									<span>Wednesday, 13:56</span>
-								</div>
-							</li>
-						</ul>
-					</div>
+					
 				</div>
 				<div class="breadcrumbs">
 					<ul>

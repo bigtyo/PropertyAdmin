@@ -6,25 +6,31 @@ class dashboard_model extends CI_Model
         $this->load->database();
     }
     
-    public function getListingTerjual($date_awal,$date_akhir)
+    public function getListingTerjual($officeid,$date_awal,$date_akhir)
     {
+        $where_s = "";
+        if($officeid != null)
+        {
+            $where_s = "AND officeid = $officeid";
+        }
         $query = "SELECT  DATE_FORMAT(tanggal,'%Y-%m-%d') as waktu,COUNT(*) as jml 
-                    FROM rumahsuper.listing_terjual where tanggal >= '$date_awal' AND tanggal <= '$date_akhir' 
-                    group by tanggal";
+                    FROM listing_terjual where tanggal >= '$date_awal' AND tanggal <= '$date_akhir' ".$where_s.
+                    " group by tanggal";
+        
         return $this->db->query($query)->result();
         
     }
     
-    public function getListingBaru($date_awal,$date_akhir)
+    public function getListingBaru($officeid,$date_awal,$date_akhir)
     {
         $query = "select DATE_FORMAT(l.waktuupdate,'%Y-%m-%d') as waktu, count(*) as jml
                     from listing l 
                     join daftarlistingmarketing dlm on dlm.listingid = l.listingid
                     join marketing m on m.marketingid = dlm.marketingid
 
-                    where m.officeid = 1 and l.WaktuUpdate >= '$date_awal' and l.WaktuUpdate <= '$date_akhir'
+                    where m.officeid = $officeid and l.WaktuUpdate >= '$date_awal' and l.WaktuUpdate <= '$date_akhir'
                     group by l.waktuupdate";
-        
+        //echo $query;
         return $this->db->query($query)->result();
     }
     
@@ -50,7 +56,7 @@ class dashboard_model extends CI_Model
                     join daftarcustomermarketing dcm on dcm.customerid = c.customerid
                     join marketing m on dcm.marketingid = m.marketingid
                     join user u on m.marketingid = u.marketingid
-                    where '.$_where;
+                    where '.$_where.'LIMIT 0,10';
         
         return $this->db->query($query)->result();
     }

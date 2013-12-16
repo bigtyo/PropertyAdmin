@@ -27,10 +27,8 @@ class RS_Controller extends CI_Controller {
                         $officeid = $CI->session->userdata('officeid');
                         
                         $this->load->model('user_model');
-                        $query = $this->db->get_where('user',array(
-                            "userid" => $userid
-                        ));
-                        $row = $query->row();
+                        
+                        $row = $this->user_model->getUserDetail($userid);
                         
                         $userdata = array(
                             "adminid" => $row->ADMINID,
@@ -50,6 +48,7 @@ class RS_Controller extends CI_Controller {
                         if($row->PRINCIPALID != null){
                             $dataheader['isprincipal'] = true;
                         }
+                        $dataheader['nama'] = $row->NAMA;
                         //echo json_encode($row);
                         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
                             $this->load->view('templates/header',$dataheader);

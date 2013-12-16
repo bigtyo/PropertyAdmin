@@ -258,7 +258,7 @@
 						</li>
                                                 
 						<li>
-							<a href="<?php echo base_url();?>index.php/admin/upload">Upload dokumen presentasi</a>
+							<a href="<?php echo base_url();?>index.php/admin/dokumen">Upload dokumen presentasi</a>
 						</li>
 						
 					</ul>
@@ -332,7 +332,7 @@
 					
 				</ul>
 				<div class="dropdown">
-					<a href="#" class='dropdown-toggle' data-toggle="dropdown">John Doe <img src="<?php echo base_url();?>img/demo/user-avatar.jpg" alt=""></a>
+					<a href="#" class='dropdown-toggle' data-toggle="dropdown"><?php echo $nama; ?> <img src="<?php echo base_url();?>img/demo/user-avatar.jpg" alt=""></a>
 					<ul class="dropdown-menu pull-right">
 						<li>
 							<a href="<?php echo base_url();?>index.php/more-userprofile.html">Edit profile</a>
