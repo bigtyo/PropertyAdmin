@@ -29,15 +29,15 @@
 				<div class="breadcrumbs">
 					<ul>
 						<li>
-							<a href="more-login.html">Home</a>
+							<a href="/">Home</a>
 							<i class="icon-angle-right"></i>
 						</li>
 						<li>
-							<a href="tables-basic.html">Marketing Tools</a>
+							<a href="/listing/">Listings</a>
 							<i class="icon-angle-right"></i>
 						</li>
 						<li>
-							<a href="tables-dynamic.html">Customer Database Management</a>
+							<a href="/listing/add">Customer Database Management</a>
 						</li>
 					</ul>
 					<div class="close-bread">
@@ -410,9 +410,9 @@
                                                                         </div>
 
                                                                         <div class="form-actions">
-                                                                                <input type="reset" class="btn" value="Back" id="back">
-                                                                                <input type="button" class="btn btn-primary" value="Next" id="next">
-<!--                                                                            <input type="button" class="btn btn-primary" value="Submit" onclick="addListingBaru();"  id="btnSubmit">-->
+<!--                                                                                <input type="reset" class="btn" value="Back" id="back">
+                                                                                <input type="button" class="btn btn-primary" value="Next" id="next">-->
+                                                                                <input type="button" class="btn btn-primary" value="Submit" onclick="addListingBaru();"  id="btnSubmit">
                                                                         </div>
                                                                 </div>
                                                         </div>

@@ -1,6 +1,6 @@
 <?php
 
-class News extends CI_Controller {
+class News extends RS_Controller {
 
 	public function __construct()
 	{
@@ -11,12 +11,24 @@ class News extends CI_Controller {
 
 	public function index()
         {
-                $data['news'] = $this->news_model->get_news();
-                $data['title'] = 'News archive';
+                //$data['news'] = $this->news_model->get_news();
+                //$data['title'] = 'News archive';
 
-                $this->load->view('templates/header', $data);
-                $this->load->view('news/index', $data);
-                $this->load->view('templates/footer');
+                //$this->load->view('templates/header', $data);
+            $today = new DateTime();
+            $today->add(new DateInterval('P2D'));
+            $time = date_format($today, 'Y-m-d');
+            $today->sub(new DateInterval('P2D'));
+            $last = date_format($today, 'Y-m-d');;
+            $userid = $this->session->userdata('userid');
+            $data['feeds'] = $this->news_model->getAktivitasBaru($time,$last,$userid);
+            $scripts['scripts'] = array(
+                'news/index'
+            );
+            //$data['json'] = json_encode($json);
+            //$this->load->view('json_view',$data);
+            $this->load->view('news/index', $data);
+            $this->load->view('templates/footer',$scripts);
         }
 
 

@@ -12,15 +12,15 @@
 				<div class="breadcrumbs">
 					<ul>
 						<li>
-							<a href="more-login.html">Home</a>
+							<a href="<?php echo base_url() ?>">Home</a>
 							<i class="icon-angle-right"></i>
 						</li>
 						<li>
-							<a href="tables-basic.html">Customer Management</a>
+							<a href="<?php echo base_url() ?>customer/">Customer Management</a>
 							<i class="icon-angle-right"></i>
 						</li>
 						<li>
-							<a href="tables-dynamic.html">Prospect Management</a>
+							<a href="#">Customer Detail</a>
 						</li>
 					</ul>
 					<div class="close-bread">
@@ -73,10 +73,10 @@
                                                                                             <label for="textfield" class="control-label"><?php echo $customer->EMAIL; ?></label>
                                                                                     </div>
                                                                             </div>
-                                                                            <div class="form-actions">
+<!--                                                                            <div class="form-actions">
 										<button style="padding-left: 10px" type="submit" class="btn btn-primary">Send Email</button>
 										
-									</div>
+									</div>-->
                                                                         </div>
                                                                     </div>
 									

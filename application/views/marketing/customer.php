@@ -66,7 +66,7 @@
                                                                                     <a href="customer/detail?customerid=<?php echo $customer->CUSTOMERID?>" class="btn" rel="tooltip" title="View">
                                                                                         <i class="icon-search"></i>
                                                                                     </a>
-                                                                                    <a href="#" class="btn" rel="tooltip" title="Edit">
+                                                                                    <a href="#" class="btn" rel="tooltip"  title="Edit">
                                                                                         <i class="icon-edit"></i>
                                                                                     </a>
                                                                                     <a href="#" class="btn" rel="tooltip" title="Delete">

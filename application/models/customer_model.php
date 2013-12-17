@@ -68,11 +68,12 @@ class Customer_model extends CI_Model
                 
             }else
             {
-                $this->db->select("customerId");
+                //$this->db->select("customerId");
                 $existingData = $this->db->get()->row();
-                $customer_id = $existingData->CustomerId;
+                $customer_id = $existingData->CUSTOMERID;
                 
             }
+            //echo "customer id = ".$customer_id;
             $customer_baru = array(
                     'MarketingId' => $MarketingId,
                     'CustomerId' => $customer_id

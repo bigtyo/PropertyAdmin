@@ -117,9 +117,9 @@
 						<li>
 							<a href="<?php echo base_url();?>index.php/news">News & Update</a>
 						</li>
-						<li>
+<!--						<li>
 							<a href="<?php echo base_url();?>index.php/newsmanage">News Setting</a>
-						</li>
+						</li>-->
 <!--						<li>
 							<a href="<?php echo base_url();?>index.php/forms-validation.html">Validation</a>
 						</li>

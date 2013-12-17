@@ -73,6 +73,7 @@ function addListingBaru(obj)
         if(Number(json.status == 1)){
             $("#listingid").val(json.listingid);
             statusSubmit = 1;
+            window.location.href = "/listing/";
             //activateForm(obj,4);
         }else{
             alert(json.error);

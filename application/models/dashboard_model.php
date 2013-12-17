@@ -43,7 +43,7 @@ class dashboard_model extends CI_Model
             $_where = 'waktuupdate <=  "'.$time.'" AND waktuupdate >= "'.$time.'"';
         }
         $query = 'select concat(u.nama," mendaftarkan listing baru") as feed,
-                    concat("/listing/",l.listingid) as link  
+                    concat("/listing/",l.listingid) as link  ,waktuupdate
                     from listing l 
                     join daftarlistingmarketing dlm on dlm.listingid = l.listingid
                     join marketing m on dlm.marketingid = m.marketingid
@@ -51,7 +51,7 @@ class dashboard_model extends CI_Model
                     where '.$_where.' 
                     UNION
                     select concat(u.nama," mendaftarkan customer baru") as feed,
-                    concat("/customer/",c.customerid) as link  
+                    concat("/customer/",c.customerid) as link  ,waktuupdate
                     from customer c 
                     join daftarcustomermarketing dcm on dcm.customerid = c.customerid
                     join marketing m on dcm.marketingid = m.marketingid
