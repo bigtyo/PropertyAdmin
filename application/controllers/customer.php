@@ -52,6 +52,10 @@ class customer extends RS_Controller{
     public function update()
     {
         $data = $this->input->post('data');
+        
+        $data = json_decode($data,true);
+        $id = $data['CUSTOMERID'];
+        unset($data['CUSTOMERID']);
         if($data == FALSE)
         {
             $json['status'] = 0;
@@ -59,8 +63,14 @@ class customer extends RS_Controller{
         }
         else
         {
-            $this->customer_model->update_customer($data);
+            $this->customer_model->update_customer($data,$id);
+            $json['status'] = 1;
+            
         }
+        
+        $data['json'] = json_encode($json);
+        
+        $this->load->view('json_view',$data);
     }
     
     public function custdetail()
@@ -123,6 +133,18 @@ class customer extends RS_Controller{
         $dialogname = $this->input->post('dialog');
         
         $this->load->view('marketing/'.$dialogname);
+    }
+    
+    public function getCustomer(){
+        $id = $this->input->post('listingid');
+        $marketingid = $this->session->userdata('marketingid');
+        $customer['status'] = 1;
+        $customer['data'] = $this->customer_model->getCustomer($id,$marketingid);
+        
+        $data['json'] = json_encode($customer);
+        
+        $this->load->view('json_view',$data);
+        
     }
     
 }

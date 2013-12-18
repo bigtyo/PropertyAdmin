@@ -10,7 +10,7 @@
                                     <label for="nama" class="control-label">Deskripsi Dokumen</label>
                                     <div class="controls">
                                         <textarea id="nama" name="nama"><?php if(isset($dokumen)){
-                                                    echo "value='".$dokumen->NAMA."'";
+                                                    echo $dokumen->NAMA;
                                                 }?></textarea>
 <!--                                            <input type="textare" name="nama" id="nama" 
                                                 <?php if(isset($dokumen)){

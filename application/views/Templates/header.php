@@ -110,21 +110,21 @@
 				</li>
 				<li>
 					<a href="#" data-toggle="dropdown" class='dropdown-toggle'>
-						<span>News & Update</span>
+						<span>My Timeline</span>
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
 						<li>
-							<a href="<?php echo base_url();?>index.php/news">News & Update</a>
+							<a href="<?php echo base_url();?>news">News & Update</a>
 						</li>
 <!--						<li>
-							<a href="<?php echo base_url();?>index.php/newsmanage">News Setting</a>
+							<a href="<?php echo base_url();?>newsmanage">News Setting</a>
 						</li>-->
 <!--						<li>
-							<a href="<?php echo base_url();?>index.php/forms-validation.html">Validation</a>
+							<a href="<?php echo base_url();?>forms-validation.html">Validation</a>
 						</li>
 						<li>
-							<a href="<?php echo base_url();?>index.php/forms-wizard.html">Wizard</a>
+							<a href="<?php echo base_url();?>forms-wizard.html">Wizard</a>
 						</li>-->
 					</ul>
 				</li>
@@ -135,39 +135,39 @@
 					</a>
 					<ul class="dropdown-menu">
 						<li>
-							<a href="<?php echo base_url();?>index.php/listing">Property Listings Management</a>
+							<a href="<?php echo base_url();?>listing">Property Listings Management</a>
 						</li>
                                                 
                                                 
 <!--						<li>
-							<a href="<?php echo base_url();?>index.php/listing/detail">Detail Listing</a>
+							<a href="<?php echo base_url();?>listing/detail">Detail Listing</a>
 						</li>-->
 <!--						<li>
-							<a href="<?php echo base_url();?>index.php/components-sidebarwidgets.html">Sidebar widgets</a>
+							<a href="<?php echo base_url();?>components-sidebarwidgets.html">Sidebar widgets</a>
 						</li>
 						<li>
-							<a href="<?php echo base_url();?>index.php/components-messages.html">Messages &amp; Chat</a>
+							<a href="<?php echo base_url();?>components-messages.html">Messages &amp; Chat</a>
 						</li>
 						<li>
-							<a href="<?php echo base_url();?>index.php/components-gallery.html">Gallery &amp; Thumbs</a>
+							<a href="<?php echo base_url();?>components-gallery.html">Gallery &amp; Thumbs</a>
 						</li>
 						<li>
-							<a href="<?php echo base_url();?>index.php/components-tiles.html">Tiles</a>
+							<a href="<?php echo base_url();?>components-tiles.html">Tiles</a>
 						</li>
 						<li>
-							<a href="<?php echo base_url();?>index.php/components-icons.html">Icons &amp; Buttons</a>
+							<a href="<?php echo base_url();?>components-icons.html">Icons &amp; Buttons</a>
 						</li>
 						<li>
-							<a href="<?php echo base_url();?>index.php/components-elements.html">UI elements</a>
+							<a href="<?php echo base_url();?>components-elements.html">UI elements</a>
 						</li>
 						<li>
-							<a href="<?php echo base_url();?>index.php/components-typography.html">Typography</a>
+							<a href="<?php echo base_url();?>components-typography.html">Typography</a>
 						</li>
 						<li>
-							<a href="<?php echo base_url();?>index.php/components-bootstrap.html">Bootstrap elements</a>
+							<a href="<?php echo base_url();?>components-bootstrap.html">Bootstrap elements</a>
 						</li>
 						<li>
-							<a href="<?php echo base_url();?>index.php/components-grid.html">Grid</a>
+							<a href="<?php echo base_url();?>components-grid.html">Grid</a>
 						</li>-->
 					</ul>
 				</li>
@@ -178,10 +178,10 @@
 					</a>
 					<ul class="dropdown-menu">
 						<li>
-							<a href="<?php echo base_url();?>index.php/customer">Customer Management</a>
+							<a href="<?php echo base_url();?>customer">Customer Management</a>
 						</li>
 <!--						<li>
-							<a href="<?php echo base_url();?>index.php/customer/detail">Prospects Management</a>
+							<a href="<?php echo base_url();?>customer/detail">Prospects Management</a>
 						</li>-->
 						
 					</ul>
@@ -193,14 +193,14 @@
 					</a>
 					<ul class="dropdown-menu">
 						<li>
-							<a href="<?php echo base_url();?>index.php/customer">Customer Database Management</a>
+							<a href="<?php echo base_url();?>customer">Customer Database Management</a>
 						</li>
 						<li class="dropdown-submenu">
                                                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Email Tools</a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a href="<?php echo base_url();?>index.php/email/blast">Blast Email</a></li>
-                                                        <li><a href="<?php echo base_url();?>index.php/email/sendlisting">Send Listing via Email</a></li>
-                                                        <li><a href="<?php echo base_url();?>index.php/email/template">Email Template Management</a></li>
+                                                        <li><a href="<?php echo base_url();?>email/blast">Blast Email</a></li>
+                                                        <li><a href="<?php echo base_url();?>email/sendlisting">Send Listing via Email</a></li>
+                                                        <li><a href="<?php echo base_url();?>email/template">Email Template Management</a></li>
                                                     </ul>
 							
 						</li>
@@ -217,7 +217,7 @@
                                                 <li class="dropdown-submenu">
                                                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Laporan Marketing</a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a href="<?php echo base_url();?>index.php/report/listingsold">Listing Terjual</a></li>
+                                                        <li><a href="<?php echo base_url();?>report/listingsold">Listing Terjual</a></li>
                                                         
                                                         
                                                     </ul>
@@ -227,9 +227,9 @@
 						<li class="dropdown-submenu">
                                                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Laporan Performa Marketing</a>
                                                     <ul class="dropdown-menu">
-<!--                                                        <li><a href="<?php echo base_url();?>index.php/report/absensi">Absensi</a></li>-->
-                                                        <li><a href="<?php echo base_url();?>index.php/report/entrybaru">Laporan Listing / Buyer baru per marketing</a></li>
-                                                        <li><a href="<?php echo base_url();?>index.php/report/activity">Aktivitas Marketing</a></li>
+<!--                                                        <li><a href="<?php echo base_url();?>report/absensi">Absensi</a></li>-->
+                                                        <li><a href="<?php echo base_url();?>report/entrybaru">Laporan Listing / Buyer baru per marketing</a></li>
+                                                        <li><a href="<?php echo base_url();?>report/activity">Aktivitas Marketing</a></li>
                                                     </ul>
 							
 						</li>
@@ -245,20 +245,23 @@
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
+                                                <li>
+							<a href="<?php echo base_url();?>admin/event">Call In</a>
+						</li>
 						<li>
-							<a href="<?php echo base_url();?>index.php/admin/callin">Call In</a>
+							<a href="<?php echo base_url();?>admin/callin">Call In</a>
 						</li>
                                                 
                                                     <li>
-                                                        <a href="<?php echo base_url();?>index.php/admin/adminlisting">Verify Listing</a>
+                                                        <a href="<?php echo base_url();?>admin/adminlisting">Verify Listing</a>
                                                     </li>
                                                 
                                                 <li>
-							<a href="<?php echo base_url();?>index.php/admin/hotpick">Update Hotpick</a>
+							<a href="<?php echo base_url();?>admin/hotpick">Update Hotpick</a>
 						</li>
                                                 
 						<li>
-							<a href="<?php echo base_url();?>index.php/admin/dokumen">Upload dokumen presentasi</a>
+							<a href="<?php echo base_url();?>admin/dokumen">Upload dokumen presentasi</a>
 						</li>
 						
 					</ul>
@@ -271,11 +274,11 @@
 					</a>
 					<ul class="dropdown-menu">
 						<li>
-							<a href="<?php echo base_url();?>index.php/users/manage">User Management</a>
+							<a href="<?php echo base_url();?>users/manage">User Management</a>
 						</li>
 						
 <!--						<li>
-							<a href="<?php echo base_url();?>index.php/users/role">Role Management</a>
+							<a href="<?php echo base_url();?>users/role">Role Management</a>
 						</li>-->
 						
 					</ul>
@@ -288,7 +291,7 @@
 						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-envelope"></i><span class="label label-lightred">4</span></a>
 						<ul class="dropdown-menu pull-right message-ul">
 							<li>
-								<a href="<?php echo base_url();?>index.php/listingadmin.php">
+								<a href="<?php echo base_url();?>listingadmin.php">
 									
 									<div class="details">
 										<div class="name">Alert</div>
@@ -299,7 +302,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="<?php echo base_url();?>index.php/listingadmin.php">
+								<a href="<?php echo base_url();?>listingadmin.php">
 									>
 									<div class="details">
 										<div class="name">Alert</div>
@@ -334,12 +337,12 @@
 				<div class="dropdown">
 					<a href="#" class='dropdown-toggle' data-toggle="dropdown"><?php echo $nama; ?> <img src="<?php echo base_url();?>img/demo/user-avatar.jpg" alt=""></a>
 					<ul class="dropdown-menu pull-right">
-						<li>
-							<a href="<?php echo base_url();?>index.php/more-userprofile.html">Edit profile</a>
-						</li>
+<!--						<li>
+							<a href="<?php echo base_url();?>more-userprofile.html">Edit profile</a>
+						</li>-->
 						
 						<li>
-							<a href="<?php echo base_url();?>index.php/login/logout">Sign out</a>
+							<a href="<?php echo base_url();?>login/logout">Sign out</a>
 						</li>
 					</ul>
 				</div>

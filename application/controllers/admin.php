@@ -109,6 +109,73 @@ class admin extends RS_Controller
             $this->load->view('admin/verify',$data);
             $this->load->view('templates/footer');
         }
+        
+     public function event(){
+         if($_SERVER['REQUEST_METHOD'] == 'POST')
+         {
+             $eventid = $this->input->post('eventid');
+             //$officeid = $this->session->userdata('officeid');
+             $data_event['officeid'] = $this->session->userdata('officeid');
+             $data_event['judul'] = $this->input->post('judul');
+             $data_event['description'] = $this->input->post('description');
+             $data_event['tanggal'] = $this->input->post('tanggal');
+             $data_event['tempat'] = $this->input->post('tempat');
+             
+             
+         
+         
+         
+             
+             if($eventid == "")
+             {
+                 $eventid = $this->admin_model->saveEvent($data_event);
+                 
+                 if(count($_FILES) > 0 && $_FILES['gambar']['name'] != "")
+                 {
+                    $tmpname = $_FILES['gambar']['tmp_name'];
+                    $filename = $_FILES['gambar']['name'];
+                    move_uploaded_file($tmpname, EVENT_PATH.$eventid."_".$filename);
+                    $pic['gambar'] = $eventid."_".$filename;
+                    $this->admin_model->updateEvent($pic,$eventid);
+                 }
+             }else
+             {
+                 $this->admin_model->updateEvent($data_event,$eventid);
+                 if(count($_FILES) > 0 && $_FILES['gambar']['name'] != "")
+                 {
+                    $tmpname = $_FILES['gambar']['tmp_name'];
+                    $filename = $_FILES['gambar']['name'];
+                    move_uploaded_file($tmpname, EVENT_PATH.$eventid."_".$filename);
+                    $pic['gambar'] = $eventid."_".$filename;
+                    $this->admin_model->updateEvent($pic,$eventid);
+                 }
+                 
+             }
+             redirect('admin/event');
+         }else{
+             $footer['scripts'] = array(
+                'admin/event'
+             );
+            $officeid = $this->session->userdata('officeid');
+            $office = $this->office_model->getOfficeById($officeid);
+            $data['officename'] = $office->NAMA;
+
+            $data['events'] = $this->admin_model->getEventList($officeid);
+
+            $this->load->view('admin/event',$data);
+            $this->load->view('templates/footer',$footer);
+         }
+     }
+     
+     public function getEvent(){
+         $eventid = $this->input->post('eventid');
+         
+         $json = $this->admin_model->getEvent($eventid);
+         $data['json'] = json_encode($json);
+         
+         $this->load->view('json_view',$data);
+     }
+        
      public function dokumen()
      {
          $footer['scripts'] = array(

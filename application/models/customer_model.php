@@ -18,7 +18,7 @@ class Customer_model extends CI_Model
                 // is marketing
                 $this->db->from("customer");
                 $this->db->join("daftarcustomermarketing","daftarcustomermarketing.CustomerId = customer.CustomerId");
-                $this->db->join("Marketing","marketing.MarketingId = daftarcustomermarketing.MarketingId");
+                $this->db->join("marketing","marketing.MarketingId = daftarcustomermarketing.MarketingId");
                 $this->db->join("user","marketing.MarketingId = user.MarketingId");
                 $this->db->select("customer.*,DATE_FORMAT(customer.TANGGAL_LAHIR,'%d-%m-%Y') as TGL_LAHIR",false);
                 
@@ -93,13 +93,15 @@ class Customer_model extends CI_Model
         
        
         
-        public function update_customer($data)
+        public function update_customer($data,$id)
         {
             if($data == FALSE)
             {
                 return null;
             }
             
+            $this->db->where('customerid',$id);
+            $this->db->update('customer',$data);
             
         }
         
@@ -114,7 +116,7 @@ class Customer_model extends CI_Model
                 $this->db->from("customer");
                 $this->db->join("daftarcustomermarketing","daftarcustomermarketing.CustomerId = customer.CustomerId");
                 
-                $this->db->select("customer.*,DATE_FORMAT(customer.TANGGAL_LAHIR,'%d-%m-%Y') as tgl_lahir",FALSE);
+                $this->db->select("customer.*,DATE_FORMAT(customer.TANGGAL_LAHIR,'%d-%m-%Y') as tgl_lahir,DATE_FORMAT(customer.TANGGAL_PERNIKAHAN,'%d-%m-%Y') as tgl_nikah",FALSE);
                 
                 
                 $this->db->where("customer.CustomerId",$id);

@@ -66,12 +66,10 @@
                                                                                     <a href="customer/detail?customerid=<?php echo $customer->CUSTOMERID?>" class="btn" rel="tooltip" title="View">
                                                                                         <i class="icon-search"></i>
                                                                                     </a>
-                                                                                    <a href="#" class="btn" rel="tooltip"  title="Edit">
+                                                                                    <a  class="btn" rel="tooltip" onclick="edit(<?php echo $customer->CUSTOMERID?>)" title="Edit">
                                                                                         <i class="icon-edit"></i>
                                                                                     </a>
-                                                                                    <a href="#" class="btn" rel="tooltip" title="Delete">
-                                                                                        <i class="icon-remove"></i>
-                                                                                    </a>
+                                                                                    
                                                                                 </td>
                                                                             </tr>
                                                                             <?php } ?>
@@ -165,18 +163,18 @@
                                                                         <div class="control-group">
                                                                                 <label for="C_Tanggal" class="control-label">Tanggal Lahir</label>
                                                                                 <div class="controls">
-                                                                                    <input type="date" name="textfield" id="C_Tanggal"  class="input-medium textsave">
+                                                                                    <input type="text" name="textfield" id="C_Tanggal"  class="input-medium datepicker">
                                                                                 </div>
                                                                         </div>
                                                                         <div class="control-group">
                                                                                 <label for="C_Tanggal_NIKAH" class="control-label">Tanggal Pernikahan</label>
                                                                                 <div class="controls">
-                                                                                        <input type="date" name="textfield" id="C_Tanggal_Nikah"  class="input-medium textsave">
+                                                                                        <input type="text" name="textfield" id="C_Tanggal_Nikah"  class="input-medium datepicker">
                                                                                 </div>
                                                                         </div>
                                                                         
                                                                         <div class="control-group">
-                                                                                <label  class="control-label">Tanggal Pernikahan</label>
+                                                                                <label  class="control-label">Jenis Customer</label>
                                                                                 <div class="controls">
                                                                                         <input type="checkbox" id="C_Buyer" name="checkbox" class="checksave" /> Buyer
                                                                                         <input type="checkbox" id="C_Vendor" name="checkbox" class="checksave" /> Vendor
@@ -191,7 +189,7 @@
                                                                 </div>
                                                                 <div class="span12">
                                                                         <div class="form-actions">
-                                                                                <input type="button" class="btn btn-primary" id="btnSave" onclick="saveNew();" value="Save changes"/>
+                                                                                <input type="button" class="btn btn-primary" id="btnSave"  value="Save changes"/>
                                                                                 <input type="button" class="btn" id="btnCancelSave" onclick="cancelNew();" value="Cancel" />
                                                                         </div>
                                                                 </div>

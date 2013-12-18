@@ -14,7 +14,7 @@
 |
 */
 define('FILE_READ_MODE', 0644);
-define('FILE_WRITE_MODE', 0666);
+define('FILE_WRITE_MODE', 0777);
 define('DIR_READ_MODE', 0755);
 define('DIR_WRITE_MODE', 0777);
 
@@ -36,7 +36,7 @@ define('FOPEN_READ_WRITE_CREATE',				'a+b');
 define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
-
+//local
 //custom constants
 define("MAP_API_KEY",'AIzaSyDcAoVqCimkKElAVwPfRsiu2Va_zJh2qwo');
 define("NODE_URL","http://localhost:3000/");
@@ -44,5 +44,17 @@ define("LISTING_UPLOAD_PATH","C:/program files/nodejs/RumahSuper/Public/Images/"
 define("LISTING_TEMP_PATH","C:/Program Files/xampp/htdocs/upload/server/php/files/");
 define("DOKUMEN_PATH","C:/Program Files/xampp/htdocs/ci/dokumen/");
 define("DOKUMEN_UPLOAD_PATH","http://localhost:85/ci/dokumen/");
+define("EVENT_PATH","C:/Program Files/xampp/htdocs/ci/event/");
+define("EVENT_UPLOAD_PATH","http://localhost:85/ci/event/");
+
+//server 
+/*
+define("MAP_API_KEY",'AIzaSyDcAoVqCimkKElAVwPfRsiu2Va_zJh2qwo');
+define("NODE_URL","http://rumahsuper.com:3000/");
+define("LISTING_UPLOAD_PATH","/home/nodejs/RumahSuper/public/images/");
+define("LISTING_TEMP_PATH","/home/rsadmin/public_html//upload/server/php/files/");
+define("DOKUMEN_PATH","/home/rsadmin/public_html/propertyadmin/dokumen/");
+define("DOKUMEN_UPLOAD_PATH","http://rumahsuper.com/propertyadmin/dokumen/");
+*/
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

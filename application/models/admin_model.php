@@ -107,6 +107,39 @@ class admin_model extends CI_Model
         return $query_final->result();
     }
     
+    public function getEventList($officeid){
+        $query = $this->db->get_where('event',array(
+            'officeid' => $officeid
+        ));
+        
+        return $query->result();
+    }
+    
+    
+    public function getEvent($id)
+    {
+        $query = $this->db->get_where('event',array(
+            'eventid' => $id
+        ));
+        
+        return $query->row();
+    }
+    
+    public function saveEvent($data){
+        $this->db->insert('event',$data);
+        $insertid = $this->db->insert_id();
+        
+       
+        
+        return $insertid;
+    }
+    
+    public function updateEvent($data,$id)
+    {
+        $this->db->where('eventid',$id);
+        $this->db->update('event',$data);
+    }
+    
     public function addHotPick($listings,$adminid,$hotpicklistid)
     {
         
